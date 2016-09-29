@@ -9,11 +9,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\template.c">
-      <Filter>source</Filter>
-    </ClCompile>
+    <None Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Makefile" />
+    <ClCompile Include="source\main.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

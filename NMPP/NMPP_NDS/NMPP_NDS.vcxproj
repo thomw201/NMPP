@@ -45,11 +45,12 @@
     <NMakeOutput>$(ProjectName).nds</NMakeOutput>
     <NMakePreprocessorDefinitions>ARM9; ARM7;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath>c:\devkitPro\libnds\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <IncludePath>D:\Documents\NMPP\NMPP\NMPP_NDS\nflib\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\template.c" />
+    <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />

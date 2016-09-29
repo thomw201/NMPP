@@ -1,4 +1,4 @@
-template.o: d:/Documents/NMPP/NMPP/NMPP_NDS/source/template.c \
+main.o: d:/Documents/NMPP/NMPP/NMPP_NDS/source/main.cpp \
  c:/devkitPro/libnds/include/nds.h \
  c:/devkitPro/libnds/include/nds/libversion.h \
  c:/devkitPro/libnds/include/nds/ndstypes.h \

@@ -1,4 +1,4 @@
-template.o: d:/Documents/NMPP/NMPP/NMPP_NDS/source/template.c \
+nf_basic.o: d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/source/nf_basic.c \
  c:/devkitPro/libnds/include/nds.h \
  c:/devkitPro/libnds/include/nds/libversion.h \
  c:/devkitPro/libnds/include/nds/ndstypes.h \
@@ -57,22 +57,12 @@ template.o: d:/Documents/NMPP/NMPP/NMPP_NDS/source/template.c \
  c:/devkitPro/libnds/include/nds/arm9/trig_lut.h \
  c:/devkitPro/libnds/include/nds/arm9/video.h \
  c:/devkitPro/libnds/include/nds/arm9/videoGL.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_lib.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_defines.h \
+ c:/devkitPro/libnds/include/filesystem.h \
+ c:/devkitPro/libnds/include/fat.h \
+ c:/devkitPro/libnds/include/libfatversion.h \
+ c:/devkitPro/libnds/include/nds/disc_io.h \
  d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_basic.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_2d.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_tiledbg.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_affinebg.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_bitmapbg.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_mixedbg.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_sprite256.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_text.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_text16.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_colision.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_sound.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_media.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_3d.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_sprite3d.h
+ d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_defines.h
 
 c:/devkitPro/libnds/include/nds.h:
 
@@ -190,34 +180,14 @@ c:/devkitPro/libnds/include/nds/arm9/video.h:
 
 c:/devkitPro/libnds/include/nds/arm9/videoGL.h:
 
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_lib.h:
+c:/devkitPro/libnds/include/filesystem.h:
 
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_defines.h:
+c:/devkitPro/libnds/include/fat.h:
+
+c:/devkitPro/libnds/include/libfatversion.h:
+
+c:/devkitPro/libnds/include/nds/disc_io.h:
 
 d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_basic.h:
 
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_2d.h:
-
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_tiledbg.h:
-
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_affinebg.h:
-
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_bitmapbg.h:
-
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_mixedbg.h:
-
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_sprite256.h:
-
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_text.h:
-
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_text16.h:
-
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_colision.h:
-
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_sound.h:
-
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_media.h:
-
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_3d.h:
-
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_sprite3d.h:
+d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_defines.h:
