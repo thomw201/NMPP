@@ -5,21 +5,23 @@
 #include <math.h>
 #include <3ds.h>
 #include <sf2d.h>
+#include "citra_img.c"
+#include "dice_img.c"
 
 
-extern const struct {
-  unsigned int 	 width;
-  unsigned int 	 height;
-  unsigned int 	 bytes_per_pixel;
-  unsigned char	 pixel_data[];
-} citra_img;
-
-extern const struct {
-  unsigned int 	 width;
-  unsigned int 	 height;
-  unsigned int 	 bytes_per_pixel;
-  unsigned char	 pixel_data[];
-} dice_img;
+//extern const struct {
+//  unsigned int 	 width;
+//  unsigned int 	 height;
+//  unsigned int 	 bytes_per_pixel;
+//  unsigned char	 pixel_data[];
+//} citra_img;
+//
+//extern const struct {
+//  unsigned int 	 width;
+//  unsigned int 	 height;
+//  unsigned int 	 bytes_per_pixel;
+//  unsigned char	 pixel_data[];
+//} dice_img;
 
 #define CONFIG_3D_SLIDERSTATE (*(float *)0x1FF81080)
 

@@ -21,7 +21,7 @@
     <ClCompile Include="source\dice_img.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\main.c">
+    <ClCompile Include="source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

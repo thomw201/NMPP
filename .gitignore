@@ -266,3 +266,13 @@ __pycache__/
 
 # Cake - Uncomment if you are using it
 # tools/
+
+# 3DS and NDS files
+*.3dsx
+*.elf
+*.smdh
+
+#Visual Studio Project files
+*.vcproj
+*.vcxproj
+*.vcxproj.filters

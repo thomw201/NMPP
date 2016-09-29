@@ -27,7 +27,7 @@ include $(DEVKITARM)/3ds_rules
 #     - icon.png
 #     - <libctru folder>/default_icon.png
 #---------------------------------------------------------------------------------
-TARGET		:=	sf2d_sample
+TARGET		:=	3ds_Pong
 BUILD		:=	build
 SOURCES		:=	source
 DATA		:=	data

@@ -77,7 +77,7 @@
   <ItemGroup>
     <ClCompile Include="source\citra_img.c" />
     <ClCompile Include="source\dice_img.c" />
-    <ClCompile Include="source\main.c" />
+    <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
