@@ -2,7 +2,6 @@
 
 class GameObject {
 public:
-	//gmtl::Matrix44f test_matrix;
 	//gtml::Point location;
 	GameObject();
 	void Update(float deltaTime);
