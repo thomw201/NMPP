@@ -1,7 +1,9 @@
-
 #include <stdio.h>
 #include <nds.h>
 #include <nf_lib.h>
+#include <gmtl\gmtl.h>
+#include <gmtl\Matrix.h>
+
 
 /*
 -------------------------------------------------
@@ -10,28 +12,15 @@
 */
 
 int main(int argc, char **argv) {
-
-	consoleDemoInit();		
-	consoleClear();			
-	setBrightness(3, 0);	
-	// Turn on MODE 0 on the Top Screen
-	NF_Set2D(0, 0);
-
-	// Set the Root Folder
-	NF_SetRootFolder("NITROFS");
-
-	// Initialize the Tiled Backgrounds System on the Top Screen
-	NF_InitTiledBgBuffers();
-	NF_InitTiledBgSys(0);
-
-	// Load the Tiled Background
-	NF_LoadTiledBg("Background", "Background", 256, 256);
-	NF_CreateTiledBg(0, 3, "Background");
-
-	printf("\n Multiplatform Pong v0.0001");
-
-
-
+	powerOn(POWER_ALL_2D); // Turn on the 2D graphics core.
+	lcdMainOnBottom();
+	//initVideo();
+	//initBackgrounds();
+	///* Set up a few sprites. */
+	//SpriteInfo spriteInfo[SPRITE_COUNT];
+	OAMTable *oam = new OAMTable();
+	gmtl::Matrix44f test_matrix;
+	test_matrix.set(new float(1.0f));
 	while(1) {
 
 		swiWaitForVBlank();		// Espera al sincronismo vertical

@@ -72,7 +72,47 @@ main.o: d:/Documents/NMPP/NMPP/NMPP_NDS/source/main.cpp \
  d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_sound.h \
  d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_media.h \
  d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_3d.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_sprite3d.h
+ d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_sprite3d.h \
+ d:\documents\nmpp\gmtl\gmtl\gmtl.h d:\documents\nmpp\gmtl\gmtl\aabox.h \
+ d:\documents\nmpp\gmtl\gmtl\point.h \
+ d:\documents\nmpp\gmtl\gmtl\defines.h \
+ d:\documents\nmpp\gmtl\gmtl\vecbase.h \
+ d:\documents\nmpp\gmtl\gmtl\util\assert.h \
+ d:\documents\nmpp\gmtl\gmtl\util\staticassert.h \
+ d:\documents\nmpp\gmtl\gmtl\util\meta.h \
+ d:\documents\nmpp\gmtl\gmtl\config.h \
+ d:\documents\nmpp\gmtl\gmtl\helpers.h \
+ d:\documents\nmpp\gmtl\gmtl\aaboxops.h \
+ d:\documents\nmpp\gmtl\gmtl\vecops.h d:\documents\nmpp\gmtl\gmtl\math.h \
+ d:\documents\nmpp\gmtl\gmtl\vec.h \
+ d:\documents\nmpp\gmtl\gmtl\vecopsmeta.h \
+ d:\documents\nmpp\gmtl\gmtl\vecexprmeta.h \
+ d:\documents\nmpp\gmtl\gmtl\axisangle.h \
+ d:\documents\nmpp\gmtl\gmtl\axisangleops.h \
+ d:\documents\nmpp\gmtl\gmtl\containment.h \
+ d:\documents\nmpp\gmtl\gmtl\sphere.h \
+ d:\documents\nmpp\gmtl\gmtl\frustum.h \
+ d:\documents\nmpp\gmtl\gmtl\plane.h \
+ d:\documents\nmpp\gmtl\gmtl\matrixops.h \
+ d:\documents\nmpp\gmtl\gmtl\matrix.h d:\documents\nmpp\gmtl\gmtl\tri.h \
+ d:\documents\nmpp\gmtl\gmtl\coord.h \
+ d:\documents\nmpp\gmtl\gmtl\eulerangle.h \
+ d:\documents\nmpp\gmtl\gmtl\quat.h \
+ d:\documents\nmpp\gmtl\gmtl\coordops.h \
+ d:\documents\nmpp\gmtl\gmtl\eulerangleops.h \
+ d:\documents\nmpp\gmtl\gmtl\generate.h \
+ d:\documents\nmpp\gmtl\gmtl\quatops.h \
+ d:\documents\nmpp\gmtl\gmtl\xforms.h d:\documents\nmpp\gmtl\gmtl\ray.h \
+ d:\documents\nmpp\gmtl\gmtl\lineseg.h \
+ d:\documents\nmpp\gmtl\gmtl\intersection.h \
+ d:\documents\nmpp\gmtl\gmtl\planeops.h \
+ d:\documents\nmpp\gmtl\gmtl\linesegops.h \
+ d:\documents\nmpp\gmtl\gmtl\rayops.h \
+ d:\documents\nmpp\gmtl\gmtl\output.h \
+ d:\documents\nmpp\gmtl\gmtl\sphereops.h \
+ d:\documents\nmpp\gmtl\gmtl\triops.h \
+ d:\documents\nmpp\gmtl\gmtl\version.h \
+ d:\documents\nmpp\gmtl\gmtl\matrix.h
 
 c:/devkitPro/libnds/include/nds.h:
 
@@ -221,3 +261,91 @@ d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_media.h:
 d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_3d.h:
 
 d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_sprite3d.h:
+
+d:\documents\nmpp\gmtl\gmtl\gmtl.h:
+
+d:\documents\nmpp\gmtl\gmtl\aabox.h:
+
+d:\documents\nmpp\gmtl\gmtl\point.h:
+
+d:\documents\nmpp\gmtl\gmtl\defines.h:
+
+d:\documents\nmpp\gmtl\gmtl\vecbase.h:
+
+d:\documents\nmpp\gmtl\gmtl\util\assert.h:
+
+d:\documents\nmpp\gmtl\gmtl\util\staticassert.h:
+
+d:\documents\nmpp\gmtl\gmtl\util\meta.h:
+
+d:\documents\nmpp\gmtl\gmtl\config.h:
+
+d:\documents\nmpp\gmtl\gmtl\helpers.h:
+
+d:\documents\nmpp\gmtl\gmtl\aaboxops.h:
+
+d:\documents\nmpp\gmtl\gmtl\vecops.h:
+
+d:\documents\nmpp\gmtl\gmtl\math.h:
+
+d:\documents\nmpp\gmtl\gmtl\vec.h:
+
+d:\documents\nmpp\gmtl\gmtl\vecopsmeta.h:
+
+d:\documents\nmpp\gmtl\gmtl\vecexprmeta.h:
+
+d:\documents\nmpp\gmtl\gmtl\axisangle.h:
+
+d:\documents\nmpp\gmtl\gmtl\axisangleops.h:
+
+d:\documents\nmpp\gmtl\gmtl\containment.h:
+
+d:\documents\nmpp\gmtl\gmtl\sphere.h:
+
+d:\documents\nmpp\gmtl\gmtl\frustum.h:
+
+d:\documents\nmpp\gmtl\gmtl\plane.h:
+
+d:\documents\nmpp\gmtl\gmtl\matrixops.h:
+
+d:\documents\nmpp\gmtl\gmtl\matrix.h:
+
+d:\documents\nmpp\gmtl\gmtl\tri.h:
+
+d:\documents\nmpp\gmtl\gmtl\coord.h:
+
+d:\documents\nmpp\gmtl\gmtl\eulerangle.h:
+
+d:\documents\nmpp\gmtl\gmtl\quat.h:
+
+d:\documents\nmpp\gmtl\gmtl\coordops.h:
+
+d:\documents\nmpp\gmtl\gmtl\eulerangleops.h:
+
+d:\documents\nmpp\gmtl\gmtl\generate.h:
+
+d:\documents\nmpp\gmtl\gmtl\quatops.h:
+
+d:\documents\nmpp\gmtl\gmtl\xforms.h:
+
+d:\documents\nmpp\gmtl\gmtl\ray.h:
+
+d:\documents\nmpp\gmtl\gmtl\lineseg.h:
+
+d:\documents\nmpp\gmtl\gmtl\intersection.h:
+
+d:\documents\nmpp\gmtl\gmtl\planeops.h:
+
+d:\documents\nmpp\gmtl\gmtl\linesegops.h:
+
+d:\documents\nmpp\gmtl\gmtl\rayops.h:
+
+d:\documents\nmpp\gmtl\gmtl\output.h:
+
+d:\documents\nmpp\gmtl\gmtl\sphereops.h:
+
+d:\documents\nmpp\gmtl\gmtl\triops.h:
+
+d:\documents\nmpp\gmtl\gmtl\version.h:
+
+d:\documents\nmpp\gmtl\gmtl\matrix.h:

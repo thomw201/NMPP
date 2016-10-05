@@ -45,15 +45,24 @@
     <NMakeOutput>$(ProjectName).nds</NMakeOutput>
     <NMakePreprocessorDefinitions>ARM9; ARM7;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath>c:\devkitPro\libnds\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
-    <IncludePath>D:\Documents\NMPP\NMPP\NMPP_NDS\nflib\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Documents\NMPP\NMPP\NMPP_NDS\include;D:\Documents\NMPP\gmtl;D:\Documents\NMPP\NMPP\NMPP_NDS\nflib\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\GameController.cpp" />
+    <ClCompile Include="source\GameObject.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\paddle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\GameController.h" />
+    <ClInclude Include="include\GameObject.h" />
+    <ClInclude Include="include\paddle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

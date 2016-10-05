@@ -1,0 +1,19 @@
+#pragma once
+
+class GameObject {
+public:
+	//gmtl::Matrix44f test_matrix;
+	//gtml::Point location;
+	GameObject();
+	void Update(float deltaTime);
+	void Destroy();
+	~GameObject();
+};
+
+class Player : public GameObject {
+
+};
+
+class Ball : public GameObject {
+	
+};
