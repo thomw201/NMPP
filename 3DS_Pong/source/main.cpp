@@ -7,6 +7,7 @@
 #include <sf2d.h>
 #include "citra_img.c"
 #include "dice_img.c"
+#include <gmtl\Point.h>
 
 
 //extern const struct {
@@ -27,6 +28,7 @@
 
 int main()
 {
+	gmtl::Point<float, 2> point;
 	// Set the random seed based on the time
 	srand(time(NULL));
 

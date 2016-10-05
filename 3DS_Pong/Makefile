@@ -61,6 +61,8 @@ LIBS	:= -lsf2d -lcitro3d -lctru -lm
 # include and lib
 #---------------------------------------------------------------------------------
 LIBDIRS	:= $(CTRULIB) $(CURDIR)/../libsf2d
+LIBDIRS2 += $(CURDIR)/../gmtl
+
 
 
 #---------------------------------------------------------------------------------
@@ -105,9 +107,11 @@ export OFILES	:=	$(addsuffix .o,$(BINFILES)) \
 
 export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 			$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
+			$(foreach dir,$(LIBDIRS2),-I$(dir)/) \
 			-I$(CURDIR)/$(BUILD)
 
 export LIBPATHS	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib)
+
 
 ifeq ($(strip $(ICON)),)
 	icons := $(wildcard *.png)
