@@ -2,7 +2,7 @@
 
 class GameObject {
 public:
-	gtml::Point location;
+	//gtml::Point location;
 	GameObject();
 	void Update(float deltaTime);
 	void Destroy();
