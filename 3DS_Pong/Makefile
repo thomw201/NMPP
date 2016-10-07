@@ -29,14 +29,14 @@ include $(DEVKITARM)/3ds_rules
 #---------------------------------------------------------------------------------
 TARGET		:=	3ds_Pong
 BUILD		:=	build
-SOURCES		:=	source
+SOURCES		:=	source 
 DATA		:=	data
 INCLUDES	:=	include
 #ROMFS		:=	romfs
 
-APP_TITLE		:= SF2DLIB sample
-APP_DESCRIPTION	:= SF2DLIB sample
-APP_AUTHOR		:= xerpi
+APP_TITLE		:= 3DS Pong
+APP_DESCRIPTION	:= Multiplatform Pong
+APP_AUTHOR		:= Eden Cox and Thom Wouda
 
 #---------------------------------------------------------------------------------
 # options for code generation

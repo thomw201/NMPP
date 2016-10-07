@@ -65,7 +65,7 @@
     <NMakeBuildCommandLine>make</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>make clean</NMakeCleanCommandLine>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <IncludePath>..\gmtl\gmtl;C:\devkitPro\libctru\include;C:\devkitPro\libsf2d\include;C:\devkitPro\devkitARM\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\gmtl;C:\devkitPro\libctru\include;C:\devkitPro\libsf2d\include;C:\devkitPro\devkitARM\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakeBuildCommandLine>make</NMakeBuildCommandLine>
@@ -77,10 +77,16 @@
   <ItemGroup>
     <ClCompile Include="source\citra_img.c" />
     <ClCompile Include="source\dice_img.c" />
+    <ClCompile Include="source\GameController.cpp" />
+    <ClCompile Include="source\GameObject.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\GameController.h" />
+    <ClInclude Include="source\GameObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

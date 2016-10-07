@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include <vector>
 
 using namespace std;
 /**
@@ -9,7 +10,7 @@ class GameController {
 
 public:
 	vector<GameObject> gameObjects;
-	void GameController();
+	GameController();
 	void Update(float deltaTime);
 
 };
