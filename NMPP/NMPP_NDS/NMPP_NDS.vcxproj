@@ -53,12 +53,16 @@
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\paddle.cpp" />
+    <ClCompile Include="source\sprites.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\paddle.h" />
+    <ClInclude Include="include\paddleImg.h" />
+    <ClInclude Include="include\splashImg.h" />
+    <ClInclude Include="include\sprites.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

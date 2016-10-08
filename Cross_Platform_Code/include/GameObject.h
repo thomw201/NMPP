@@ -6,6 +6,7 @@ public:
 	GameObject();
 	void Update(float deltaTime);
 	void Destroy();
+	void test();
 	~GameObject();
 };
 

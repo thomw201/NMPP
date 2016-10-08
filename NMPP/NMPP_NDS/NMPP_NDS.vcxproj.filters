@@ -18,9 +18,21 @@
     <ClCompile Include="source\paddle.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="source\sprites.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\paddle.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sprites.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\paddleImg.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\splashImg.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,10 +1,10 @@
-#include <math.h>
 #include "paddle.h"
-
+#include "sprites.h"
 
 
 paddle::paddle()
 {
+
 
 }
 

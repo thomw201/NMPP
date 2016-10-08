@@ -113,7 +113,9 @@ main.o: d:/Documents/NMPP/NMPP/NMPP_NDS/source/main.cpp \
  d:\documents\nmpp\gmtl\gmtl\triops.h \
  d:\documents\nmpp\gmtl\gmtl\version.h \
  d:\documents\nmpp\gmtl\gmtl\matrix.h \
- d:\documents\nmpp\cross_platform_code\include\gameobject.h
+ d:/Documents/NMPP/NMPP/NMPP_NDS/include/Sprites.h \
+ d:/Documents/NMPP/NMPP/NMPP_NDS/include/paddleImg.h \
+ d:/Documents/NMPP/NMPP/NMPP_NDS/include/splashImg.h
 
 c:/devkitPro/libnds/include/nds.h:
 
@@ -351,4 +353,8 @@ d:\documents\nmpp\gmtl\gmtl\version.h:
 
 d:\documents\nmpp\gmtl\gmtl\matrix.h:
 
-d:\documents\nmpp\cross_platform_code\include\gameobject.h:
+d:/Documents/NMPP/NMPP/NMPP_NDS/include/Sprites.h:
+
+d:/Documents/NMPP/NMPP/NMPP_NDS/include/paddleImg.h:
+
+d:/Documents/NMPP/NMPP/NMPP_NDS/include/splashImg.h:
