@@ -1,9 +1,9 @@
 #pragma once
-#include <gmtl\gmtl.h>
+#include <gmtl/gmtl.h>
 
 class GameObject {
 protected:
-	gmtl::Vec2f direction;
+	gmtl::Vec3f direction;
 public:
 	GameObject();
 	virtual void Update(float deltaTime) = 0;
@@ -11,20 +11,39 @@ public:
 	~GameObject();
 };
 
-class Pad : public GameObject {
+class Pad1 : public GameObject {
 private:
-	gmtl::AABoxf *paddle;
+	gmtl::AABoxf paddle;
 public:
-	 Pad();
+	 Pad1();
 	 void Update(float deltaTime) override;
 	 void Destroy() override;
+	 int getX();
+	 int getY();
+	 int getWidth();
+	 int getLength();
+	 gmtl::AABoxf getBox();
 
+};
+
+class Pad2 : public GameObject {
+private:
+	gmtl::AABoxf paddle;
+public:
+	Pad2();
+	void Update(float deltaTime) override;
+	void Destroy() override;
+	int getX();
+	int getY();
+	int getWidth();
+	int getLength();
+	gmtl::AABoxf getBox();
 };
 
 class Ball : public GameObject {	
 private:
-	float radius = 20;
-	gmtl::Spheref *ball;
+	float radius = 10;
+	gmtl::Spheref ball;
 	gmtl::Matrix44f ballTranslation;
 public:
 	Ball();
@@ -32,6 +51,9 @@ public:
 	void Destroy() override;
 	int getX();
 	int getY();
+	int getRadius();
+	void reverseDirection();
+	gmtl::Spheref getSphere();
 };
 
 class Item : public GameObject {
