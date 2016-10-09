@@ -1,12 +1,3 @@
-/*
- *  Sprites.h
- *  
- *	Adapted from Liran Nuna's sprite handling code. Special thanks to Liran
- *	Nuna.
- *
- *
- */
-
 #include <nds.h>
 
 #ifndef SPRITES_H

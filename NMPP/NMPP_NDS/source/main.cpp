@@ -8,7 +8,6 @@
 #include "paddleImg.h"
 #include "splashImg.h"
 
-
 /* Select a low priority DMA channel to perform our background copying. */
 static const int DMA_CHANNEL = 3;
 
@@ -94,7 +93,71 @@ void initBackgrounds() {
 	REG_BG3X_SUB = 0;
 	REG_BG3Y_SUB = 0;
 }
+void initSprites(OAMTable * oam, SpriteInfo *spriteInfo) {
 
+	static const int BYTES_PER_16_COLOR_TILE = 32;
+	static const int COLORS_PER_PALETTE = 16;
+	static const int BOUNDARY_VALUE = 32; /* This is the default boundary value
+										  * (can be set in REG_DISPCNT) */
+	static const int OFFSET_MULTIPLIER = BOUNDARY_VALUE /
+		sizeof(SPRITE_GFX[0]);
+
+	/* Keep track of the available tiles */
+	int nextAvailableTileIdx = 0;
+
+	/* Create the ship sprite. */
+	static const int paddle_OAM_ID = 0;
+	assert(paddle_OAM_ID < SPRITE_COUNT);
+	SpriteInfo * paddleInfo = &spriteInfo[paddle_OAM_ID];
+	SpriteEntry * paddle = &oam->oamBuffer[paddle_OAM_ID];
+
+	/* Initialize paddleInfo */
+	paddleInfo->oamId = paddle_OAM_ID;
+	paddleInfo->width = 64;
+	paddleInfo->height = 64;
+	paddleInfo->angle = 0;
+	paddleInfo->entry = paddle;
+
+
+	paddle->y = SCREEN_HEIGHT / 2; // set the paddle horizontally in the middle
+	paddle->x = SCREEN_WIDTH - SCREEN_WIDTH*0.18; // position paddle just before edge
+	paddle->isRotateScale = false;
+	/* This assert is a check to see a matrix is available to store the affine
+	* transformation matrix for this sprite. Of course, you don't have to have
+	* the matrix id match the affine id, but if you do make them match, this
+	* assert can be helpful.
+	*/
+	assert(!paddle->isRotateScale || (paddleInfo->oamId < MATRIX_COUNT));
+	paddle->isSizeDouble = false;
+	paddle->blendMode = OBJMODE_NORMAL;
+	paddle->isMosaic = false;
+	paddle->colorMode = OBJCOLOR_16;
+	paddle->shape = OBJSHAPE_SQUARE;
+
+
+	paddle->rotationIndex = paddleInfo->oamId;
+	paddle->size = OBJSIZE_64;
+
+
+	paddle->gfxIndex = nextAvailableTileIdx;
+	nextAvailableTileIdx += paddleImgTilesLen / BYTES_PER_16_COLOR_TILE;
+	paddle->priority = OBJPRIORITY_0;
+	paddle->palette = paddleInfo->oamId;
+
+	/*************************************************************************/
+
+	/* Copy over the sprite palettes */
+	dmaCopyHalfWords(SPRITE_DMA_CHANNEL,
+		paddleImgPal,
+		&SPRITE_PALETTE[paddleInfo->oamId *
+		COLORS_PER_PALETTE],
+		paddleImgPalLen);
+
+	dmaCopyHalfWords(SPRITE_DMA_CHANNEL,
+		paddleImgTiles,
+		&SPRITE_GFX[paddle->gfxIndex * OFFSET_MULTIPLIER],
+		paddleImgTilesLen);
+}
 
 void displaySplash() {
 	dmaCopyHalfWords(DMA_CHANNEL,
@@ -115,14 +178,27 @@ int main() {
 	lcdMainOnBottom(); // Place the main screen on the bottom physical screen
 	initVideo();
 	initBackgrounds();
+
+	/* Set up a few sprites. */
+	SpriteInfo spriteInfo[SPRITE_COUNT];
+	OAMTable *oam = new OAMTable();
+	initOAM(oam);
+	initSprites(oam, spriteInfo);
+
+
 	//display the splash screen
 	displaySplash();
 
 
 	while(1) {
-
+		/*
+		*  Update the OAM.
+		*
+		*  We have to copy our copy of OAM data into the actual OAM during
+		*  VBlank (writes to it are locked during other times).
+		*/
 		swiWaitForVBlank();
-
+		updateOAM(oam);
 	}
 
 	return 0;
