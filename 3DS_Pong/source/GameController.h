@@ -9,14 +9,15 @@ using namespace std;
 */
 class GameController {
 private:
-	gmtl::AABoxf playingField;
-	Pad1 player1;
-	Pad2 player2;
+	Pad player1;
+	Pad player2;
 	Ball ball;
 public:
 	vector<GameObject> gameObjects;
 	GameController();
 	void Update(float deltaTime);
+	void movePaddle1(Direction direction);
+	void movePaddle2(Direction direction);
 	int getBallX();
 	int getBallY();
 	int getPad1X();

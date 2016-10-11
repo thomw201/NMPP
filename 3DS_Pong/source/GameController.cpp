@@ -1,11 +1,8 @@
 #include "GameController.h"
 
 GameController::GameController() {
-	gmtl::Point3f upLeftCorner = gmtl::Point3f(0, 0, 0);
-	gmtl::Point3f downRightCorner = gmtl::Point3f(400, 240, 0);
-	playingField = gmtl::AABoxf(upLeftCorner, downRightCorner);
-	player1 = Pad1();
-	player2 = Pad2();
+	player1 = Pad(true);
+	player2 = Pad(false);
 	ball = Ball();
 }
 
@@ -15,14 +12,24 @@ void GameController::Update(float deltaTime)
 	player2.Update(deltaTime);
 	ball.Update(deltaTime);	
 	if (gmtl::intersect(player1.getBox(), ball.getSphere()))
-	{
-		ball.reverseDirection();
+	{		
+		ball.reverseDirection((ball.getY() - player1.getCenterY()) / (playingField.padLength / 2) * 100);//calculation for the ball ricochet angle.
 	}
 	else if (gmtl::intersect(player2.getBox(), ball.getSphere()))
 	{
-		ball.reverseDirection();
+		ball.reverseDirection((ball.getY() - player2.getCenterY()) / (playingField.padLength / 2) * 100);
 	}
 
+}
+
+void GameController::movePaddle1(Direction direction)
+{
+	player1.setDirection(direction);
+}
+
+void GameController::movePaddle2(Direction direction)
+{
+	player2.setDirection(direction);
 }
 
 int GameController::getBallX()

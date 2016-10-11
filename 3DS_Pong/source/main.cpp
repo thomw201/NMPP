@@ -26,7 +26,7 @@ int main()
 	start = std::clock();
 	// Set the random seed based on the time
 	srand(time(NULL));
-	float deltaTime = 0;
+	//float deltaTime = 0;
 
 	sf2d_init();
 	sf2d_set_clear_color(RGBA8(0x40, 0x40, 0x40, 0xFF));
@@ -64,13 +64,38 @@ int main()
 		} else if (held & (KEY_L | KEY_R)) {
 			sf2d_set_clear_color(RGBA8(rand()%255, rand()%255, rand()%255, 255));
 		}
+		if (held & KEY_UP)
+		{
+			game.movePaddle1(up);
+		}
+		else if (held & KEY_DOWN)
+		{
+			game.movePaddle1(down);
+		}
+		else
+		{
+			game.movePaddle1(neutral);
+		}
+
+		if (held & KEY_X)
+		{
+			game.movePaddle2(up);
+		}
+		else if (held & KEY_B)
+		{
+			game.movePaddle2(down);
+		}
+		else
+		{
+			game.movePaddle2(neutral);
+		}
 
 		game.Update(0.05f);
 
 		offset3d = CONFIG_3D_SLIDERSTATE * 30.0f;
 
 		sf2d_start_frame(GFX_TOP, GFX_LEFT);
-			sf2d_draw_fill_circle(offset3d + game.getBallX(), game.getBallY(), 10, RGBA8(0xFF, 0xFF, 0xFF, 0xFF));
+			sf2d_draw_fill_circle(offset3d + game.getBallX(), game.getBallY(), playingField.ballRadius, RGBA8(0xFF, 0xFF, 0xFF, 0xFF));
 			//sf2d_draw_fill_circle(offset3d + 180, 120, 55, RGBA8(0xFF, 0xFF, 0x00, 0xFF));
 
 			//(offset3d + 260, 20, 40, 40, RGBA8(0xFF, 0xFF, 0x00, 0xFF), -2.0f*rad);
@@ -81,7 +106,7 @@ int main()
 
 		sf2d_start_frame(GFX_TOP, GFX_RIGHT);
 
-			sf2d_draw_fill_circle(game.getBallX(), game.getBallY(), 10, RGBA8(0xFF, 0xFF, 0xFF, 0xFF));
+			sf2d_draw_fill_circle(game.getBallX(), game.getBallY(), playingField.ballRadius, RGBA8(0xFF, 0xFF, 0xFF, 0xFF));
 			//sf2d_draw_fill_circle(180, 120, 55, RGBA8(0xFF, 0xFF, 0x00, 0xFF));
 
 			//sf2d_draw_rectangle_rotate(260, 20, 40, 40, RGBA8(0xFF, 0xFF, 0x00, 0xFF), -2.0f*rad);

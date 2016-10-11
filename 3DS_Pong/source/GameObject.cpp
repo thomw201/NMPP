@@ -2,100 +2,107 @@
 
 
 GameObject::GameObject() {
-	direction = gmtl::Vec3f();
+	speed = gmtl::Vec3f();
 }
 
 GameObject::~GameObject() {
  
 }
 
-Pad1::Pad1() : GameObject() {
-	direction.set(0,10,0);
-	gmtl::Point3f paddlePoint1 = gmtl::Point3f(5, 100, 0);
-	gmtl::Point3f paddlePoint2 = gmtl::Point3f(15, 140, 0);
+Pad::Pad()
+{
+	Pad(true);
+}
+
+Pad::Pad(bool playerOne) : GameObject() {
+	direction = neutral;
+	speed.set(0,playingField.padSpeed,0);
+	gmtl::Point3f paddlePoint1;
+	gmtl::Point3f paddlePoint2;
+	if (playerOne)
+	{
+		paddlePoint1 = gmtl::Point3f(playingField.pad1X, playingField.padY, 0);
+		paddlePoint2 = gmtl::Point3f(playingField.pad1X + playingField.padWidth, playingField.padY + playingField.padLength, 0);
+	}
+	else
+	{
+		paddlePoint1 = gmtl::Point3f(playingField.pad2X, playingField.padY, 0);
+		paddlePoint2 = gmtl::Point3f(playingField.pad2X + playingField.padWidth, playingField.padY + playingField.padLength, 0);
+	}
 	paddle = gmtl::AABoxf(paddlePoint1, paddlePoint2);
 }
 
-void Pad1::Update(float deltaTime)
+void Pad::Update(float deltaTime)
 {
-
+	if (direction == up)
+	{
+		paddle.mMax -= speed * deltaTime;
+		paddle.mMin -= speed * deltaTime;
+		if (paddle.getMin().getData()[1] < 0)
+		{   
+			paddle.mMax[1] = getLength();
+			paddle.mMin[1] = 0;			
+		}
+	}
+	else if (direction == down)
+	{
+		paddle.mMax += speed * deltaTime;
+		paddle.mMin += speed * deltaTime;
+		if (paddle.getMax().getData()[1] > playingField.length)
+		{
+			paddle.mMin[1] = playingField.length - getLength();
+			paddle.mMax[1] = playingField.length;
+		}
+	}
 }
 
-void Pad1::Destroy()
+void Pad::Destroy()
 {
 }
 
-int Pad1::getX()
+int Pad::getX()
 {
 	return paddle.getMin().mData[0];
 }
 
-int Pad1::getY()
+int Pad::getY()
 {
 	return paddle.getMin().mData[1];
 }
 
-int Pad1::getWidth()
+int Pad::getWidth()
 {
 	return paddle.getMax().mData[0] - getX();
 }
 
-int Pad1::getLength()
+int Pad::getLength()
 {
 	return paddle.getMax().mData[1] - getY();
 }
 
-gmtl::AABoxf Pad1::getBox()
+float Pad::getCenterY()
+{
+	return paddle.getMin()[1] + getLength()/2;
+}
+
+void Pad::setDirection(Direction dr)
+{
+	direction = dr;
+}
+
+gmtl::AABoxf Pad::getBox()
 {
 	return paddle;
 }
 
-Pad2::Pad2() : GameObject() {
-	direction.set(0, 10, 0);
-	gmtl::Point3f paddlePoint1 = gmtl::Point3f(385, 100, 0);
-	gmtl::Point3f paddlePoint2 = gmtl::Point3f(395, 140, 0);
-	paddle = gmtl::AABoxf(paddlePoint1, paddlePoint2);
-}
 
-void Pad2::Update(float deltaTime)
-{
-}
-
-void Pad2::Destroy()
-{
-}
-
-int Pad2::getX()
-{
-	return paddle.getMin().mData[0];
-}
-
-int Pad2::getY()
-{
-	return paddle.getMin().mData[1];
-}
-
-int Pad2::getWidth()
-{
-	return paddle.getMax().mData[0] - getX();
-}
-
-int Pad2::getLength()
-{
-	return paddle.getMax().mData[1] - getY();
-}
-
-gmtl::AABoxf Pad2::getBox()
-{
-	return paddle;
-}
 
 Ball::Ball() : GameObject()
 {
-	gmtl::Point3f centerPoint = gmtl::Point3f(160, 120, 0); //Set the point of the sphere at X, Y.
+	gmtl::Point3f centerPoint = gmtl::Point3f(playingField.width/2, playingField.length/2, 0); //Set the point of the sphere at X, Y.
 	ball.setCenter(centerPoint); //set Ball at given Point.
-	ball.setRadius(radius); //set radius of sphere.
-	direction.set(20, 0, 0); //set directions vector at X, Y. in this it it woudl be excatly pointing left!
+	ball.setRadius(playingField.ballRadius); //set radius of sphere.
+	speed.set(playingField.ballSpeed, 0, 0); //set directions vector at X, Y. in this it it would be excatly pointing left!
 }
 
 
@@ -105,13 +112,19 @@ Ball::Ball() : GameObject()
  */
 void Ball::Update(float deltaTime)
 {
-	ball.mCenter += direction * deltaTime; //Add the vector scaled by the deltaTime to the centerPoint of the ball.
+	ball.mCenter += speed * deltaTime; //Add the vector scaled by the deltaTime to the centerPoint of the ball.
 	if (getX() < 0)
 	{
-		ball.mCenter.mData[0] = 320;
+		respawnBall();
+		score.player2Score++;
 	}
-	else if (getX() > 400) {
-		ball.mCenter.mData[0] = 10;
+	else if (getX() > playingField.width) {
+		respawnBall();
+		score.player1Score++;
+	}
+	if (getY() < 0 || getY() > playingField.length)
+	{
+		speed.mData[1] *= -1;
 	}
 }
 
@@ -123,15 +136,22 @@ int Ball::getX(){return ball.mCenter.mData[0];}
 int Ball::getY() {return ball.mCenter.mData[1];}
 int Ball::getRadius(){return radius;}
 
-void Ball::reverseDirection()
+void Ball::reverseDirection(float anglePercentage)
 {   
-	direction *= -1;
-	//printf("direction: %.2f\n ball point: %.2f\n",direction.mData[0],ball.getCenter().mData[0]);
+	//Ball angle goes from 100 to -100
+	speed.mData[0] *= -1;
+	speed.mData[1] = gmtl::Math::aTan(playingField.maxBallAngle) / 100 * anglePercentage * playingField.ballSpeed; //gmtl::Math::aTan(playingField.maxBallAngle / 100 * anglePercentage) * playingField.ballSpeed;	
 }
 
 gmtl::Spheref Ball::getSphere()
 {
 	return ball;
+}
+
+void Ball::respawnBall()
+{
+	ball.mCenter = gmtl::Point3f(playingField.width / 2, playingField.length / 2, 0);
+	speed *= -1;
 }
 
 Item::Item() : GameObject() {}
