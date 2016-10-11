@@ -1,10 +1,17 @@
 #include "GameController.h"
-
+/**
+* This will handle the game logic of PONG!!
+*/
 GameController::GameController() {
 	player1 = Pad(true);
 	player2 = Pad(false);
 	ball = Ball();
 }
+
+/**
+* This function updates Pong game.
+* @param deltaTime the time is the time difference between each Update call.
+*/
 
 void GameController::Update(float deltaTime)
 {
@@ -22,11 +29,19 @@ void GameController::Update(float deltaTime)
 
 }
 
+/**
+* This function moves player1 paddle
+* @param direction is the direction you want to move the paddle
+*/
 void GameController::movePaddle1(Direction direction)
 {
 	player1.setDirection(direction);
 }
 
+/**
+* This function moves player2 paddle
+* @param direction is the direction you want to move the paddle
+*/
 void GameController::movePaddle2(Direction direction)
 {
 	player2.setDirection(direction);
