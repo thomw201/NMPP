@@ -22,6 +22,7 @@ include $(DEVKITARM)/base_rules
 
 LIBNDS	:=	$(DEVKITPRO)/libnds
 
+
 GAME_TITLE	    :=	Text 1
 GAME_SUBTITLE1	:=	Text 2
 GAME_SUBTITLE2	:=	Text 3
@@ -97,9 +98,8 @@ LIBS	:= -lnflib -lfilesystem -lfat -lnds9
 # list of directories containing libraries, this must be the top level containing
 # include and lib
 #---------------------------------------------------------------------------------
-LIBDIRS	:=	$(LIBNDS) $(CURDIR)/nflib
-
-
+LIBDIRS	:= $(LIBNDS) $(CURDIR)/nflib $(CURDIR)/../../Cross_Platform_Code
+LIBDIRS2 += $(CURDIR)/../../gmtl
 #---------------------------------------------------------------------------------
 # no real need to edit anything past this point unless you need to add additional
 # rules for different file extensions
@@ -140,8 +140,9 @@ export OFILES	:=	$(addsuffix .o,$(BINFILES)) \
 
 export INCLUDE	:=	$(foreach dir,$(INCLUDES),-iquote $(CURDIR)/$(dir)) \
 					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
+					$(foreach dir,$(LIBDIRS2),-I$(dir)/) \
 					-I$(CURDIR)/$(BUILD)
-
+					
 export LIBPATHS	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib)
 
 icons := $(wildcard *.bmp)
