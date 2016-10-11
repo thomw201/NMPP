@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
 	NF_InitTiledBgBuffers();	// Initialize Background Buffers
 	NF_InitTiledBgSys(0);		// Initialize Top and Bottom Screen BgSystems
 	NF_InitTiledBgSys(1);
-
+	w
 	NF_InitSpriteBuffers();		// Initialize Sprite Buffers
 	NF_InitSpriteSys(1);		// Initialize Bottom Screen SpriteSystem
 
