@@ -1,11 +1,31 @@
+
 #include <stdio.h>
 #include <nds.h>
 #include <nf_lib.h>
 #include <gmtl\gmtl.h>
 #include <gmtl\Matrix.h>
-#include <GameObject.h>
+#include "paddle.h"
+#include "ball.h"
+
+int gameScreen, menuScreen;
+//paddle p1Paddle, p2Paddle; // paddle objects for player 1 & 2 - (in main method for now..)
 
 
+
+void initBackgrounds() {
+	// Initialize the Tiled Backgrounds System on the Top Screen
+	NF_InitTiledBgBuffers();	// Initialize Background Buffers
+	NF_InitTiledBgSys(0);		// Initialize Top and Bottom Screen BgSystems
+	NF_InitTiledBgSys(1);
+	NF_InitSpriteBuffers();		// Initialize Sprite Buffers
+	NF_InitSpriteSys(1);		// Initialize Bottom Screen SpriteSystem
+
+	NF_LoadTiledBg("splashImg", "Background", 256, 256); // splash background
+	NF_LoadTiledBg("fieldImg", "Bottom", 256, 256);	//field background
+
+	NF_CreateTiledBg(0, 3, "Background");		// Create the Top Background
+	NF_CreateTiledBg(1, 3, "Bottom");		// Create the Bottom Background
+}
 
 
 /*
@@ -15,20 +35,6 @@
 */
 
 int main(int argc, char **argv) {
-<<<<<<< HEAD
-	powerOn(POWER_ALL_2D); // Turn on the 2D graphics core.
-	lcdMainOnBottom();
-	//initVideo();
-	//initBackgrounds();
-	///* Set up a few sprites. */
-	//SpriteInfo spriteInfo[SPRITE_COUNT];
-	
-	GameObject gameobj();
-
-	OAMTable *oam = new OAMTable();
-	gmtl::Matrix44f test_matrix;
-	test_matrix.set(new float(1.0f));
-=======
 	//int paddlePositionY = SCREEN_HEIGHT / 2;
 	// Set the Root Folder
 	NF_SetRootFolder("NITROFS");
@@ -51,11 +57,54 @@ int main(int argc, char **argv) {
 
 	touchPosition Stylus;		// Prepare a variable for Stylus data
 
->>>>>>> feature/Nightfoxlib_sprites
 	while(1) {
 
-		swiWaitForVBlank();		// Espera al sincronismo vertical
+		scanKeys();		// Scan for Input
+		touchRead(&Stylus);		// Read Stylus data
 
+		//player 2 touch screen
+		if (KEY_TOUCH & keysCurrent()) {
+			if (Stylus.py > p2Paddle.getY())
+			{
+				p2Paddle.setY(p2Paddle.getY() + 5);
+			}
+			else if (Stylus.py < p2Paddle.getY())
+			{
+				p2Paddle.setY(p2Paddle.getY() - 5);
+			}
+		}
+
+		//player 2
+		if (KEY_DOWN & keysCurrent()) {
+			if (p2Paddle.getY() < SCREEN_HEIGHT-SCREEN_HEIGHT*0.15)
+			{
+				p2Paddle.setY(p2Paddle.getY() + 5);
+			}
+		}
+		if (KEY_UP & keysCurrent()) {
+			if (p2Paddle.getY() > 0)
+			{
+				p2Paddle.setY(p2Paddle.getY() - 5);
+			}
+		}
+
+		//player 1 - X, B keys
+		if (KEY_B & keysCurrent()) {
+			if (p1Paddle.getY() < SCREEN_HEIGHT - SCREEN_HEIGHT*0.15)
+			{
+				p1Paddle.setY(p1Paddle.getY() + 5);
+			}
+		}
+		if (KEY_X & keysCurrent()) {
+			if (p1Paddle.getY() > 0)
+			{
+				p1Paddle.setY(p1Paddle.getY() - 5);
+			}
+		}
+
+		NF_SpriteOamSet(1);		// Update NFLib's Sprite OAM System
+		swiWaitForVBlank();		// Wait for the Vertical Blank
+		oamUpdate(&oamSub);		// Update the OAM of the Bottom Screen engine
 	}
 
 	return 0;
