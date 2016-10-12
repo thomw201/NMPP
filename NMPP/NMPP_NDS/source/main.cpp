@@ -27,6 +27,7 @@ void initBackgrounds() {
 	NF_CreateTiledBg(1, 3, "Bottom");		// Create the Bottom Background
 }
 
+
 /*
 -------------------------------------------------
 	Main()

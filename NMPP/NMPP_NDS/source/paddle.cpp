@@ -51,7 +51,6 @@ void paddle::setY(int _posY) {
 	NF_MoveSprite(screen, id, posX, posY);
 }
 
-
 /* creates the paddle on the posX, posY position */
 void paddle::create() {
 	NF_LoadSpriteGfx("paddleImg", id, width, height);	// load paddle sprite
