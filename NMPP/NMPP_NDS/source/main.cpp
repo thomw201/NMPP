@@ -1,11 +1,15 @@
 
-#include <stdio.h>
-#include <nds.h>
 #include <nf_lib.h>
-#include <gmtl\gmtl.h>
-#include <gmtl\Matrix.h>
+#include <stdio.h>
 #include "paddle.h"
 #include "ball.h"
+#include "GameController.h"
+#include <nds.h>
+
+
+
+const int bottomScreen = 1;
+const int topScreen = 0;
 
 int gameScreen, menuScreen;
 //paddle p1Paddle, p2Paddle; // paddle objects for player 1 & 2 - (in main method for now..)
@@ -15,16 +19,16 @@ int gameScreen, menuScreen;
 void initBackgrounds() {
 	// Initialize the Tiled Backgrounds System on the Top Screen
 	NF_InitTiledBgBuffers();	// Initialize Background Buffers
-	NF_InitTiledBgSys(0);		// Initialize Top and Bottom Screen BgSystems
-	NF_InitTiledBgSys(1);
+	NF_InitTiledBgSys(gameScreen);		// Initialize Top and Bottom Screen BgSystems
+	NF_InitTiledBgSys(menuScreen);
 	NF_InitSpriteBuffers();		// Initialize Sprite Buffers
-	NF_InitSpriteSys(1);		// Initialize Bottom Screen SpriteSystem
+	NF_InitSpriteSys(gameScreen);		// Initialize Bottom Screen SpriteSystem
 
 	NF_LoadTiledBg("splashImg", "Background", 256, 256); // splash background
 	NF_LoadTiledBg("fieldImg", "Bottom", 256, 256);	//field background
 
-	NF_CreateTiledBg(0, 3, "Background");		// Create the Top Background
-	NF_CreateTiledBg(1, 3, "Bottom");		// Create the Bottom Background
+	NF_CreateTiledBg(menuScreen, 3, "Background");		// splash Background
+	NF_CreateTiledBg(gameScreen, 3, "Bottom");		// game Background
 }
 
 
@@ -35,11 +39,13 @@ void initBackgrounds() {
 */
 
 int main(int argc, char **argv) {
-	//int paddlePositionY = SCREEN_HEIGHT / 2;
+	
+	GameController game = GameController();
+
 	// Set the Root Folder
 	NF_SetRootFolder("NITROFS");
-	gameScreen = 1; // identify which screen should display the actual game
-	menuScreen = 0; // screen that will display the splash, menu, options etc
+	gameScreen = bottomScreen; // identify which screen should display the actual game
+	menuScreen = topScreen; // screen that will display the splash, menu, options etc
 
 	NF_Set2D(0, 0);		//Set 2D MODE-0 to both Screens
 	NF_Set2D(1, 0);
@@ -57,50 +63,73 @@ int main(int argc, char **argv) {
 
 	touchPosition Stylus;		// Prepare a variable for Stylus data
 
+	p1Paddle.setSize(game.getPad1Width(), game.getPad1Length());
+	p2Paddle.setSize(game.getPad2Width(), game.getPad2Length());
+
+	//p1Paddle.setY(game.getPad1Y());
+	//p2Paddle.setY(game.getPad2Y());
+	//p1Paddle.setX(game.getPad1X());
+	//p2Paddle.setX(game.getPad2X());
+
 	while(1) {
 
 		scanKeys();		// Scan for Input
 		touchRead(&Stylus);		// Read Stylus data
 
-		//player 2 touch screen
-		if (KEY_TOUCH & keysCurrent()) {
-			if (Stylus.py > p2Paddle.getY())
-			{
-				p2Paddle.setY(p2Paddle.getY() + 5);
-			}
-			else if (Stylus.py < p2Paddle.getY())
-			{
-				p2Paddle.setY(p2Paddle.getY() - 5);
-			}
-		}
+		////player 2 touch screen
+		//if (KEY_TOUCH & keysCurrent()) {
+		//	if (Stylus.py > p2Paddle.getY())
+		//	{
+		//		//p2Paddle.setY(p2Paddle.getY() + 5);
+		//		game.movePaddle2(up);
+		//	}
+		//	else if (Stylus.py < p2Paddle.getY())
+		//	{
+		//		//p2Paddle.setY(p2Paddle.getY() - 5);
+		//		game.movePaddle2(down);
+		//	}
+		//}
 
 		//player 2
 		if (KEY_DOWN & keysCurrent()) {
-			if (p2Paddle.getY() < SCREEN_HEIGHT-SCREEN_HEIGHT*0.15)
-			{
-				p2Paddle.setY(p2Paddle.getY() + 5);
-			}
+			//if (p2Paddle.getY() < SCREEN_HEIGHT-SCREEN_HEIGHT*0.15)
+			//{
+				//p2Paddle.setY(p2Paddle.getY() + 5);
+				game.movePaddle2(down);
+			//}
 		}
-		if (KEY_UP & keysCurrent()) {
-			if (p2Paddle.getY() > 0)
-			{
-				p2Paddle.setY(p2Paddle.getY() - 5);
-			}
+		else if (KEY_UP & keysCurrent()) {
+			//if (p2Paddle.getY() > 0)
+			//{
+				//p2Paddle.setY(p2Paddle.getY() - 5);
+				game.movePaddle2(up);
+			//}
 		}
+		else
+			game.movePaddle2(neutral);
 
 		//player 1 - X, B keys
 		if (KEY_B & keysCurrent()) {
-			if (p1Paddle.getY() < SCREEN_HEIGHT - SCREEN_HEIGHT*0.15)
-			{
-				p1Paddle.setY(p1Paddle.getY() + 5);
-			}
+			//if (p1Paddle.getY() < SCREEN_HEIGHT - SCREEN_HEIGHT*0.15)
+			//{
+				//p1Paddle.setY(p1Paddle.getY() + 5);
+				game.movePaddle1(up);
+			//}
 		}
-		if (KEY_X & keysCurrent()) {
+		else if (KEY_X & keysCurrent()) {
 			if (p1Paddle.getY() > 0)
-			{
-				p1Paddle.setY(p1Paddle.getY() - 5);
-			}
+				//{
+					//p1Paddle.setY(p1Paddle.getY() - 5);
+				game.movePaddle1(down);
+			//}
 		}
+		else
+			game.movePaddle1(neutral);
+
+		bal.setPosition(game.getBallX(), game.getBallY());
+		p1Paddle.setY(game.getPad1Y());
+		p2Paddle.setY(game.getPad2Y());
+		game.Update(0.05f);
 
 		NF_SpriteOamSet(1);		// Update NFLib's Sprite OAM System
 		swiWaitForVBlank();		// Wait for the Vertical Blank

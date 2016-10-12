@@ -1,4 +1,7 @@
 main.o: d:/Documents/NMPP/NMPP/NMPP_NDS/source/main.cpp \
+ d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_lib.h \
+ d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_defines.h \
+ d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_basic.h \
  c:/devkitPro/libnds/include/nds.h \
  c:/devkitPro/libnds/include/nds/libversion.h \
  c:/devkitPro/libnds/include/nds/ndstypes.h \
@@ -57,9 +60,6 @@ main.o: d:/Documents/NMPP/NMPP/NMPP_NDS/source/main.cpp \
  c:/devkitPro/libnds/include/nds/arm9/trig_lut.h \
  c:/devkitPro/libnds/include/nds/arm9/video.h \
  c:/devkitPro/libnds/include/nds/arm9/videoGL.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_lib.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_defines.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_basic.h \
  d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_2d.h \
  d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_tiledbg.h \
  d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_affinebg.h \
@@ -73,6 +73,10 @@ main.o: d:/Documents/NMPP/NMPP/NMPP_NDS/source/main.cpp \
  d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_media.h \
  d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_3d.h \
  d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_sprite3d.h \
+ d:/Documents/NMPP/NMPP/NMPP_NDS/include/paddle.h \
+ d:/Documents/NMPP/NMPP/NMPP_NDS/include/ball.h \
+ d:/Documents/NMPP/NMPP/NMPP_NDS/include/GameController.h \
+ d:/Documents/NMPP/NMPP/NMPP_NDS/include/GameObject.h \
  d:\documents\nmpp\gmtl\gmtl\gmtl.h d:\documents\nmpp\gmtl\gmtl\aabox.h \
  d:\documents\nmpp\gmtl\gmtl\point.h \
  d:\documents\nmpp\gmtl\gmtl\defines.h \
@@ -111,10 +115,13 @@ main.o: d:/Documents/NMPP/NMPP/NMPP_NDS/source/main.cpp \
  d:\documents\nmpp\gmtl\gmtl\output.h \
  d:\documents\nmpp\gmtl\gmtl\sphereops.h \
  d:\documents\nmpp\gmtl\gmtl\triops.h \
- d:\documents\nmpp\gmtl\gmtl\version.h \
- d:\documents\nmpp\gmtl\gmtl\matrix.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/include/paddle.h \
- d:/Documents/NMPP/NMPP/NMPP_NDS/include/ball.h
+ d:\documents\nmpp\gmtl\gmtl\version.h d:\documents\nmpp\gmtl\gmtl\gmtl.h
+
+d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_lib.h:
+
+d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_defines.h:
+
+d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_basic.h:
 
 c:/devkitPro/libnds/include/nds.h:
 
@@ -232,12 +239,6 @@ c:/devkitPro/libnds/include/nds/arm9/video.h:
 
 c:/devkitPro/libnds/include/nds/arm9/videoGL.h:
 
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_lib.h:
-
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_defines.h:
-
-d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_basic.h:
-
 d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_2d.h:
 
 d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_tiledbg.h:
@@ -263,6 +264,14 @@ d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_media.h:
 d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_3d.h:
 
 d:/Documents/NMPP/NMPP/NMPP_NDS/nflib/include/nf_sprite3d.h:
+
+d:/Documents/NMPP/NMPP/NMPP_NDS/include/paddle.h:
+
+d:/Documents/NMPP/NMPP/NMPP_NDS/include/ball.h:
+
+d:/Documents/NMPP/NMPP/NMPP_NDS/include/GameController.h:
+
+d:/Documents/NMPP/NMPP/NMPP_NDS/include/GameObject.h:
 
 d:\documents\nmpp\gmtl\gmtl\gmtl.h:
 
@@ -350,8 +359,4 @@ d:\documents\nmpp\gmtl\gmtl\triops.h:
 
 d:\documents\nmpp\gmtl\gmtl\version.h:
 
-d:\documents\nmpp\gmtl\gmtl\matrix.h:
-
-d:/Documents/NMPP/NMPP/NMPP_NDS/include/paddle.h:
-
-d:/Documents/NMPP/NMPP/NMPP_NDS/include/ball.h:
+d:\documents\nmpp\gmtl\gmtl\gmtl.h:

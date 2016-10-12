@@ -33,6 +33,12 @@ int ball::getWidth() {
 	return width;
 }
 
+void ball::setPosition(int _posX, int _posY) {
+	posX = _posX;
+	posY = _posY;
+	NF_MoveSprite(screen, id, posX, posY);
+}
+
 /* change the size of the sprite */
 void ball::setSize(int _width, int _height) {
 	width = _width;
