@@ -14,5 +14,6 @@ public:
 	int getY();
 private:
 	int id, screen, posX, posY, width, height;
+
 };
 

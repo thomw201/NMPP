@@ -54,7 +54,6 @@ int main(int argc, char **argv) {
 	ball bal = ball(2, gameScreen, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2); //init ball in the center of the screen
 	bal.create();
 
-
 	touchPosition Stylus;		// Prepare a variable for Stylus data
 
 	while(1) {
