@@ -2,15 +2,30 @@
 #include <stdio.h>
 #include <nds.h>
 #include <nf_lib.h>
+#include <gmtl\gmtl.h>
+#include <gmtl\Matrix.h>
+#include "paddle.h"
+#include "ball.h"
+
+int gameScreen, menuScreen;
+//paddle p1Paddle, p2Paddle; // paddle objects for player 1 & 2 - (in main method for now..)
 
 
-// Create a Sprite data structure to hold important information
-typedef struct {
-	u8 ID, X, Y, Frame;
-} Sprite_Data;
 
-Sprite_Data Sprite[9];
+void initBackgrounds() {
+	// Initialize the Tiled Backgrounds System on the Top Screen
+	NF_InitTiledBgBuffers();	// Initialize Background Buffers
+	NF_InitTiledBgSys(0);		// Initialize Top and Bottom Screen BgSystems
+	NF_InitTiledBgSys(1);
+	NF_InitSpriteBuffers();		// Initialize Sprite Buffers
+	NF_InitSpriteSys(1);		// Initialize Bottom Screen SpriteSystem
 
+	NF_LoadTiledBg("splashImg", "Background", 256, 256); // splash background
+	NF_LoadTiledBg("fieldImg", "Bottom", 256, 256);	//field background
+
+	NF_CreateTiledBg(0, 3, "Background");		// Create the Top Background
+	NF_CreateTiledBg(1, 3, "Bottom");		// Create the Bottom Background
+}
 
 /*
 -------------------------------------------------
@@ -19,49 +34,26 @@ Sprite_Data Sprite[9];
 */
 
 int main(int argc, char **argv) {
-	int paddlePositionY = SCREEN_HEIGHT / 2;
+	//int paddlePositionY = SCREEN_HEIGHT / 2;
+	// Set the Root Folder
+	NF_SetRootFolder("NITROFS");
+	gameScreen = 1; // identify which screen should display the actual game
+	menuScreen = 0; // screen that will display the splash, menu, options etc
 
 	NF_Set2D(0, 0);		//Set 2D MODE-0 to both Screens
 	NF_Set2D(1, 0);
 
+	initBackgrounds(); //initialize top and bottom screen backgrounds
 
-	// Set the Root Folder
-	NF_SetRootFolder("NITROFS");
+	paddle p1Paddle = paddle(0, gameScreen, SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
+	p1Paddle.create();
 
-	// Initialize the Tiled Backgrounds System on the Top Screen
-	NF_InitTiledBgBuffers();	// Initialize Background Buffers
-	NF_InitTiledBgSys(0);		// Initialize Top and Bottom Screen BgSystems
-	NF_InitTiledBgSys(1);
-	w
-	NF_InitSpriteBuffers();		// Initialize Sprite Buffers
-	NF_InitSpriteSys(1);		// Initialize Bottom Screen SpriteSystem
+	paddle p2Paddle = paddle(1, gameScreen, SCREEN_WIDTH - SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
+	p2Paddle.create(); 
 
-	NF_LoadTiledBg("splashImg", "Background", 256, 256); // splash background
-	NF_LoadTiledBg("fieldImg", "Bottom", 256, 256);	//field background
+	ball bal = ball(2, gameScreen, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2); //init ball in the center of the screen
+	bal.create();
 
-
-	NF_CreateTiledBg(0, 3, "Background");		// Create the Top Background
-	NF_CreateTiledBg(1, 3, "Bottom");		// Create the Bottom Background
-
-	NF_LoadSpriteGfx("paddleImg", 0, 8, 32);	// load paddle sprite
-	NF_LoadSpritePal("paddleImg", 0);
-
-	NF_LoadSpriteGfx("ballImg", 1, 16, 16);	// load paddle sprite
-	NF_LoadSpritePal("ballImg", 1);
-
-	NF_VramSpriteGfx(1, 0, 0, true);	// Load the Gfx into VRAM - transfer all Sprites
-	NF_VramSpritePal(1, 0, 0);		// Load the Palette into VRAM
-	NF_VramSpriteGfx(1, 1, 1, true);	// Load the Gfx into VRAM - transfer all Sprites
-	NF_VramSpritePal(1, 1, 1);		// Load the Palette into VRAM
-
-
-	//place paddles at the left & right side
-	NF_CreateSprite(1, 0, 0, 0, SCREEN_WIDTH*0.05, SCREEN_HEIGHT/2);		//create paddle 5% from the border and in the middle of the screen (vertically)
-	NF_CreateSprite(1, 1, 0, 0, SCREEN_WIDTH - SCREEN_WIDTH*0.05, paddlePositionY);		//create paddle 5% from the border and in the middle of the screen (vertically)
-
-	NF_CreateSprite(1, 2, 1, 1, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-
-	//NF_SpriteFrame(1, 3, 0);		// Set its Frame to a blank one
 
 	touchPosition Stylus;		// Prepare a variable for Stylus data
 
@@ -70,27 +62,43 @@ int main(int argc, char **argv) {
 		scanKeys();		// Scan for Input
 		touchRead(&Stylus);		// Read Stylus data
 
+		//player 2 touch screen
 		if (KEY_TOUCH & keysCurrent()) {
-			if (Stylus.py > paddlePositionY)
+			if (Stylus.py > p2Paddle.getY())
 			{
-				NF_MoveSprite(1, 1, SCREEN_WIDTH - SCREEN_WIDTH*0.05, paddlePositionY += 1);
+				p2Paddle.setY(p2Paddle.getY() + 5);
 			}
-			else if (Stylus.py < paddlePositionY)
+			else if (Stylus.py < p2Paddle.getY())
 			{
-				NF_MoveSprite(1, 1, SCREEN_WIDTH - SCREEN_WIDTH*0.05, paddlePositionY -= 1);
+				p2Paddle.setY(p2Paddle.getY() - 5);
 			}
 		}
 
+		//player 2
 		if (KEY_DOWN & keysCurrent()) {
-			if (paddlePositionY < SCREEN_HEIGHT-SCREEN_HEIGHT*0.15)
+			if (p2Paddle.getY() < SCREEN_HEIGHT-SCREEN_HEIGHT*0.15)
 			{
-				NF_MoveSprite(1, 1, SCREEN_WIDTH - SCREEN_WIDTH*0.05, paddlePositionY += 5);
+				p2Paddle.setY(p2Paddle.getY() + 5);
 			}
 		}
 		if (KEY_UP & keysCurrent()) {
-			if (paddlePositionY > 0)
+			if (p2Paddle.getY() > 0)
 			{
-				NF_MoveSprite(1, 1, SCREEN_WIDTH - SCREEN_WIDTH*0.05, paddlePositionY -= 5);
+				p2Paddle.setY(p2Paddle.getY() - 5);
+			}
+		}
+
+		//player 1 - X, B keys
+		if (KEY_B & keysCurrent()) {
+			if (p1Paddle.getY() < SCREEN_HEIGHT - SCREEN_HEIGHT*0.15)
+			{
+				p1Paddle.setY(p1Paddle.getY() + 5);
+			}
+		}
+		if (KEY_X & keysCurrent()) {
+			if (p1Paddle.getY() > 0)
+			{
+				p1Paddle.setY(p1Paddle.getY() - 5);
 			}
 		}
 

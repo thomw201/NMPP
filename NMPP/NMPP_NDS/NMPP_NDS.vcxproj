@@ -45,7 +45,8 @@
     <NMakeOutput>$(ProjectName).nds</NMakeOutput>
     <NMakePreprocessorDefinitions>ARM9; ARM7;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath>c:\devkitPro\libnds\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
-    <IncludePath>D:\Documents\NMPP\NMPP\NMPP_NDS\nflib\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Documents\NMPP\Cross_Platform_Code\include;D:\Documents\NMPP\NMPP\NMPP_NDS\include;D:\Documents\NMPP\gmtl;D:\Documents\NMPP\NMPP\NMPP_NDS\nflib\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
