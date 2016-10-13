@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
-#include <ctime>
+#include <chrono>
 #include <math.h>
 #include <3ds.h>
 #include <sf2d.h>
@@ -10,26 +10,26 @@
 #include "dice_img.c"
 #include "GameController.h"
 
-std::clock_t  start;
+chrono::time_point<chrono::steady_clock> start;
 
 float frametimer()
 {
-	float time = (std::clock() - start) / (float)(CLOCKS_PER_SEC);
-	start = std::clock();
-	return time;
+	std::chrono::duration<float, milli> time = (chrono::steady_clock::now() - start);
+	start = chrono::steady_clock::now();
+	return time.count() / 1000;
 }
 
 #define CONFIG_3D_SLIDERSTATE (*(float *)0x1FF81080)
 
 int main()
 {
-	start = std::clock();
+	start = chrono::steady_clock::now();
 	// Set the random seed based on the time
 	srand(time(NULL));
 	//float deltaTime = 0;
 
 	sf2d_init();
-	sf2d_set_clear_color(RGBA8(0x40, 0x40, 0x40, 0xFF));
+	sf2d_set_clear_color(RGBA8(0x00, 0x00, 0x00, 0xFF));
 	sf2d_set_3D(1);
 
 
@@ -76,21 +76,12 @@ int main()
 		{
 			game.movePaddle1(neutral);
 		}
-
-		if (held & KEY_X)
+		if (held & KEY_SELECT)
 		{
-			game.movePaddle2(up);
-		}
-		else if (held & KEY_B)
-		{
-			game.movePaddle2(down);
-		}
-		else
-		{
-			game.movePaddle2(neutral);
+			game = GameController();
 		}
 
-		game.Update(0.05f);
+		game.Update(frametimer());
 
 		offset3d = CONFIG_3D_SLIDERSTATE * 30.0f;
 
@@ -130,7 +121,7 @@ int main()
 	}
 
 	//sf2d_free_texture(tex1);
-	//sf2d_free_texture(tex2);
+	sf2d_free_texture(tex2);
 
 	sf2d_fini();
 	return 0;

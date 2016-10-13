@@ -4,12 +4,12 @@ enum Direction {neutral, up, down};
 
 static struct Field {
 	const int width = 400;
-	const int length = 240;
+	const int height = 240;
 	const int ballRadius = 5;
-	const int ballSpeed = 40;
+	const int ballSpeed = 90;
 	const float maxBallAngle = 50;
-	const int padSpeed = 60;
-	const int padLength = 40;
+	const int padSpeed = 120;
+	const int padHeight = 40;
 	const int padWidth = 10;
 	const int pad1X = 5;
 	const int pad2X = 385;
