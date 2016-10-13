@@ -5,6 +5,7 @@
 #include "ball.h"
 #include "GameController.h"
 #include <nds.h>
+#include <chrono>
 
 
 
@@ -15,7 +16,14 @@ const int topScreen = 0;
 int gameScreen, menuScreen;
 //paddle p1Paddle, p2Paddle; // paddle objects for player 1 & 2 - (in main method for now..)
 
+chrono::time_point<chrono::steady_clock> start;
 
+float frametimer()
+{
+	std::chrono::duration<float, milli> time = (chrono::steady_clock::now() - start);
+	start = chrono::steady_clock::now();
+	return time.count() / 1000;
+}
 
 void initBackgrounds() {
 	// Initialize the Tiled Backgrounds System on the Top Screen
@@ -41,6 +49,8 @@ void initBackgrounds() {
 
 int main(int argc, char **argv) {
 	
+	start = chrono::steady_clock::now();
+
 	GameController game = GameController();
 
 	// Set the Root Folder
@@ -93,45 +103,45 @@ int main(int argc, char **argv) {
 			}
 		}
 
-		//player 2
+		//player 1
 		if (KEY_DOWN & keysCurrent()) {
 			//if (p2Paddle.getY() < SCREEN_HEIGHT-SCREEN_HEIGHT*0.15)
 			//{
 				//p2Paddle.setY(p2Paddle.getY() + 5);
-				game.movePaddle2(down);
+				game.movePaddle1(down);
 			//}
 		}
 		else if (KEY_UP & keysCurrent()) {
 			//if (p2Paddle.getY() > 0)
 			//{
 				//p2Paddle.setY(p2Paddle.getY() - 5);
-				game.movePaddle2(up);
-			//}
-		}
-		else
-			game.movePaddle2(neutral);
-
-		//player 1 - X, B keys
-		if (KEY_B & keysCurrent()) {
-			//if (p1Paddle.getY() < SCREEN_HEIGHT - SCREEN_HEIGHT*0.15)
-			//{
-				//p1Paddle.setY(p1Paddle.getY() + 5);
-				game.movePaddle1(down);
-			//}
-		}
-		else if (KEY_X & keysCurrent()) {
-			if (p1Paddle.getY() > 0)
-				//{
-					//p1Paddle.setY(p1Paddle.getY() - 5);
 				game.movePaddle1(up);
 			//}
 		}
 		else
 			game.movePaddle1(neutral);
 
+		////player 2 - X, B keys
+		//if (KEY_B & keysCurrent()) {
+		//	//if (p1Paddle.getY() < SCREEN_HEIGHT - SCREEN_HEIGHT*0.15)
+		//	//{
+		//		//p1Paddle.setY(p1Paddle.getY() + 5);
+		//		game.movePaddle2(down);
+		//	//}
+		//}
+		//else if (KEY_X & keysCurrent()) {
+		//	if (p1Paddle.getY() > 0)
+		//		//{
+		//			//p1Paddle.setY(p1Paddle.getY() - 5);
+		//		game.movePaddle2(up);
+		//	//}
+		//}
+		//else
+		//	game.movePaddle2(neutral);
+
 		bal.setPosition(game.getBallX(), game.getBallY());
-		p1Paddle.setPosition(game.getPad1X(), game.getPad1Y());
-		p2Paddle.setPosition(game.getPad2X(), game.getPad2Y());
+		p1Paddle.setPosition(game.getPad1X()+ (game.getPad1Width()/2), game.getPad1Y() + (game.getPad1Length()/2));
+		p2Paddle.setPosition(game.getPad2X()+ (game.getPad2Width()/2), game.getPad2Y() + (game.getPad2Length()/2));
 		game.Update(0.05f);
 
 		NF_SpriteOamSet(1);		// Update NFLib's Sprite OAM System

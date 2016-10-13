@@ -1,20 +1,19 @@
 #pragma once
 #include <gmtl/gmtl.h>
-
 enum Direction {neutral, up, down};
 
 static struct Field {
 	const int width = 256;
-	const int length = 192;
+	const int height = 192;
 	const int ballRadius = 8;
 	const int ballSpeed = 40;
 	const float maxBallAngle = 50;
 	const int padSpeed = 60;
-	const int padLength = 32;
+	const int padHeight = 32;
 	const int padWidth = 8;
 	const int pad1X = 5;
 	const int pad2X = 243;
-	const int padY = 100;
+	const int padY = 80;
 } playingField;
 
 static struct Score {

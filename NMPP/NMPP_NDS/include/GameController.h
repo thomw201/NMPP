@@ -12,6 +12,7 @@ private:
 	Pad player1;
 	Pad player2;
 	Ball ball;
+	void moveAutoMove(Pad &paddle);
 public:
 	vector<GameObject> gameObjects;
 	GameController();
