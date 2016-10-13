@@ -1,6 +1,6 @@
 #include "ball.h"
 #include "nf_lib.h"
-
+#include "GameObject.h"
 
 ball::ball(int _id, int _screen, int _posX, int _posY)
 {
@@ -34,6 +34,8 @@ int ball::getWidth() {
 }
 
 void ball::setPosition(int _posX, int _posY) {
+	_posX = _posX - playingField.ballRadius;
+	_posY = _posY - playingField.ballRadius;
 	posX = _posX;
 	posY = _posY;
 	NF_MoveSprite(screen, id, posX, posY);
@@ -43,6 +45,7 @@ void ball::setPosition(int _posX, int _posY) {
 void ball::setSize(int _width, int _height) {
 	width = _width;
 	height = _height;
+	create();
 	//todo: resize the sprite?
 }
 

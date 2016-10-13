@@ -32,6 +32,14 @@ int paddle::getWidth() {
 	return width;
 }
 
+void paddle::setPosition(int _posX, int _posY) {
+	_posX = _posX - (getWidth() / 2);
+	_posY = _posY - (getHeight() / 2);
+	posX = _posX;
+	posY = _posY;
+	NF_MoveSprite(screen, id, posX, posY);
+}
+
 /* change the size of the sprite */
 void paddle::setSize(int _width, int _height) {
 	width = _width;
@@ -41,12 +49,14 @@ void paddle::setSize(int _width, int _height) {
 
 /* moves the paddle to the given X position */
 void paddle::setX(int _posX) {
+	_posX = _posX - (getWidth() / 2);
 	posX = _posX;
 	NF_MoveSprite(screen, id, posX, posY);
 }
 
 /* moves the paddle to the given Y position */
 void paddle::setY(int _posY) {
+	_posY = _posY - (getHeight() / 2);
 	posY = _posY;
 	NF_MoveSprite(screen, id, posX, posY);
 }

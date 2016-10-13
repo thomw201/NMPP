@@ -8,6 +8,7 @@
 
 
 
+enum Screen{ Topscreen, Bottomscreen };
 const int bottomScreen = 1;
 const int topScreen = 0;
 
@@ -44,8 +45,8 @@ int main(int argc, char **argv) {
 
 	// Set the Root Folder
 	NF_SetRootFolder("NITROFS");
-	gameScreen = bottomScreen; // identify which screen should display the actual game
-	menuScreen = topScreen; // screen that will display the splash, menu, options etc
+	gameScreen = Bottomscreen; // identify which screen should display the actual game
+	menuScreen = Topscreen; // screen that will display the splash, menu, options etc
 
 	NF_Set2D(0, 0);		//Set 2D MODE-0 to both Screens
 	NF_Set2D(1, 0);
@@ -53,10 +54,7 @@ int main(int argc, char **argv) {
 	initBackgrounds(); //initialize top and bottom screen backgrounds
 
 	paddle p1Paddle = paddle(0, gameScreen, SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
-	p1Paddle.create();
-
 	paddle p2Paddle = paddle(1, gameScreen, SCREEN_WIDTH - SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
-	p2Paddle.create(); 
 
 	ball bal = ball(2, gameScreen, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2); //init ball in the center of the screen
 	bal.create();
@@ -66,29 +64,34 @@ int main(int argc, char **argv) {
 	p1Paddle.setSize(game.getPad1Width(), game.getPad1Length());
 	p2Paddle.setSize(game.getPad2Width(), game.getPad2Length());
 
+
+	p1Paddle.setPosition(game.getPad1X(), game.getPad1Y());
+	p2Paddle.setPosition(game.getPad2X(), game.getPad1Y());
 	//p1Paddle.setY(game.getPad1Y());
-	//p2Paddle.setY(game.getPad2Y());
+	//p2Paddle.setY(game.getPad2Y()); // sync paddle locations
 	//p1Paddle.setX(game.getPad1X());
 	//p2Paddle.setX(game.getPad2X());
+	p1Paddle.create();
+	p2Paddle.create();
 
 	while(1) {
 
 		scanKeys();		// Scan for Input
 		touchRead(&Stylus);		// Read Stylus data
 
-		////player 2 touch screen
-		//if (KEY_TOUCH & keysCurrent()) {
-		//	if (Stylus.py > p2Paddle.getY())
-		//	{
-		//		//p2Paddle.setY(p2Paddle.getY() + 5);
-		//		game.movePaddle2(up);
-		//	}
-		//	else if (Stylus.py < p2Paddle.getY())
-		//	{
-		//		//p2Paddle.setY(p2Paddle.getY() - 5);
-		//		game.movePaddle2(down);
-		//	}
-		//}
+		//player 2 touch screen
+		if (KEY_TOUCH & keysCurrent()) {
+			if (Stylus.py > p2Paddle.getY())
+			{
+				//p2Paddle.setY(p2Paddle.getY() + 5);
+				//game.movePaddle2(up);
+			}
+			else if (Stylus.py < p2Paddle.getY())
+			{
+				//p2Paddle.setY(p2Paddle.getY() - 5);
+				//game.movePaddle2(down);
+			}
+		}
 
 		//player 2
 		if (KEY_DOWN & keysCurrent()) {
@@ -113,22 +116,22 @@ int main(int argc, char **argv) {
 			//if (p1Paddle.getY() < SCREEN_HEIGHT - SCREEN_HEIGHT*0.15)
 			//{
 				//p1Paddle.setY(p1Paddle.getY() + 5);
-				game.movePaddle1(up);
+				game.movePaddle1(down);
 			//}
 		}
 		else if (KEY_X & keysCurrent()) {
 			if (p1Paddle.getY() > 0)
 				//{
 					//p1Paddle.setY(p1Paddle.getY() - 5);
-				game.movePaddle1(down);
+				game.movePaddle1(up);
 			//}
 		}
 		else
 			game.movePaddle1(neutral);
 
 		bal.setPosition(game.getBallX(), game.getBallY());
-		p1Paddle.setY(game.getPad1Y());
-		p2Paddle.setY(game.getPad2Y());
+		p1Paddle.setPosition(game.getPad1X(), game.getPad1Y());
+		p2Paddle.setPosition(game.getPad2X(), game.getPad2Y());
 		game.Update(0.05f);
 
 		NF_SpriteOamSet(1);		// Update NFLib's Sprite OAM System
