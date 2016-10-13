@@ -14,6 +14,10 @@ Pad::Pad()
 	Pad(true);
 }
 
+/**
+*Constructor for the Pad object.
+*@param playerone is a bool that decides which paddle to make. 
+*/
 Pad::Pad(bool playerOne) : GameObject() {
 	direction = neutral;
 	speed.set(0,playingField.padSpeed,0);
@@ -22,16 +26,20 @@ Pad::Pad(bool playerOne) : GameObject() {
 	if (playerOne)
 	{
 		paddlePoint1 = gmtl::Point3f(playingField.pad1X, playingField.padY, 0);
-		paddlePoint2 = gmtl::Point3f(playingField.pad1X + playingField.padWidth, playingField.padY + playingField.padLength, 0);
+		paddlePoint2 = gmtl::Point3f(playingField.pad1X + playingField.padWidth, playingField.padY + playingField.padHeight, 0);
 	}
 	else
 	{
 		paddlePoint1 = gmtl::Point3f(playingField.pad2X, playingField.padY, 0);
-		paddlePoint2 = gmtl::Point3f(playingField.pad2X + playingField.padWidth, playingField.padY + playingField.padLength, 0);
+		paddlePoint2 = gmtl::Point3f(playingField.pad2X + playingField.padWidth, playingField.padY + playingField.padHeight, 0);
 	}
 	paddle = gmtl::AABoxf(paddlePoint1, paddlePoint2);
 }
 
+/**
+* This function updates The Paddle object.
+* @param deltaTime the time is the time difference between each Update call.
+*/
 void Pad::Update(float deltaTime)
 {
 	if (direction == up)
@@ -40,7 +48,7 @@ void Pad::Update(float deltaTime)
 		paddle.mMin -= speed * deltaTime;
 		if (paddle.getMin().getData()[1] < 0)
 		{   
-			paddle.mMax[1] = getLength();
+			paddle.mMax[1] = playingField.padHeight;
 			paddle.mMin[1] = 0;			
 		}
 	}
@@ -48,10 +56,10 @@ void Pad::Update(float deltaTime)
 	{
 		paddle.mMax += speed * deltaTime;
 		paddle.mMin += speed * deltaTime;
-		if (paddle.getMax().getData()[1] > playingField.length)
+		if (paddle.getMax().getData()[1] > playingField.height)
 		{
-			paddle.mMin[1] = playingField.length - getLength();
-			paddle.mMax[1] = playingField.length;
+			paddle.mMin[1] = playingField.height - playingField.padHeight;
+			paddle.mMax[1] = playingField.height;
 		}
 	}
 }
@@ -96,10 +104,12 @@ gmtl::AABoxf Pad::getBox()
 }
 
 
-
+/**
+*Constructor for the ball object!
+*/
 Ball::Ball() : GameObject()
 {
-	gmtl::Point3f centerPoint = gmtl::Point3f(playingField.width/2, playingField.length/2, 0); //Set the point of the sphere at X, Y.
+	gmtl::Point3f centerPoint = gmtl::Point3f(playingField.width/2, playingField.height/2, 0); //Set the point of the sphere at X, Y.
 	ball.setCenter(centerPoint); //set Ball at given Point.
 	ball.setRadius(playingField.ballRadius); //set radius of sphere.
 	speed.set(playingField.ballSpeed, 0, 0); //set directions vector at X, Y. in this it it would be excatly pointing left!
@@ -107,9 +117,9 @@ Ball::Ball() : GameObject()
 
 
 /**
- * This function updates the ball
- * @param deltaTime the time to render one frame.
- */
+* This function updates The Ball object.
+* @param deltaTime the time is the time difference between each Update call.
+*/
 void Ball::Update(float deltaTime)
 {
 	ball.mCenter += speed * deltaTime; //Add the vector scaled by the deltaTime to the centerPoint of the ball.
@@ -122,7 +132,7 @@ void Ball::Update(float deltaTime)
 		respawnBall();
 		score.player1Score++;
 	}
-	if (getY() < 0 || getY() > playingField.length)
+	if (getY() < 0 || getY() > playingField.height)
 	{
 		speed.mData[1] *= -1;
 	}
@@ -150,7 +160,7 @@ gmtl::Spheref Ball::getSphere()
 
 void Ball::respawnBall()
 {
-	ball.mCenter = gmtl::Point3f(playingField.width / 2, playingField.length / 2, 0);
+	ball.mCenter = gmtl::Point3f(playingField.width / 2, playingField.height / 2, 0);
 	speed *= -1;
 }
 

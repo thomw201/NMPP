@@ -1,4 +1,19 @@
 #include "GameController.h"
+void GameController::moveAutoMove(Pad &paddle)
+{
+	if (ball.getY() + 10 > paddle.getY() + paddle.getLength() / 2 && ball.getY()  - 10 < paddle.getY() + paddle.getLength() / 2)
+	{
+		paddle.setDirection(neutral);
+	}
+	else if (ball.getY() > paddle.getY() + paddle.getLength() / 2)
+	{
+		paddle.setDirection(down);
+	}
+	else if (ball.getY()  < paddle.getY() + paddle.getLength() / 2)
+	{
+		paddle.setDirection(up);
+	}
+}
 /**
 * This will handle the game logic of PONG!!
 */
@@ -12,19 +27,19 @@ GameController::GameController() {
 * This function updates Pong game.
 * @param deltaTime the time is the time difference between each Update call.
 */
-
 void GameController::Update(float deltaTime)
 {
+	moveAutoMove(player2);
 	player1.Update(deltaTime);
 	player2.Update(deltaTime);
 	ball.Update(deltaTime);	
-	if (gmtl::intersect(player1.getBox(), ball.getSphere()))
+	if (gmtl::intersect(player1.getBox(), ball.getSphere()))//Check for collition.
 	{		
-		ball.reverseDirection((ball.getY() - player1.getCenterY()) / (playingField.padLength / 2) * 100);//calculation for the ball ricochet angle.
+		ball.reverseDirection((ball.getY() - player1.getCenterY()) / (playingField.padHeight / 2) * 100);//calculation for the ball ricochet angle.
 	}
 	else if (gmtl::intersect(player2.getBox(), ball.getSphere()))
 	{
-		ball.reverseDirection((ball.getY() - player2.getCenterY()) / (playingField.padLength / 2) * 100);
+		ball.reverseDirection((ball.getY() - player2.getCenterY()) / (playingField.padHeight / 2) * 100);
 	}
 
 }
