@@ -10,7 +10,7 @@ All:
 - Network - connect 2 consoles directly (one console hosts)
 - Fix starting behaviour of the ball, should be reset.
 - Show score (font or sprite?)
-- Menu with options (like network setup)
+- Menu with options (network setup)
 
 
 DSi:
