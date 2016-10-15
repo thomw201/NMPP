@@ -7,7 +7,7 @@ TODO:
 
 All:
 - Add network - be able to connect the consoles by network
-- Network - connect 2 consoles directly (one console hosts)
+- Network - connect 2 consoles directly (one console as host)
 - Fix starting behaviour of the ball, should be reset.
 - Show score (font or sprite?)
 - Menu with options (network setup)
