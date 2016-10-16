@@ -18,9 +18,27 @@
     <ClCompile Include="source\paddle.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="source\ball.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameController.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObject.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\paddle.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ball.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameController.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameObject.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

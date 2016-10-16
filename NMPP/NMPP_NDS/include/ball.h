@@ -6,6 +6,7 @@ public:
 	~ball();
 	void create();
 	void setSize(int _width, int _height);
+	void setPosition(int _posX, int _posY);
 	void setX(int _posX);
 	void setY(int _posY);
 	int getWidth();
