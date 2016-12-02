@@ -27,6 +27,12 @@
     <ClCompile Include="source\GameObject.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="source\com.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\nf_wifi.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\paddle.h">
@@ -39,6 +45,12 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\GameObject.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\com.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nf_wifi.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
