@@ -29,4 +29,5 @@ public:
 	int getPad2Y();
 	int getPad2Width();
 	int getPad2Length();
+	bool AIenabled;
 };

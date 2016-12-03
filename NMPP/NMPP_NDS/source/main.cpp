@@ -15,6 +15,7 @@
 //paddle p1Paddle, p2Paddle; // paddle objects for player 1 & 2 - (in main method for now..)
 
 chrono::time_point<chrono::steady_clock> start;
+enum gameMode { AI, Host, Client };
 
 float frametimer()
 {
@@ -42,6 +43,28 @@ void initBackgrounds() {
 void keyPressed(int c) {
 	if (c > 0) iprintf("%c", c);
 }
+
+//void vsAI(GameController game) { // maybe for future- make functions for gamemodes instead of going through if statements every single loop ..
+//	while (true)
+//	{
+//
+//	}
+//}
+//
+//void vsHost(GameController game) {
+//	while (true)
+//	{
+//
+//	}
+//}
+//
+//void vsClient(GameController game) {
+//	while (true)
+//	{
+//
+//	}
+//}
+
 /*
 -------------------------------------------------
 	Main()
@@ -49,16 +72,16 @@ void keyPressed(int c) {
 */
 
 int main(int argc, char **argv) {
-	
+
 	NF_Set2D(0, 0);
 	NF_Set2D(1, 0);		//Set 2D MODE-0 to both Screens
 
 	start = chrono::steady_clock::now();
-
+	string command = ""; // buffer for commands from client
 	GameController game = GameController();
 	com com = com;
 	com.isConnected = false;
-	bool isServer = false;
+	gameMode GameMode = AI; // default gamemode is p1 vs AI
 	//init keyboard
 	Keyboard* kb = keyboardDemoInit();
 	kb->OnKeyPressed = keyPressed;
@@ -70,24 +93,24 @@ int main(int argc, char **argv) {
 	while (!(keysCurrent() & KEY_A || keysCurrent() & KEY_B));
 	if (KEY_B & keysCurrent())
 	{
+		game.AIenabled = false;
 		//player vs player, decide if you want to be the server or client
 		consoleClear();
 		iprintf("\n\n\tNintendo Multi Platform Pong\n\n");
 		iprintf("\n\n\t(X) - Host game\n\t(Y) - Connect to server\n\n");
-		
+
 		while (!(keysCurrent() & KEY_X || keysCurrent() & KEY_Y));
 		if (KEY_X & keysCurrent())
 		{
 			if (com.createServer())
 			{
-				isServer = true;
+				GameMode = Host;
 				iprintf("\nServer started, waiting for client..\n\n"); // todo: add IP
 				//iprintf("\tServer IP:", inet_ntoa(NF_IP));
-				string data = com.listen();
-				while (data.compare("handshake")) {
-					data = com.listen();
+				command = com.listen();
+				while (command.compare("handshake") != 0) {
+					command = com.listen();
 				}
-				
 				iprintf("Connected!");
 			}
 			else
@@ -95,27 +118,29 @@ int main(int argc, char **argv) {
 		}
 		else if (KEY_Y & keysCurrent())
 		{
-				isServer = false;
-				char* IP = " ";
-				char ipaddress[64];
-				
-				consoleClear();
-				iprintf("\n\n\tEnter server IP:\n\n");
-				while (IP == " ")
-				{
-					scanf("%s", ipaddress);
-					IP = ipaddress;
-					
-				}
-				if (com.createClient(IP))
-				{
-					iprintf("\n\n\Connected!\n\n");
-					com.send("handshake");
-				}
-				else
-					iprintf("\n\n\tFailed to connect to ", IP);
+			GameMode = Client;
+			char* IP = " ";
+			char ipaddress[64];
+
+			consoleClear();
+			iprintf("\n\n\tEnter server IP:\n\n");
+			while (IP == " ")
+			{
+				scanf("%s", ipaddress);
+				IP = ipaddress;
+
+			}
+			if (com.createClient(IP))
+			{
+				iprintf("\n\n\Connected!\n\n");
+				com.send("handshake");
+			}
+			else
+				iprintf("\n\n\tFailed to connect to ", IP);
 		}
 	}
+	else
+		game.AIenabled = true;
 
 	initBackgrounds(); //initialize top and bottom screen backgrounds
 
@@ -136,55 +161,67 @@ int main(int argc, char **argv) {
 	p1Paddle.create(); //place the paddles
 	p2Paddle.create();
 
-	while(1) {
+	while (1) {
 
 		scanKeys();		// Scan for Input
 		touchRead(&Stylus);		// Read Stylus data
 
-		if (KEY_L & keysCurrent()) {
-			////NF_HideBg(1, 3);
-			//if (com.isConnected)
-			//{
-			//	com.send("testing asdasdad");
-			//}
-			//else
-			//	com.createClient("192.168.0.10");
-			////Start server
+		if (KEY_SELECT & keysCurrent()) { // DEBUG MODE
+			consoleDemoInit(); // clear console
 		}
 		else if (KEY_R & keysCurrent())
 		{
-			//if (com.isConnected)
-			//{
-			//	//iprintf(com.listen());
-			//}
-			//else {
-			//	com.createServer();
-			//	isServer = true;
-			//}
+
 		}
+
 		//player 1
-		if (KEY_DOWN & keysCurrent()) {
-				game.movePaddle1(down);
-			//}
-		}
-		else if (KEY_UP & keysCurrent()) {
-				game.movePaddle1(up);
-		}
-		else
-			game.movePaddle1(neutral);
-		if (isServer)
+
+		if (GameMode == AI || GameMode == Host) // if the gamemode is hosting or playing vs AI, enable control over paddle1 with up and down keys
 		{
-			string command = com.listen();
-			if (command.compare("up"))
-			{
-				game.movePaddle1(up);
+			if (KEY_DOWN & keysCurrent()) {
+					game.movePaddle1(down);
 			}
-			else if (command.compare("down"))
-			{
-				game.movePaddle1(down);
+			else if (KEY_UP & keysCurrent()) {
+					game.movePaddle1(up);
 			}
 			else
 				game.movePaddle1(neutral);
+			if (GameMode == Host) // if the gamemode is exclusively hosting, listen for movements from the client
+			{
+				command = com.listen();
+				if (command.compare("up") == 0)
+				{
+					game.movePaddle2(up);
+				}
+				else if (command.compare("down") == 0)
+				{
+					game.movePaddle2(down);
+				}
+				else
+					game.movePaddle2(neutral);
+				//send game info to the client
+				//string a = com.createDataStr(game.getBallX(), game.getBallY(), game.getPad1X() + (game.getPad1Width() / 2), game.getPad1Y() + (game.getPad1Length() / 2), game.getPad2X() + (game.getPad2Width() / 2), game.getPad2Y() + (game.getPad2Length() / 2));
+				com.send(com.createDataStr(game.getBallX(), game.getBallY(), game.getPad1X() + (game.getPad1Width() / 2), game.getPad1Y() + (game.getPad1Length() / 2), game.getPad2X() + (game.getPad2Width() / 2), game.getPad2Y() + (game.getPad2Length() / 2)));
+			}
+			bal.setPosition(game.getBallX(), game.getBallY());
+			p1Paddle.setPosition(game.getPad1X() + (game.getPad1Width() / 2), game.getPad1Y() + (game.getPad1Length() / 2));
+			p2Paddle.setPosition(game.getPad2X() + (game.getPad2Width() / 2), game.getPad2Y() + (game.getPad2Length() / 2)); //update game with local values as it's the host
+		}
+		if (GameMode == Client) // if playing as client, send the movements to the server
+		{
+			if (KEY_DOWN & keysCurrent()) {
+				com.send("down");
+			}
+			else if (KEY_UP & keysCurrent()) {
+				com.send("up");
+			}
+			command = com.listen();
+			int* receivedData = com.receiveDataStr(command);
+
+			bal.setPosition(receivedData[0], receivedData[1]);
+			p1Paddle.setPosition(receivedData[2], receivedData[3]);
+			p2Paddle.setPosition(receivedData[4], receivedData[5]);
+
 		}
 		////player 2 - X, B keys
 		//if (KEY_B & keysCurrent()) {
@@ -204,9 +241,9 @@ int main(int argc, char **argv) {
 		//else
 		//	game.movePaddle2(neutral);
 
-		bal.setPosition(game.getBallX(), game.getBallY());
-		p1Paddle.setPosition(game.getPad1X()+ (game.getPad1Width()/2), game.getPad1Y() + (game.getPad1Length()/2));
-		p2Paddle.setPosition(game.getPad2X()+ (game.getPad2Width()/2), game.getPad2Y() + (game.getPad2Length()/2));
+		//bal.setPosition(game.getBallX(), game.getBallY());
+		//p1Paddle.setPosition(game.getPad1X() + (game.getPad1Width() / 2), game.getPad1Y() + (game.getPad1Length() / 2));
+		//p2Paddle.setPosition(game.getPad2X() + (game.getPad2Width() / 2), game.getPad2Y() + (game.getPad2Length() / 2));
 		game.Update(0.05f);
 
 		NF_SpriteOamSet(0);
