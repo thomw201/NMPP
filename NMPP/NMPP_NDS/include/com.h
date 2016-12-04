@@ -2,6 +2,7 @@
 #include <nds.h>
 #include "nf_wifi.h"
 #include <string>
+#include <vector>
 
 #pragma once
 class com
@@ -15,10 +16,16 @@ public:
 	char* listen();
 	bool isConnected;
 	const char* createDataStr(int ballX, int ballY, int paddle1X, int paddle1Y, int paddle2X, int paddle2Y);
-	int* receiveDataStr(std::string data);
+	void receiveDataStr(std::string data);
+	int clientObjectPositions[6];
+	int getBallX();
+	int getBallY();
+	int getPaddle1X();
+	int getPaddle1Y();
+	int getPaddle2X();
+	int getPaddle2Y();
 private:
 	char serverIP[18];
 	bool connect();			// connect to wfc AP
-	int paddle1X, paddle1Y, paddle2X, paddle2Y, ballX, ballY; //object locations to be received from server
 };
 

@@ -8,6 +8,7 @@
 #include "nf_wifi.h"
 #include <string>
 #include <sstream>
+#include <vector>
 
 #define port 1234
 
@@ -67,18 +68,18 @@ char* com::listen()
 {
 	NF_BYTES_RECIEVED = 0;
 	memset(NF_RECV_BUFFER, 0, sizeof NF_RECV_BUFFER); // CLEAR BUFFER
-	NF_WIFI_UdpListen(50);
-if (NF_BYTES_RECIEVED > 0)
-{
-	return NF_RECV_BUFFER;
-}
-else
-return "";
+	NF_WIFI_UdpListen(10); // was 50
+	if (NF_BYTES_RECIEVED > 0)
+	{
+		return NF_RECV_BUFFER;
+	}
+	else
+		return "";
 }
 
 const char* com::createDataStr(int ballX, int ballY, int paddle1X, int paddle1Y, int paddle2X, int paddle2Y)
 {
-	std::string result = "";
+	std::string result = "object locations: ,";
 	std::string value = "";
 
 	value = static_cast<std::ostringstream*>(&(std::ostringstream() << ballX))->str() + ",";
@@ -93,52 +94,98 @@ const char* com::createDataStr(int ballX, int ballY, int paddle1X, int paddle1Y,
 	result.append(value);
 	value = static_cast<std::ostringstream*>(&(std::ostringstream() << paddle2Y))->str() + ",";
 	result.append(value);
-	//convert << ballY;
-	//result.append(convert.str() + ",");
-	//convert.clear();
-	//convert << paddle1X;
-	//result.append(convert.str() + ",");
-	//convert.clear();
-	//convert << paddle1Y;
-	//result.append(convert.str() + ",");
-	//convert.clear();
-	//convert << paddle2X;
-	//result.append(convert.str() + ",");
-	//convert.clear();
-	//convert << paddle2Y;
-	//result.append(convert.str() + ",");
-	//convert.clear();
+
 	return result.c_str();
 }
-
-int * com::receiveDataStr(std::string data)
+void com::receiveDataStr(std::string data)
 {
-	int objectPositions[6];
-	int index;
+	//int objectPositions[7];
+	//int index;
+	//int convertToIntResult;
+	//std::string position;
+	//for (int j = 0; j < 7; j++)
+	//{
+	//	while (index < data.length())
+	//	{
+	//		if (data[0] == ',')
+	//		{
+	//			index++;
+	//			break;
+	//		}
+	//		position += data[index];
+	//		index++;
+	//	}
+	//	std::istringstream convert(position);
+	//	if (!(convert >> convertToIntResult)) //give the value to 'Result' using the characters in the stream
+	//		convertToIntResult = 0;
+	//	objectPositions[j] = convertToIntResult;
+	//	convert.clear();
+	//}
+	//return objectPositions;
+	char delim = ',';
 	int convertToIntResult;
-	std::string position;
-	for (int j = 0; j < 6; j++)
+	int countObjectPosition = 0;
+
+	//if (!flds.empty()) flds.clear();  // empty vector if necessary
+	std::string buf = "";
+	int i = 0;
+	while (data[i] != ',') // skip whatever is infront of the int coords
 	{
-		while (index < data.length())
-		{
-			if (data[0] == ',')
-			{
-				break;
-			}
-			position += data[index];
-			index++;
-		}
-		std::istringstream convert(position);
-		if (!(convert >> convertToIntResult)) //give the value to 'Result' using the characters in the stream
-			convertToIntResult = 0;
-		objectPositions[j] = convertToIntResult;
-		convert.clear();
+		i++;
 	}
-	return objectPositions;
+	while (i < data.length()) {
+		if (data[i] != delim)
+			buf += data[i];
+		//else if (rep == 1) {
+		//	flds.push_back(buf);
+		//	buf = "";
+		else if (buf.length() > 0) {
+			std::istringstream convert(buf);
+			if (!(convert >> convertToIntResult)) { //give the value to 'Result' using the characters in the stream
+				convertToIntResult = 0;
+			}
+				clientObjectPositions[countObjectPosition] = convertToIntResult;
+				countObjectPosition++;
+				convert.clear();
+				buf = "";
+			
+		}
+		i++;
+	}
+	if (!buf.empty()) {}
+		//flds.push_back(0);
+}
+
+int com::getBallX()
+{
+	return clientObjectPositions[0];
+}
+
+int com::getBallY()
+{
+	return clientObjectPositions[1];
+}
+
+int com::getPaddle1X()
+{
+	return clientObjectPositions[2];
+}
+
+int com::getPaddle1Y()
+{
+	return clientObjectPositions[3];
+}
+
+int com::getPaddle2X()
+{
+	return clientObjectPositions[4];
 }
 
 
-
+int com::getPaddle2Y()
+{
+	return clientObjectPositions[5];
+}
 
 
 bool com::connect()

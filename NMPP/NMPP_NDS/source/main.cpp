@@ -209,19 +209,20 @@ int main(int argc, char **argv) {
 		}
 		if (GameMode == Client) // if playing as client, send the movements to the server
 		{
+			command = com.listen();
 			if (KEY_DOWN & keysCurrent()) {
 				com.send("down");
 			}
 			else if (KEY_UP & keysCurrent()) {
 				com.send("up");
 			}
-			command = com.listen();
-			int* receivedData = com.receiveDataStr(command);
-
-			bal.setPosition(receivedData[0], receivedData[1]);
-			p1Paddle.setPosition(receivedData[2], receivedData[3]);
-			p2Paddle.setPosition(receivedData[4], receivedData[5]);
-
+			if (command.compare("") != 0)
+			{
+				com.receiveDataStr(command);
+				bal.setPosition(com.getBallX(), com.getBallY());
+				p1Paddle.setPosition(com.getPaddle1X(), com.getPaddle1Y());
+				p2Paddle.setPosition(com.getPaddle2X(), com.getPaddle2Y());
+			}
 		}
 		////player 2 - X, B keys
 		//if (KEY_B & keysCurrent()) {
