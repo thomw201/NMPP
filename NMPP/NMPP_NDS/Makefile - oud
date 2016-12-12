@@ -22,6 +22,7 @@ include $(DEVKITARM)/base_rules
 
 LIBNDS	:=	$(DEVKITPRO)/libnds
 
+
 GAME_TITLE	    :=	NDS Pong
 GAME_SUBTITLE1	:=	Multiplatform Pong
 GAME_SUBTITLE2	:=	Eden Cox and Thom Wouda
@@ -74,7 +75,7 @@ NITRODATA	:=	nitrofiles
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
-ARCH	:=	-mthumb -mthumb-interwork
+ARCH	:=	-mthumb -mthumb-interwork 
 
 CFLAGS	:=	-g -Wall -O2\
  		-march=armv5te -mtune=arm946e-s -fomit-frame-pointer\
@@ -82,7 +83,7 @@ CFLAGS	:=	-g -Wall -O2\
 		$(ARCH)
 
 CFLAGS	+=	$(INCLUDE) -DARM9
-CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11 -fpermissive
+CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11
 
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
@@ -90,7 +91,7 @@ LDFLAGS	=	-specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS	:= -lnflib -ldswifi9 -lfilesystem -lfat -lnds9
+LIBS	:= -lnflib -ldswifi9 -lfilesystem -lfat -lnds9 
 
 
 #---------------------------------------------------------------------------------
@@ -99,8 +100,6 @@ LIBS	:= -lnflib -ldswifi9 -lfilesystem -lfat -lnds9
 #---------------------------------------------------------------------------------
 LIBDIRS	:= $(LIBNDS) $(CURDIR)/nflib $(CURDIR)/../../Cross_Platform_Code
 LIBDIRS2 += $(CURDIR)/../../gmtl
-
-
 #---------------------------------------------------------------------------------
 # no real need to edit anything past this point unless you need to add additional
 # rules for different file extensions
@@ -143,7 +142,7 @@ export INCLUDE	:=	$(foreach dir,$(INCLUDES),-iquote $(CURDIR)/$(dir)) \
 					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
 					$(foreach dir,$(LIBDIRS2),-I$(dir)/) \
 					-I$(CURDIR)/$(BUILD)
-
+					
 export LIBPATHS	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib)
 
 icons := $(wildcard *.bmp)

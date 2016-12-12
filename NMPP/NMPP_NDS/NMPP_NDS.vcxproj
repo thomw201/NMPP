@@ -52,9 +52,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\ball.cpp" />
+    <ClCompile Include="source\com.cpp" />
     <ClCompile Include="source\GameController.cpp" />
     <ClCompile Include="source\GameObject.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\nf_wifi.cpp" />
     <ClCompile Include="source\paddle.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -62,8 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ball.h" />
+    <ClInclude Include="include\com.h" />
     <ClInclude Include="include\GameController.h" />
     <ClInclude Include="include\GameObject.h" />
+    <ClInclude Include="include\nf_wifi.h" />
     <ClInclude Include="include\paddle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

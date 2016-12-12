@@ -29,7 +29,10 @@ GameController::GameController() {
 */
 void GameController::Update(float deltaTime)
 {
-	moveAutoMove(player2);
+	if (AIenabled)
+	{
+		moveAutoMove(player2);
+	}
 	player1.Update(deltaTime);
 	player2.Update(deltaTime);
 	ball.Update(deltaTime);	
