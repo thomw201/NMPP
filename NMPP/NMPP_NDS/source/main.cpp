@@ -16,6 +16,7 @@
 
 chrono::time_point<chrono::steady_clock> start;
 enum gameMode { AI, Host, Client };
+enum screen { Topscreen, Bottomscreen };
 
 float frametimer()
 {
@@ -27,17 +28,19 @@ float frametimer()
 void initBackgrounds() {
 	// Initialize the Tiled Backgrounds System on the Top Screen
 	NF_InitTiledBgBuffers();	// Initialize Background Buffers
-	NF_InitTiledBgSys(0);
-	NF_InitTiledBgSys(1);		// Initialize Top and Bottom Screen BgSystems
-
-	NF_InitSpriteSys(1);		// Initialize Bottom Screen SpriteSystem
-
+	NF_InitTiledBgSys(Topscreen);
+	NF_InitTiledBgSys(Bottomscreen);		// Initialize Top and Bottom Screen BgSystems
+	
 	NF_InitSpriteBuffers();		// Initialize Sprite Buffers
+	NF_InitSpriteSys(Topscreen);
+	NF_InitSpriteSys(Bottomscreen);		// Initialize Bottom Screen SpriteSystem
+
+	
 	NF_LoadTiledBg("splashImg", "TopBG", 256, 256); // splash background
 	NF_LoadTiledBg("fieldImg", "BottomBG", 256, 256);	//field background
 
-	NF_CreateTiledBg(0, 3, "TopBG");		// splash Background
-	NF_CreateTiledBg(1, 3, "BottomBG");		// game Background
+	NF_CreateTiledBg(Bottomscreen, 3, "TopBG");		// splash Background
+	NF_CreateTiledBg(Topscreen, 3, "BottomBG");		// game Background
 }
 
 void keyPressed(int c) {
@@ -73,9 +76,10 @@ void keyPressed(int c) {
 
 int main(int argc, char **argv) {
 
-	NF_Set2D(0, 0);
-	NF_Set2D(1, 0);		//Set 2D MODE-0 to both Screens
-
+	NF_Set2D(Topscreen, 0);
+	NF_Set2D(Bottomscreen, 0);		//Set 2D MODE-0 to both Screens
+	consoleDemoInit();
+	swiWaitForVBlank();
 	start = chrono::steady_clock::now();
 	string command = ""; // buffer for commands from client
 	GameController game = GameController();
@@ -144,10 +148,10 @@ int main(int argc, char **argv) {
 
 	initBackgrounds(); //initialize top and bottom screen backgrounds
 
-	paddle p1Paddle = paddle(0, 1, SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
-	paddle p2Paddle = paddle(1, 1, SCREEN_WIDTH - SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
+	paddle p1Paddle = paddle(0, Topscreen, SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
+	paddle p2Paddle = paddle(1, Topscreen, SCREEN_WIDTH - SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
 
-	ball bal = ball(2, 1, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2); //init ball in the center of the screen
+	ball bal = ball(2, Topscreen, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2); //init ball in the center of the screen
 	bal.create();
 
 	touchPosition Stylus;		// Prepare a variable for Stylus data
@@ -247,9 +251,10 @@ int main(int argc, char **argv) {
 		//p2Paddle.setPosition(game.getPad2X() + (game.getPad2Width() / 2), game.getPad2Y() + (game.getPad2Length() / 2));
 		game.Update(0.05f);
 
-		NF_SpriteOamSet(0);
-		NF_SpriteOamSet(1);		// Update NFLib's Sprite OAM System
+		NF_SpriteOamSet(Topscreen);
+		NF_SpriteOamSet(Bottomscreen);		// Update NFLib's Sprite OAM System
 		swiWaitForVBlank();		// Wait for the Vertical Blank
+		oamUpdate(&oamMain);
 		oamUpdate(&oamSub);		// Update the OAM of the Bottom Screen engine
 	}
 
