@@ -11,8 +11,8 @@ SplashScreen::~SplashScreen()
 {
 	sf2d_free_texture(topScreen);
 	sf2d_free_texture(botScreen);
-	delete topScreen;
-	delete botScreen;
+	//delete topScreen;
+	//delete botScreen;
 }
 
 void SplashScreen::update(float deltaTime)

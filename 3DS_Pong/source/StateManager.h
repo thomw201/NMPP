@@ -4,11 +4,12 @@
 
 
 
+//forward declaration of Gamestate.
+class GameState;
+
 /**
 *@The game state manager.
 */
-class GameState;
-
 class StateManager {
 private:
 	GameState *currentState;
