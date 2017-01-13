@@ -1,10 +1,7 @@
-#include "GameController.h"
-#include "GameObject.h"
 #include "com.h"
 #include "paddle.h"
 #include "ball.h"
 #include "GameController.h"
-#include "GameObject.h"
 #pragma once
 class game
 {

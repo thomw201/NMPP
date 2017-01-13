@@ -1,10 +1,11 @@
 #include "game.h"
 #include <nf_lib.h>
+#include <stdio.h>
 #include <string>
 #include "paddle.h"
 #include "ball.h"
 #include "GameController.h"
-#include "GameObject.h"
+
 
 
 GameController controller = GameController();
