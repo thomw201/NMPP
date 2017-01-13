@@ -2,6 +2,7 @@
 class ball
 {
 public:
+	ball();
 	ball(int _id, int _screen, int _posX, int _posY);
 	~ball();
 	void create();
@@ -9,6 +10,8 @@ public:
 	void setPosition(int _posX, int _posY);
 	void setX(int _posX);
 	void setY(int _posY);
+	void show();
+	void hide();
 	int getWidth();
 	int getHeight();
 	int getX();

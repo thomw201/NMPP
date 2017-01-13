@@ -61,6 +61,16 @@ void ball::setY(int _posY) {
 	NF_MoveSprite(screen, id, posX, posY);
 }
 
+void ball::show()
+{
+	create();
+}
+
+void ball::hide()
+{
+	NF_DeleteSprite(screen, id);
+}
+
 /* creates the paddle on the posX, posY position */
 void ball::create() {
 	NF_LoadSpriteGfx("ballImg", id, width, height);	// load paddle sprite

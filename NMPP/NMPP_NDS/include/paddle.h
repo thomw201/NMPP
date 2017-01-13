@@ -2,6 +2,7 @@
 class paddle
 {
 public:
+	paddle();
 	paddle(int _id, int _screen, int _posX, int _posY);
 	~paddle();
 	void create();
@@ -9,6 +10,8 @@ public:
 	void setSize(int _width, int _height);
 	void setX(int _posX);
 	void setY(int _posY);
+	void show();
+	void hide();
 	int getWidth();
 	int getHeight();
 	int getX();
