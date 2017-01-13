@@ -1,14 +1,11 @@
 #include "game.h"
+#include "GameController.h"
 #include <nf_lib.h>
 #include <stdio.h>
 #include <string>
 #include "paddle.h"
 #include "ball.h"
-#include "GameController.h"
 
-
-
-GameController controller = GameController();
 
 game::game()
 {
@@ -16,7 +13,7 @@ game::game()
 
 game::game(int screen)
 {
-
+	controller = ponglogic::GameController();
 	communication.isConnected = false;
 	p1Paddle = paddle(0, screen, SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
 	p2Paddle = paddle(1, screen, SCREEN_WIDTH - SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);

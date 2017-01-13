@@ -1,7 +1,8 @@
+#include "GameController.h"
 #include "com.h"
 #include "paddle.h"
 #include "ball.h"
-#include "GameController.h"
+
 #pragma once
 class game
 {
@@ -17,7 +18,7 @@ public:
 	void hide();
 private:
 	com communication;
-	GameController controller;
+	ponglogic::GameController controller;
 	paddle p1Paddle;
 	paddle p2Paddle;
 	ball bal;

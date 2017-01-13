@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include "game.h"
 #include "menu.h"
-
 #include "com.h"
 #include <nds.h>
 #include <chrono>
