@@ -76,6 +76,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\citra_img.c" />
+    <ClCompile Include="source\ClassicPong.cpp" />
     <ClCompile Include="source\dice_img.c" />
     <ClCompile Include="source\GameController.cpp" />
     <ClCompile Include="source\GameObject.cpp" />
@@ -83,16 +84,19 @@
     <ClCompile Include="source\RainbowBottom.c" />
     <ClCompile Include="source\RainbowTop.c" />
     <ClCompile Include="source\SplashScreen.cpp" />
+    <ClCompile Include="source\StateManager.cpp" />
     <ClCompile Include="source\UdpSocket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\ClassicPong.h" />
     <ClInclude Include="source\GameController.h" />
     <ClInclude Include="source\GameObject.h" />
     <ClInclude Include="source\GameState.h" />
     <ClInclude Include="source\SplashScreen.h" />
+    <ClInclude Include="source\StateManager.h" />
     <ClInclude Include="source\UdpSocket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

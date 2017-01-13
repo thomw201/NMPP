@@ -1,20 +1,21 @@
 #pragma once
 #include <3ds.h>
 #include <sf2d.h>
+#include "StateManager.h"
 
+class StateManager;
 
-
-using namespace std;
 /**
 *@ Abstract Class for a gamestate
 */
 class GameState {
 
 protected:
-	GameState *currentState;
-	virtual void changeState() = 0;
+	StateManager &manager;
+	virtual void changeState(GameState *nextState) = 0;
 
 public:
-	GameState(GameState *currentState) : currentState(currentState) {}
+	GameState(StateManager &manager) : manager(manager) {}
+	virtual ~GameState(){}
 	virtual void update(float deltaTime) = 0;
 };

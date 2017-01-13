@@ -20,9 +20,9 @@
 
 #include "citra_img.c"
 #include "dice_img.c"
-#include "GameController.h"
 #include "GameState.h"
 #include "SplashScreen.h"
+#include "ClassicPong.h"
 #include "UdpSocket.h"
 
 //temp
@@ -49,34 +49,24 @@ int main()
 	//Code to Initiliaze 2d library
 	sf2d_init();
 	sf2d_set_clear_color(RGBA8(0x00, 0x00, 0x00, 0xFF));
-	sf2d_set_3D(0);
+	sf2d_set_3D(1);
 
-	float offset3d = 0.0f;
-	float rad = 0.0f;
-	u16 touch_x = 320/2;
-	u16 touch_y = 240/2;
-	touchPosition touch;
-	circlePosition circle;
 	u32 held;
-	GameState *currentState = new SplashScreen(currentState);
+	StateManager manager = StateManager();
 	
 	while (aptMainLoop()) {
 
 		hidScanInput();
-		hidCircleRead(&circle);
 		held = hidKeysHeld();
 
-		if (held & KEY_START)
+		if (held & KEY_START) {
 			break;
-
-
-
-		currentState->update(frametimer());
-	
-		sf2d_swapbuffers();
+		}
+		manager.update(frametimer());
 
 	}
 
 	sf2d_fini();
+
 	return 0;
 }
