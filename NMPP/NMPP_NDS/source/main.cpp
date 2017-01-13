@@ -78,9 +78,10 @@ int main(int argc, char **argv) {
 	initBackgrounds(); //initialize top and bottom screen backgrounds
 
 	while (1) {
-		switch (mainMenu)
+		switch (gamemode)
 		{
 		case mainMenu:
+			Menu.run();
 			break;
 		case AI:
 			Game.vsAI();
@@ -94,6 +95,7 @@ int main(int argc, char **argv) {
 		default:
 			break;
 		}
+		gamemode = mainMenu; // when exitted out of a gamestate, go back to main menu
 	}
 
 	return 0;

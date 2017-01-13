@@ -34,48 +34,17 @@ int menu::run()
 		if (KEY_X & keysCurrent())
 		{
 			return Host;
-			//if (com.createServer())
-			//{
-			//	GameMode = Host;
-			//	iprintf("\nServer started, waiting for client..\n\n"); // todo: add IP
-			//														   //iprintf("\tServer IP:", inet_ntoa(NF_IP));
-			//	command = com.listen();
-			//	while (command.compare("handshake") != 0) {
-			//		command = com.listen();
-			//	}
-			//	iprintf("Connected!");
-			//}
-			//else
-			//	iprintf("\n\n\tFailed to create server.\n\n");
+
 		}
 		else if (KEY_Y & keysCurrent())
 		{
 			return Client;
-			//GameMode = Client;
-			////char* IP = " ";
-			////char ipaddress[64];
-
-			////consoleClear();
-			////iprintf("\n\n\tEnter server IP:\n\n");
-			////while (IP == " ")
-			////{
-			////	scanf("%s", ipaddress);
-			////	IP = ipaddress;
-
-			////}
-			////if (com.createClient(IP))
-			////{
-			////	iprintf("\n\n\Connected!\n\n");
-			////	com.send("handshake");
-			////}
-			////else
-			////	iprintf("\n\n\tFailed to connect to ", IP);
 		}
 	}
 	else
 		return AI;
 		/*game.AIenabled = true;*/
-	return 0;
+	return mainMenu;
 }
 
 void menu::createButton()

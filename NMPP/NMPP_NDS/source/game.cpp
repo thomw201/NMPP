@@ -66,7 +66,24 @@ void game::isHost()
 {
 	string command = "";
 	controller.AIenabled = false;
-	while (1)
+	if (communication.createServer())
+	{
+		iprintf("\nServer started, waiting for client..\n\n"); // todo: add IP
+															   //iprintf("\tServer IP:", inet_ntoa(NF_IP));
+		command = communication.listen();
+		while (command.compare("handshake") != 0) {
+			command = communication.listen();
+		}
+		iprintf("Connected!");
+	}
+	else {
+		iprintf("\n\n\tFailed to create server.\n\n");
+		if (KEY_START & keysCurrent())
+		{
+			return; // back to main menu
+		}
+	}
+	while (1) //everything is set up, start game
 	{
 		controlP1();
 		command = communication.listen();
@@ -89,6 +106,29 @@ void game::isClient()
 {
 	string command = ""; // buffer for commands from client
 	controller.AIenabled = false;
+	char* IP = " ";
+	char ipaddress[64];
+
+	consoleClear();
+	iprintf("\n\n\tEnter server IP:\n\n");
+	while (IP == " ")
+	{
+		scanf("%s", ipaddress);
+		IP = ipaddress;
+
+	}
+	if (communication.createClient(IP))
+	{
+		iprintf("\n\n\Connected!\n\n");
+		communication.send("handshake");
+	}
+	else {
+		iprintf("\n\n\tFailed to connect to ", IP);
+		if (KEY_START & keysCurrent())
+		{
+			return; // back to main menu
+		}
+	}
 	while (1)
 	{
 		command = communication.listen();

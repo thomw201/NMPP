@@ -5,8 +5,8 @@ public:
 	menu();
 	menu(int screen);
 	~menu();
-private:
 	int run();
+private:
 	void createButton();
 };
 
