@@ -10,8 +10,6 @@ public:
 	void setSize(int _width, int _height);
 	void setX(int _posX);
 	void setY(int _posY);
-	void show();
-	void hide();
 	int getWidth();
 	int getHeight();
 	int getX();

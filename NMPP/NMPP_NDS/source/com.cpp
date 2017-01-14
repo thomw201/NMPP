@@ -34,7 +34,7 @@ bool com::createClient(const char * IP)
 		return NF_WIFI_CreateUdpSender(IP, port);
 	}
 	else
-		iprintf("Cannot create client.");
+		iprintf("Failed to create client.");
 	return false;
 }
 
@@ -74,7 +74,7 @@ char* com::listen()
 		return NF_RECV_BUFFER;
 	}
 	else
-		return "";
+		return " ";
 }
 
 const char* com::createDataStr(int ballX, int ballY, int paddle1X, int paddle1Y, int paddle2X, int paddle2Y)
@@ -128,7 +128,7 @@ void com::receiveDataStr(std::string data)
 
 	//if (!flds.empty()) flds.clear();  // empty vector if necessary
 	std::string buf = "";
-	int i = 0;
+	unsigned int i = 0;
 	while (data[i] != ',') // skip whatever is infront of the int coords
 	{
 		i++;

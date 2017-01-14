@@ -1,0 +1,70 @@
+#include "Pong.h"
+
+
+
+
+Pong::Pong(StateManager & manager) : GameState(manager)
+{
+	initBackgrounds();
+	controller = ponglogic::GameController();
+	communication.isConnected = false;
+	p1Paddle = paddle(0, 0, SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
+	p2Paddle = paddle(1, 0, SCREEN_WIDTH - SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
+	bal = ball(2, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2); //init ball in the center of the screen
+
+	p1Paddle.setSize(controller.getPad1Width(), controller.getPad1Length());
+	p2Paddle.setSize(controller.getPad2Width(), controller.getPad2Length());
+
+	p1Paddle.setPosition(controller.getPad1X(), controller.getPad1Y());// sync paddle positions
+	p2Paddle.setPosition(controller.getPad2X(), controller.getPad1Y());
+}
+
+Pong::~Pong()
+{
+	NF_ResetTiledBgBuffers();
+	NF_DeleteTiledBg(0, 3);
+	NF_DeleteTiledBg(1, 3);
+	NF_UnloadTiledBg("fieldImg");
+	NF_UnloadTiledBg("splashImg");
+}
+
+void Pong::changeState(GameState * nextState)
+{
+	manager.changeState(nextState);
+}
+
+void Pong::initBackgrounds()
+{
+		// Initialize the Tiled Backgrounds System on the Top Screen
+		NF_InitTiledBgBuffers();	// Initialize Background Buffers
+		NF_InitTiledBgSys(0);
+		NF_InitTiledBgSys(1);		// Initialize Top and Bottom Screen BgSystems
+
+		NF_InitSpriteBuffers();		// Initialize Sprite Buffers
+		NF_InitSpriteSys(0);
+		NF_InitSpriteSys(1);		// Initialize Bottom Screen SpriteSystem
+
+
+		NF_LoadTiledBg("splashImg", "TopBG", 256, 256); // splash background
+		NF_LoadTiledBg("fieldImg", "BottomBG", 256, 256);	//field background
+
+		NF_CreateTiledBg(1, 3, "TopBG");		// splash Background
+		NF_CreateTiledBg(0, 3, "BottomBG");		// game Background
+}
+
+void Pong::update(float deltaTime)
+{
+	if (KEY_SELECT & keysCurrent())
+	{
+		//changestate
+	}
+	updateGame(); //call the function containing the vs ai, vs host or vs client code
+	controller.Update(/*0.05f*/deltaTime); //update controller
+	NF_SpriteOamSet(0);
+	NF_SpriteOamSet(1);		// Update NFLib's Sprite OAM System
+	swiWaitForVBlank();		// Wait for the Vertical Blank
+	oamUpdate(&oamMain);
+	oamUpdate(&oamSub);		// Update the OAM of the Bottom Screen engine
+	scanKeys();		// Scan for Input
+	touchRead(&Stylus);		// Read Stylus data
+}

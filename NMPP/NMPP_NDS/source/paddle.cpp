@@ -1,6 +1,7 @@
 #include "paddle.h"
 #include "nf_lib.h"
 
+
 paddle::paddle(int _id, int _screen, int _posX, int _posY)
 {
 	id = _id;
@@ -9,11 +10,19 @@ paddle::paddle(int _id, int _screen, int _posX, int _posY)
 	posY = _posY;
 	width = 8; //default size of the paddle is 8x32
 	height = 32;
+	create();
 }
 
+paddle::paddle()
+{
+
+}
 
 paddle::~paddle()
 {
+	NF_DeleteSprite(screen, id);
+	NF_FreeSpriteGfx(screen, id);
+	NF_UnloadSpritePal(id);
 }
 
 int paddle::getY() {
@@ -59,16 +68,6 @@ void paddle::setY(int _posY) {
 	_posY = _posY - (getHeight() / 2);
 	posY = _posY;
 	NF_MoveSprite(screen, id, posX, posY);
-}
-
-void paddle::show()
-{
-	create();
-}
-
-void paddle::hide()
-{
-	NF_DeleteSprite(screen, id);
 }
 
 /* creates the paddle on the posX, posY position */

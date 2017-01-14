@@ -2,6 +2,7 @@
 #include "nf_lib.h"
 #include "GameObject.h"
 
+
 ball::ball(int _id, int _screen, int _posX, int _posY)
 {
 	id = _id;
@@ -10,11 +11,18 @@ ball::ball(int _id, int _screen, int _posX, int _posY)
 	posY = _posY;
 	width = 16; //ball size is 16x16 (lol)
 	height = 16;
+	create();
 }
 
+ball::ball()
+{
+}
 
 ball::~ball()
 {
+	NF_DeleteSprite(screen, id);
+	NF_FreeSpriteGfx(screen, id);
+	NF_UnloadSpritePal(id);
 }
 
 int ball::getY() {
@@ -34,8 +42,8 @@ int ball::getWidth() {
 }
 
 void ball::setPosition(int _posX, int _posY) {
-	_posX = _posX - playingField.ballRadius;
-	_posY = _posY - playingField.ballRadius;
+	_posX = _posX - ponglogic::playingField.ballRadius;
+	_posY = _posY - ponglogic::playingField.ballRadius;
 	posX = _posX;
 	posY = _posY;
 	NF_MoveSprite(screen, id, posX, posY);
@@ -59,16 +67,6 @@ void ball::setX(int _posX) {
 void ball::setY(int _posY) {
 	posY = _posY;
 	NF_MoveSprite(screen, id, posX, posY);
-}
-
-void ball::show()
-{
-	create();
-}
-
-void ball::hide()
-{
-	NF_DeleteSprite(screen, id);
 }
 
 /* creates the paddle on the posX, posY position */
