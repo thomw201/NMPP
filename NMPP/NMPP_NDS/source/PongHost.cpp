@@ -44,6 +44,7 @@ void PongHost::updateGame()
 //creates a server and waits for the client to connect
 bool PongHost::createServer()
 {
+	//NF_HideBg(0,)
 	command = "";
 	if (communication.createServer())
 	{

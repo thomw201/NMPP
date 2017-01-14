@@ -18,6 +18,8 @@ paddle::paddle()
 
 }
 
+
+
 paddle::~paddle()
 {
 	NF_DeleteSprite(screen, id);
@@ -68,6 +70,11 @@ void paddle::setY(int _posY) {
 	_posY = _posY - (getHeight() / 2);
 	posY = _posY;
 	NF_MoveSprite(screen, id, posX, posY);
+}
+
+void paddle::setID(int _id)
+{
+	id = _id;
 }
 
 /* creates the paddle on the posX, posY position */

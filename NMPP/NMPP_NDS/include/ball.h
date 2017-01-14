@@ -10,6 +10,7 @@ public:
 	void setPosition(int _posX, int _posY);
 	void setX(int _posX);
 	void setY(int _posY);
+	void setID(int _id);
 	int getWidth();
 	int getHeight();
 	int getX();

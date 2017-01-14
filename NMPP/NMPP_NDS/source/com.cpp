@@ -74,7 +74,7 @@ char* com::listen()
 		return NF_RECV_BUFFER;
 	}
 	else
-		return " ";
+		return new char* ;
 }
 
 const char* com::createDataStr(int ballX, int ballY, int paddle1X, int paddle1Y, int paddle2X, int paddle2Y)

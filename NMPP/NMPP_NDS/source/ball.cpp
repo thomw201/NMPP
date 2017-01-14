@@ -16,6 +16,8 @@ ball::ball(int _id, int _screen, int _posX, int _posY)
 
 ball::ball()
 {
+	width = 16; //ball size is 16x16 (lol)
+	height = 16;
 }
 
 ball::~ball()
@@ -69,12 +71,17 @@ void ball::setY(int _posY) {
 	NF_MoveSprite(screen, id, posX, posY);
 }
 
+void ball::setID(int _id)
+{
+	id = _id;
+}
+
 /* creates the paddle on the posX, posY position */
 void ball::create() {
 	NF_LoadSpriteGfx("ballImg", id, width, height);	// load paddle sprite
 	NF_LoadSpritePal("ballImg", id);
 
-	NF_VramSpriteGfx(screen, id, id, true);	// Load the Gfx into VRAM - transfer all Sprites
+	NF_VramSpriteGfx(screen, id, id, false);	// Load the Gfx into VRAM - transfer all Sprites
 	NF_VramSpritePal(screen, id, id);		// Load the Palette into VRAM
 
 	NF_CreateSprite(screen, id, id, id, posX, posY);		//create paddle 5% from the border and in the middle of the screen (vertically)
