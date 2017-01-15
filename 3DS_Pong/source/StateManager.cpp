@@ -3,7 +3,7 @@
 
 StateManager::StateManager()
 {
-	currentState = new ClassicPong(*this);
+	currentState = new SplashScreen(*this);
 }
 
 StateManager::~StateManager()

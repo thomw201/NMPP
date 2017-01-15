@@ -18,8 +18,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "citra_img.c"
-#include "dice_img.c"
 #include "GameState.h"
 #include "SplashScreen.h"
 #include "ClassicPong.h"
@@ -29,8 +27,6 @@
 
 
 chrono::time_point<chrono::steady_clock> start;
-Result ret;
-u32 *ptr;
 
 float frametimer()
 {

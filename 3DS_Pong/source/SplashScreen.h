@@ -4,9 +4,10 @@
 #include <stdlib.h>  
 #include <memory> 
 #include "GameState.h"
-#include "RainbowTop.c"
-#include "RainbowBottom.c"
-#include "ClassicPong.h"
+#include "MainMenu.h"
+
+#include "MainMenuAssets\PressStartScreen.c"
+#include "MainMenuAssets\SplashScreen.c"
 
 
 /**
@@ -19,7 +20,6 @@ private:
 	sf2d_texture *topScreen;
 	sf2d_texture *botScreen;
 	u32 held;
-	bool stop = false;
 
 public:
 	SplashScreen(StateManager &manager);
