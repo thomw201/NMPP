@@ -1,8 +1,7 @@
 #pragma once
-
-#include <stdlib.h>  
-#include <memory> 
 #include "GameState.h"
+#include "PongvsAI.h"
+#include <nf_lib.h>
 
 
 
@@ -12,10 +11,6 @@
 
 
 class SplashScreen : public GameState {
-private:
-
-	bool stop = false;
-
 public:
 	SplashScreen(StateManager &manager);
 	~SplashScreen();

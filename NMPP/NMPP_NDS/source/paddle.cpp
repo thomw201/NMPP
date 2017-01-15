@@ -79,8 +79,8 @@ void paddle::setID(int _id)
 
 /* creates the paddle on the posX, posY position */
 void paddle::create() {
-	NF_LoadSpriteGfx("paddleImg", id, width, height);	// load paddle sprite
-	NF_LoadSpritePal("paddleImg", id);
+	NF_LoadSpriteGfx("game/sprites/paddleImg", id, width, height);	// load paddle sprite
+	NF_LoadSpritePal("game/sprites/paddleImg", id);
 
 	NF_VramSpriteGfx(screen, id, id, false);	// Load the Gfx into VRAM - transfer all Sprites
 	NF_VramSpritePal(screen, id, id);		// Load the Palette into VRAM

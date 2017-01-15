@@ -28,11 +28,11 @@ Pong::Pong(StateManager & manager) : GameState(manager)
 
 Pong::~Pong()
 {
-	NF_ResetTiledBgBuffers();
 	NF_DeleteTiledBg(0, 3);
 	NF_DeleteTiledBg(1, 3);
-	NF_UnloadTiledBg("fieldImg");
-	NF_UnloadTiledBg("splashImg");
+	NF_UnloadTiledBg("BottomBG");
+	NF_UnloadTiledBg("TopBG");
+	NF_ResetTiledBgBuffers();
 }
 
 void Pong::changeState(GameState * nextState)
@@ -42,18 +42,8 @@ void Pong::changeState(GameState * nextState)
 
 void Pong::initBackgrounds()
 {
-		// Initialize the Tiled Backgrounds System on the Top Screen
-		NF_InitTiledBgBuffers();	// Initialize Background Buffers
-		NF_InitTiledBgSys(0);
-		NF_InitTiledBgSys(1);		// Initialize Top and Bottom Screen BgSystems
-
-		NF_InitSpriteBuffers();		// Initialize Sprite Buffers
-		NF_InitSpriteSys(0);
-		NF_InitSpriteSys(1);		// Initialize Bottom Screen SpriteSystem
-
-
-		NF_LoadTiledBg("splashImg", "TopBG", 256, 256); // splash background
-		NF_LoadTiledBg("fieldImg", "BottomBG", 256, 256);	//field background
+		NF_LoadTiledBg("game/bg/splashImg", "TopBG", 256, 256); // splash background
+		NF_LoadTiledBg("game/bg/fieldImg", "BottomBG", 256, 256);	//field background
 
 		NF_CreateTiledBg(1, 3, "TopBG");		// splash Background
 		NF_CreateTiledBg(0, 3, "BottomBG");		// game Background

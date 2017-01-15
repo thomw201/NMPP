@@ -2,44 +2,30 @@
 
 SplashScreen::SplashScreen(StateManager &manager) : GameState(manager)
 {
-	//topScreen = sf2d_create_texture_mem_RGBA8(rainbowTop_img.pixel_data, rainbowTop_img.width, rainbowTop_img.height, TEXFMT_RGBA8, SF2D_PLACE_RAM);
-	//botScreen = sf2d_create_texture_mem_RGBA8(rainbowBottom_img.pixel_data, rainbowBottom_img.width, rainbowBottom_img.height, TEXFMT_RGBA8, SF2D_PLACE_RAM);
-	//srand(242435235);
+	NF_LoadTiledBg("splash/splashscreenbottom", "bottom_splash", 256, 256); // splash background
+	NF_LoadTiledBg("splash/splashscreentop", "top_splash", 256, 256);	//field background
+
+	NF_CreateTiledBg(1, 3, "bottom_splash");		// splash Background
+	NF_CreateTiledBg(0, 3, "top_splash");		// game Background
 }
 
 SplashScreen::~SplashScreen()
 {
-	//sf2d_free_texture(topScreen);
-	//sf2d_free_texture(botScreen);
-	////delete topScreen;
-	////delete botScreen;
+	NF_UnloadTiledBg("bottom_splash");
+	NF_UnloadTiledBg("top_splash");
+	NF_DeleteTiledBg(0, 3);
+	NF_DeleteTiledBg(1, 3);
+	NF_ResetTiledBgBuffers();
 }
 
 void SplashScreen::update(float deltaTime)
 {
-	//held = hidKeysHeld();
-
-	//if (held & KEY_A) {
-	//	stop = true;
-	//	changeState(new ClassicPong(manager));
-	//}
-	//if (!stop)
-	//{
-	//	sf2d_start_frame(GFX_TOP, GFX_LEFT);
-	//	sf2d_draw_texture(topScreen, 0, 0);
-	//	sf2d_end_frame();
-
-	//	sf2d_start_frame(GFX_TOP, GFX_RIGHT);
-	//	sf2d_draw_texture(topScreen, 0, 0);
-	//	sf2d_end_frame();
-
-	//	sf2d_start_frame(GFX_BOTTOM, GFX_LEFT);
-	//	sf2d_draw_texture(botScreen, 0, 0);
-	//	sf2d_end_frame();
-	//}
-
-
-	//sf2d_swapbuffers();
+	while (1)
+	{
+		if (KEY_START & keysCurrent()) {
+			changeState(new PongvsAI(manager));
+		}
+	}
 }
 
 

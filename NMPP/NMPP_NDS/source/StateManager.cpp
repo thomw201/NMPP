@@ -1,10 +1,9 @@
 #include "StateManager.h"
 #include "SplashScreen.h"
-#include "PongvsAI.h"
 
 StateManager::StateManager()
 {
-	currentState = new PongvsAI(*this);
+	currentState = new SplashScreen(*this);
 }
 
 StateManager::~StateManager()
