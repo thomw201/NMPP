@@ -1,22 +1,11 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 #include <time.h>
 #include <chrono>
-#include <math.h>
 #include <3ds.h>
 #include <sf2d.h>
 
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <netinet/in.h>
-#include <errno.h>
-#include <3ds/services/soc.h>
-#include <fcntl.h>
-#include <malloc.h>
-#include <string.h>
-#include <stdio.h>
-#include <string.h>
+
 
 #include "GameState.h"
 #include "SplashScreen.h"
@@ -58,6 +47,7 @@ int main()
 		if (held & KEY_START) {
 			break;
 		}
+
 		manager.update(frametimer());
 
 	}

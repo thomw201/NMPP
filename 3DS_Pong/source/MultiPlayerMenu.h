@@ -7,9 +7,12 @@
 #include "GameState.h"
 #include "ButtonManager.h"
 #include "Button.h"
-#include "MainMenu.h"
+#include "SplashScreen.h"
+
 
 //assets of the Main Menu
+
+
 #include "MainMenuAssets\JoinFriendButton.c"
 #include "MainMenuAssets\JoinFriendButtonSelected.c"
 #include "MainMenuAssets\HostGameButton.c"

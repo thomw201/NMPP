@@ -7,6 +7,11 @@ SplashScreen::SplashScreen(StateManager &manager) : GameState(manager)
 	srand(242435235);
 }
 
+SplashScreen::SplashScreen(StateManager & manager, bool test) : SplashScreen(manager)
+{
+	changeState(new MainMenu(manager));
+}
+
 SplashScreen::~SplashScreen()
 {
 	sf2d_free_texture(topScreen);

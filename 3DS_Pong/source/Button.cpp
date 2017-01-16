@@ -2,8 +2,8 @@
 
 Button::Button(int x, int y, const void * pixeldataNormal, const void * pixeldataSelected, int width, int height, std::function<void()> onAction) :	x(x), y(y), width(width), height(height), onAction(onAction)
 {
-	normalButton = sf2d_create_texture_mem_RGBA8(pixeldataNormal, width, height, TEXFMT_RGBA8, SF2D_PLACE_RAM);
-	selectedButton = sf2d_create_texture_mem_RGBA8(pixeldataSelected, width, height, TEXFMT_RGBA8, SF2D_PLACE_RAM);
+	normalButton = sf2d_create_texture_mem_RGBA8(pixeldataNormal, width, height, TEXFMT_RGBA8, SF2D_PLACE_VRAM);
+	selectedButton = sf2d_create_texture_mem_RGBA8(pixeldataSelected, width, height, TEXFMT_RGBA8, SF2D_PLACE_VRAM);
 }
 
 Button::~Button()

@@ -23,6 +23,7 @@ private:
 
 public:
 	SplashScreen(StateManager &manager);
+	SplashScreen(StateManager &manager, bool chainLoad);
 	~SplashScreen();
 	void update(float deltaTime) override;
 
