@@ -113,6 +113,8 @@ Ball::Ball() : GameObject()
 	ball.setCenter(centerPoint); //set Ball at given Point.
 	ball.setRadius(playingField.ballRadius); //set radius of sphere.
 	speed.set(playingField.ballSpeed, 0, 0); //set directions vector at X, Y. in this it it would be excatly pointing left!
+	score1 = 0;
+	score2 = 0;
 }
 
 
@@ -126,11 +128,11 @@ void Ball::Update(float deltaTime)
 	if (getX() < 0)
 	{
 		respawnBall();
-		score.player2Score++;
+		score2++;
 	}
 	else if (getX() > playingField.width) {
 		respawnBall();
-		score.player1Score++;
+		score1++;
 	}
 	if (getY() < 0 || getY() > playingField.height)
 	{
@@ -145,6 +147,16 @@ void Ball::Destroy()
 int Ball::getX(){return ball.mCenter.mData[0];}
 int Ball::getY() {return ball.mCenter.mData[1];}
 int Ball::getRadius(){return radius;}
+
+int Ball::getScore1()
+{
+	return score1;
+}
+
+int Ball::getScore2()
+{
+	return score2;
+}
 
 void Ball::reverseDirection(float anglePercentage)
 {   

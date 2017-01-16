@@ -97,6 +97,17 @@
     <ClCompile Include="source\MainMenuAssets\SinglePlayerButtonSelected.c" />
     <ClCompile Include="source\MainMenuAssets\SplashScreen.c" />
     <ClCompile Include="source\MultiPlayerMenu.cpp" />
+    <ClCompile Include="source\ScoreAssets\Eight.c" />
+    <ClCompile Include="source\ScoreAssets\Five.c" />
+    <ClCompile Include="source\ScoreAssets\Four.c" />
+    <ClCompile Include="source\ScoreAssets\Nine.c" />
+    <ClCompile Include="source\ScoreAssets\One.c" />
+    <ClCompile Include="source\ScoreAssets\Seven.c" />
+    <ClCompile Include="source\ScoreAssets\Six.c" />
+    <ClCompile Include="source\ScoreAssets\Three.c" />
+    <ClCompile Include="source\ScoreAssets\Two.c" />
+    <ClCompile Include="source\ScoreAssets\Zero.c" />
+    <ClCompile Include="source\ScoreManager.cpp" />
     <ClCompile Include="source\SplashScreen.cpp" />
     <ClCompile Include="source\StateManager.cpp" />
     <ClCompile Include="source\UdpSocket.cpp" />
@@ -113,6 +124,7 @@
     <ClInclude Include="source\GameState.h" />
     <ClInclude Include="source\MainMenu.h" />
     <ClInclude Include="source\MultiPlayerMenu.h" />
+    <ClInclude Include="source\ScoreManager.h" />
     <ClInclude Include="source\SplashScreen.h" />
     <ClInclude Include="source\StateManager.h" />
     <ClInclude Include="source\UdpSocket.h" />

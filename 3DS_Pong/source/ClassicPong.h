@@ -5,6 +5,7 @@
 #include "GameState.h"
 #include "GameController.h"
 #include "SplashScreen.h"
+#include "ScoreManager.h"
 
 
 /**
@@ -14,6 +15,7 @@ class ClassicPong : public GameState {
 private:
 
 	GameController game;
+	ScoreManager scoreManager;
 	touchPosition touch;
 	circlePosition circle;
 	u32 held;

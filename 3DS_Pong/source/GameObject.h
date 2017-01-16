@@ -16,11 +16,6 @@ static struct Field {
 	const int padY = 100;
 } playingField;
 
-static struct Score {
-	int player1Score = 0;
-	int player2Score = 0;
-} score;
-
 class GameObject {
 protected:
 	gmtl::Vec3f speed;
@@ -52,6 +47,7 @@ public:
 
 class Ball : public GameObject {	
 private:
+	int score1, score2;
 	float radius = 10;
 	gmtl::Spheref ball;
 	gmtl::Matrix44f ballTranslation;
@@ -62,6 +58,8 @@ public:
 	int getX();
 	int getY();
 	int getRadius();
+	int getScore1();
+	int getScore2();
 	void reverseDirection(float anglePercentage);
 	gmtl::Spheref getSphere();
 	void respawnBall();

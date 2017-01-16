@@ -29,4 +29,6 @@ public:
 	int getPad2Y();
 	int getPad2Width();
 	int getPad2Length();
+	int getScore1();
+	int getScore2();
 };

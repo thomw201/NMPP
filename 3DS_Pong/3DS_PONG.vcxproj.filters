@@ -16,6 +16,9 @@
     <Filter Include="Source Files\MainMenuAssets">
       <UniqueIdentifier>{61ac2abc-16a7-4b72-a0f6-588f8eceb667}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ScoreAssets">
+      <UniqueIdentifier>{529c70bd-f264-4872-b7b0-2d2abe05adfa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -93,6 +96,39 @@
     <ClCompile Include="source\MultiPlayerMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Eight.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Five.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Four.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Nine.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\One.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Seven.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Six.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Three.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Two.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Zero.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
@@ -129,6 +165,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="source\MultiPlayerMenu.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ScoreManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

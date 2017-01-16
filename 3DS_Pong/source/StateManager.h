@@ -20,5 +20,4 @@ public:
 	void update(float deltaTime);
 	void changeState(GameState *nextState);
 
-	
 };

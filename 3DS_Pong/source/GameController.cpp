@@ -23,6 +23,7 @@ GameController::GameController() {
 	ball = Ball();
 }
 
+
 /**
 * This function updates Pong game.
 * @param deltaTime the time is the time difference between each Update call.
@@ -110,6 +111,16 @@ int GameController::getPad2Width()
 int GameController::getPad2Length()
 {
 	return player2.getLength();
+}
+
+int GameController::getScore1()
+{
+	return ball.getScore1();
+}
+
+int GameController::getScore2()
+{
+	return ball.getScore2();
 }
 
 
