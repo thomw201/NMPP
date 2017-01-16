@@ -1,20 +1,38 @@
 #pragma once
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <netinet/in.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <malloc.h>
-#include <string.h>
+
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <malloc.h>
+
+#include <fcntl.h>
+
+#include <sys/types.h>
+
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+#include <3ds.h>
+
+
 
 
 class UdpSocket
 {
 private:
-	struct sockaddr_in serv_addr;
+
+	#define SOC_ALIGN       0x1000
+	#define SOC_BUFFERSIZE  0x100000
+	#define TM_OWN_PORT 13337
+
+	u32 *SOC_buffer = NULL;
+	u32 clientlen;
+
+	struct sockaddr_in client;
+	struct sockaddr_in server;
 	int udp_socket;
+	char send_data[1024];
 	char errbuf[1024];
 	char *ip;
 	const int port;
@@ -22,7 +40,6 @@ private:
 
 	void socketDisconnect();
 	void printerror(const char *func, int err);
-	//static int set_socket_nonblocking(int sock);
 	
 
 public:
