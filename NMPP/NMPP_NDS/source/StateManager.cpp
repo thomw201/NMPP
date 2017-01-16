@@ -1,6 +1,5 @@
 #include "StateManager.h"
 #include "SplashScreen.h"
-#include "PongvsAI.h"
 
 StateManager::StateManager()
 {

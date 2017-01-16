@@ -4,8 +4,6 @@
 #include "com.h"
 #include "paddle.h"
 #include "ball.h"
-#include <string.h>
-#include <nf_lib.h>
 #include <stdio.h>
 
 class Pong : public GameState
@@ -17,10 +15,10 @@ public:
 	// Inherited via GameState
 	virtual void update(float deltaTime) override;
 private:
-	// Inherited via GameState
-	virtual void changeState(GameState * nextState) override;
 	void initBackgrounds();
 protected:
+	// Inherited via GameState
+	virtual void changeState(GameState * nextState) override;
 	virtual void updateGame() = 0;
 	ponglogic::GameController controller;
 	com communication;

@@ -1,16 +1,14 @@
 #pragma once
 #include "GameState.h"
-#include "PongvsAI.h"
-#include "PongHost.h"
 #include "PongClient.h"
-#include "MPMenu.h"
+#include "PongHost.h"
+#include "MainMenu.h"
 
-class MainMenu : public GameState
+class MPMenu : public GameState
 {
 public:
-	MainMenu(StateManager &manager);
-	~MainMenu();
-private:
+	MPMenu(StateManager &manager);
+	~MPMenu();
 	// Inherited via GameState
 	virtual void changeState(GameState * nextState) override;
 	virtual void update(float deltaTime) override;

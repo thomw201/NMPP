@@ -57,6 +57,7 @@
     <ClCompile Include="source\GameObject.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\MainMenu.cpp" />
+    <ClCompile Include="source\MPMenu.cpp" />
     <ClCompile Include="source\nf_wifi.cpp" />
     <ClCompile Include="source\paddle.cpp" />
     <ClCompile Include="source\Pong.cpp" />
@@ -76,6 +77,7 @@
     <ClInclude Include="include\GameObject.h" />
     <ClInclude Include="include\GameState.h" />
     <ClInclude Include="include\MainMenu.h" />
+    <ClInclude Include="include\MPMenu.h" />
     <ClInclude Include="include\nf_wifi.h" />
     <ClInclude Include="include\paddle.h" />
     <ClInclude Include="include\Pong.h" />

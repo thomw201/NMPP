@@ -33,6 +33,7 @@ Pong::~Pong()
 	NF_UnloadTiledBg("BottomBG");
 	NF_UnloadTiledBg("TopBG");
 	NF_ResetTiledBgBuffers();
+	NF_ResetSpriteBuffers();
 }
 
 void Pong::changeState(GameState * nextState)
@@ -53,7 +54,7 @@ void Pong::update(float deltaTime)
 {
 	if (KEY_SELECT & keysCurrent())
 	{
-		//changestate
+		//changeState(new SplashScreen(manager));
 	}
 	updateGame(); //call the function containing the vs ai, vs host or vs client code
 	controller.Update(/*0.05f*/deltaTime); //update controller

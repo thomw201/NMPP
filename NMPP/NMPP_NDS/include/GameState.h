@@ -1,5 +1,6 @@
 #pragma once
 #include "StateManager.h"
+#include <nf_lib.h>
 
 class StateManager;
 

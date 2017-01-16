@@ -11,9 +11,9 @@ SplashScreen::SplashScreen(StateManager &manager) : GameState(manager)
 
 SplashScreen::~SplashScreen()
 {
-	NF_UnloadTiledBg("bottom_splash");
+	//NF_UnloadTiledBg("bottom_splash");
 	NF_UnloadTiledBg("top_splash");
-	NF_DeleteTiledBg(0, 3);
+	//NF_DeleteTiledBg(0, 3);
 	NF_DeleteTiledBg(1, 3);
 	NF_ResetTiledBgBuffers();
 	NF_ResetSpriteBuffers();
