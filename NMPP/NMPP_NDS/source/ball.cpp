@@ -11,7 +11,6 @@ ball::ball(int _id, int _screen, int _posX, int _posY)
 	posY = _posY;
 	width = 16; //ball size is 16x16 (lol)
 	height = 16;
-	create();
 }
 
 ball::ball()

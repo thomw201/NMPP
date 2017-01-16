@@ -10,9 +10,9 @@ Pong::Pong(StateManager & manager) : GameState(manager)
 	communication.isConnected = false;
 	//p1Paddle = paddle(0, 0, SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
 	//p2Paddle = paddle(1, 0, SCREEN_WIDTH - SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
-	p1Paddle.setID(0);
-	p2Paddle.setID(1);
-	bal.setID(2);
+	p1Paddle.setID(1);
+	p2Paddle.setID(2);
+	bal.setID(3);
 	//bal = ball(2, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2); //init ball in the center of the screen
 
 	p1Paddle.setSize(controller.getPad1Width(), controller.getPad1Length());

@@ -16,15 +16,13 @@ SplashScreen::~SplashScreen()
 	NF_DeleteTiledBg(0, 3);
 	NF_DeleteTiledBg(1, 3);
 	NF_ResetTiledBgBuffers();
+	NF_ResetSpriteBuffers();
 }
 
 void SplashScreen::update(float deltaTime)
 {
-	while (1)
-	{
-		if (KEY_START & keysCurrent()) {
-			changeState(new PongvsAI(manager));
-		}
+	if (KEY_A & keysCurrent() || KEY_START & keysCurrent() || KEY_TOUCH & keysCurrent()) {
+		changeState(new MainMenu(manager));
 	}
 }
 

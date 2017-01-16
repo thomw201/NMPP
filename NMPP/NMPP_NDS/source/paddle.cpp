@@ -10,7 +10,6 @@ paddle::paddle(int _id, int _screen, int _posX, int _posY)
 	posY = _posY;
 	width = 8; //default size of the paddle is 8x32
 	height = 32;
-	create();
 }
 
 paddle::paddle()

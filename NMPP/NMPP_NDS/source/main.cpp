@@ -79,10 +79,10 @@ int main(int argc, char **argv) {
 	//initBackgrounds(); //initialize top and bottom screen backgrounds
 
 	while (1) {
-		if (KEY_START & keysCurrent())
-		{
-			break;
-		}
+		//if (KEY_START & keysCurrent())
+		//{
+		//	break;
+		//}
 		manager.update(0.05f);
 	}
 

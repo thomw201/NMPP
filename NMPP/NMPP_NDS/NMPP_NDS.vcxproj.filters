@@ -51,6 +51,9 @@
     <ClCompile Include="source\PongClient.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="source\MainMenu.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\paddle.h">
@@ -90,6 +93,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\PongClient.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MainMenu.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
