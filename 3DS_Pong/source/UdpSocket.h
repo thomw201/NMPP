@@ -12,11 +12,12 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <string>
 
 #include <3ds.h>
 
 
-
+using namespace std;
 
 class UdpSocket
 {
@@ -29,25 +30,29 @@ private:
 	u32 *SOC_buffer = NULL;
 	u32 clientlen;
 
-	struct sockaddr_in client;
+	struct sockaddr_in client;//
 	struct sockaddr_in server;
 	int udp_socket;
 	char send_data[1024];
 	char errbuf[1024];
-	char *ip;
-	const int port;
 	
 
-	void socketDisconnect();
+	
 	void printerror(const char *func, int err);
 	
 
 public:
-	UdpSocket(char *ip, int port);
+	UdpSocket();
 	~UdpSocket();
 	int activateSocket();
-	int sendString(char *message);
-	int getMessage(char *message);
+	int sendString(string message);
+	int getMessage(string &message);
+	string getServerIp();
+	int getServerPort();
+	string getClientIp();
+	int getClientPort();
+	void socketDisconnect();
+
 	
 
 

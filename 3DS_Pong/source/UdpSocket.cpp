@@ -3,7 +3,7 @@
 
 
 
-UdpSocket::UdpSocket(char *ip, int port) : ip(ip), port(port)
+UdpSocket::UdpSocket() 
 {
 }
 
@@ -17,6 +17,8 @@ void UdpSocket::socketDisconnect() {
 	{
 		closesocket(udp_socket);
 		udp_socket = -1;
+		free(SOC_buffer);
+		SOC_buffer = NULL;
 	}
 }
 
@@ -33,6 +35,8 @@ int UdpSocket::activateSocket() {
 	SOC_buffer = (u32*) memalign(SOC_ALIGN, SOC_BUFFERSIZE);
 
 	if ((ret = socInit(SOC_buffer, SOC_BUFFERSIZE)) != 0) {
+		free(SOC_buffer);
+		SOC_buffer = NULL;
 		return ret;
 	}
 
@@ -55,27 +59,51 @@ int UdpSocket::activateSocket() {
 		return -1;
 	}
 
+	fcntl(udp_socket, F_SETFL, fcntl(udp_socket, F_GETFL, 0) | O_NONBLOCK);
+
+
 	return 0;
 }
 
-int UdpSocket::sendString(char *message) {
+int UdpSocket::sendString(string message) {
 	//send the message to server
-	if (sendto(udp_socket, message, strlen(message), 0, (struct sockaddr *)&server, sizeof(server)) != (int)strlen(message)) {
+	if (sendto(udp_socket, message.c_str(), strlen(message.c_str()), 0, (struct sockaddr *)&client, sizeof(client)) != (int)strlen(message.c_str())) {
 		return -1;
 	}
 	return 0;
 }
 
-int UdpSocket::getMessage(char *message) {
+int UdpSocket::getMessage(string &message) {
 	//Receive the datagram back from server
 	int addrLength(sizeof(client)), received(0);
-	char buffer[256] = { 0 };
-	if ((received = recvfrom(udp_socket, buffer, 256, 0, (sockaddr *)&client, (socklen_t*)&addrLength)) < 0) {
+	char buffer[1024] = { 0 };
+	if ((received = recvfrom(udp_socket, buffer, 1024, 0, (sockaddr *)&client, (socklen_t*)&addrLength)) < 0) {
 		return -1;
 	}
 	buffer[received] = '\0';
 	printf(buffer);
-	//std::cout << "Server (" << inet_ntoa(myaddr.sin_addr) << ") echoed: " << buffer << std::endl;
 	message = buffer;
 	return 0;
+}
+
+string UdpSocket::getServerIp()
+{
+	return inet_ntoa(server.sin_addr);
+}
+
+int UdpSocket::getServerPort()
+{
+	return ntohs(server.sin_port);
+}
+/**
+*
+*/
+string UdpSocket::getClientIp()
+{
+	return inet_ntoa(client.sin_addr);
+}
+
+int UdpSocket::getClientPort()
+{
+	return ntohs(client.sin_port);
 }
