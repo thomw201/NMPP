@@ -7,7 +7,7 @@ PongHost::PongHost(StateManager &manager) : Pong(manager)
 	controller.AIenabled = false;
 	if (!createServer()) //if creating server failed, return to main menu
 	{
-		//change state
+		changeState(new SplashScreen(manager));
 	}
 }
 
@@ -39,12 +39,14 @@ void PongHost::updateGame()
 	else
 		controller.movePaddle2(ponglogic::neutral);
 	communication.send(communication.createDataStr(controller.getBallX(), controller.getBallY(), controller.getPad1X() + (controller.getPad1Width() / 2), controller.getPad1Y() + (controller.getPad1Length() / 2), controller.getPad2X() + (controller.getPad2Width() / 2), controller.getPad2Y() + (controller.getPad2Length() / 2)));
+	bal.setPosition(controller.getBallX(), controller.getBallY());
+	p1Paddle.setPosition(controller.getPad1X() + (controller.getPad1Width() / 2), controller.getPad1Y() + (controller.getPad1Length() / 2));
+	p2Paddle.setPosition(controller.getPad2X() + (controller.getPad2Width() / 2), controller.getPad2Y() + (controller.getPad2Length() / 2)); //update game with local values as it's the host
 }
 
 //creates a server and waits for the client to connect
 bool PongHost::createServer()
 {
-	//NF_HideBg(1, 3);
 	consoleDemoInit();
 	command = "";
 	if (communication.createServer())

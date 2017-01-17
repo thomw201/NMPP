@@ -1,4 +1,5 @@
 #include "PongvsAI.h"
+#include "SplashScreen.h"
 
 PongvsAI::PongvsAI(StateManager &manager) : Pong(manager)
 {
@@ -19,10 +20,10 @@ void PongvsAI::updateGame()
 	else if (KEY_UP & keysCurrent()) {
 		controller.movePaddle1(ponglogic::up);
 	}
-	//else if (KEY_SELECT & keysDown())
-	//{
-	//	changeState(new PongvsAI(manager));
-	//}
+	else if (KEY_SELECT & keysDown())
+	{
+		changeState(new SplashScreen(manager));
+	}
 	else
 		controller.movePaddle1(ponglogic::neutral);
 

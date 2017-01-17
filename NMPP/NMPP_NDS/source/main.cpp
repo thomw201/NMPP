@@ -5,43 +5,24 @@
 #include <chrono>
 #include <string>
 #include "GameState.h"
+#include <time.h>
+
+//the speed of the timer when using ClockDivider_1024
+#define TIMER_SPEED (BUS_CLOCK/1024)
 
 
+typedef enum
+{
+	timerState_Stop,
+	timerState_Pause,
+	timerState_Running
+}TimerStates;
 
-//chrono::time_point<chrono::steady_clock> start;
-//enum screen { Topscreen, Bottomscreen };
-//
-//
-////float frametimer()
-////{
-////	std::chrono::duration<float, milli> time = (chrono::steady_clock::now() - start);
-////	start = chrono::steady_clock::now();
-////	return time.count() / 1000;
-////}
-//
-//void initBackgrounds() {
-//	// Initialize the Tiled Backgrounds System on the Top Screen
-//	NF_InitTiledBgBuffers();	// Initialize Background Buffers
-//	NF_InitTiledBgSys(Topscreen);
-//	NF_InitTiledBgSys(Bottomscreen);		// Initialize Top and Bottom Screen BgSystems
-//	
-//	NF_InitSpriteBuffers();		// Initialize Sprite Buffers
-//	NF_InitSpriteSys(Topscreen);
-//	NF_InitSpriteSys(Bottomscreen);		// Initialize Bottom Screen SpriteSystem
-//
-//	
-//	NF_LoadTiledBg("splashImg", "TopBG", 256, 256); // splash background
-//	NF_LoadTiledBg("fieldImg", "BottomBG", 256, 256);	//field background
-//
-//	NF_CreateTiledBg(Bottomscreen, 3, "TopBG");		// splash Background
-//	NF_CreateTiledBg(Topscreen, 3, "BottomBG");		// game Background
-//}
+
 
 void keyPressed(int c) {
 	if (c > 0) iprintf("%c", c);
 }
-
-
 
 /*
 -------------------------------------------------
@@ -60,12 +41,23 @@ int main(int argc, char **argv) {
 	kb->OnKeyPressed = keyPressed;
 	// Set the Root Folder
 	NF_SetRootFolder("NITROFS");
-	consoleDemoInit();
+
+	NF_Set2D(0, 5);				// set bitmap mode
+	NF_Set2D(1, 5);
+
+	//consoleDemoInit();
 	
-	// Initialize the Tiled Backgrounds System on the Top Screen
-	NF_InitTiledBgBuffers();	// Initialize Background Buffers
-	NF_InitTiledBgSys(0);
-	NF_InitTiledBgSys(1);		// Initialize Top and Bottom Screen BgSystems
+	NF_InitBitmapBgSys(0, 1);
+	NF_InitBitmapBgSys(1, 1);
+	NF_Init16bitsBgBuffers();
+	NF_Init16bitsBackBuffer(0);
+	NF_Init16bitsBackBuffer(1);
+	NF_Enable16bitsBackBuffer(0);
+	NF_Enable16bitsBackBuffer(1);
+	//// Initialize the Tiled Backgrounds System on the Top Screen
+	//NF_InitTiledBgBuffers();	// Initialize Background Buffers
+	//NF_InitTiledBgSys(0);
+	//NF_InitTiledBgSys(1);		// Initialize Top and Bottom Screen BgSystems
 
 	NF_InitSpriteBuffers();		// Initialize Sprite Buffers
 	NF_InitSpriteSys(0);
@@ -79,10 +71,6 @@ int main(int argc, char **argv) {
 	//initBackgrounds(); //initialize top and bottom screen backgrounds
 
 	while (1) {
-		//if (KEY_START & keysCurrent())
-		//{
-		//	break;
-		//}
 		manager.update(0.05f);
 	}
 

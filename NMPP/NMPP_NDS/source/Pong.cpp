@@ -10,9 +10,9 @@ Pong::Pong(StateManager & manager) : GameState(manager)
 	communication.isConnected = false;
 	//p1Paddle = paddle(0, 0, SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
 	//p2Paddle = paddle(1, 0, SCREEN_WIDTH - SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
-	p1Paddle.setID(1);
-	p2Paddle.setID(2);
-	bal.setID(3);
+	p1Paddle.setID(13);
+	p2Paddle.setID(14);
+	bal.setID(15);
 	//bal = ball(2, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2); //init ball in the center of the screen
 
 	p1Paddle.setSize(controller.getPad1Width(), controller.getPad1Length());
@@ -28,12 +28,8 @@ Pong::Pong(StateManager & manager) : GameState(manager)
 
 Pong::~Pong()
 {
-	NF_DeleteTiledBg(0, 3);
-	NF_DeleteTiledBg(1, 3);
-	NF_UnloadTiledBg("BottomBG");
-	NF_UnloadTiledBg("TopBG");
-	NF_ResetTiledBgBuffers();
-	NF_ResetSpriteBuffers();
+	NF_Unload16bitsBg(5);
+	NF_Disble16bitsBackBuffer(5);
 }
 
 void Pong::changeState(GameState * nextState)
@@ -43,11 +39,10 @@ void Pong::changeState(GameState * nextState)
 
 void Pong::initBackgrounds()
 {
-		NF_LoadTiledBg("game/bg/splashImg", "TopBG", 256, 256); // splash background
-		NF_LoadTiledBg("game/bg/fieldImg", "BottomBG", 256, 256);	//field background
+	NF_Unload16bitsBg(3);
+	NF_Load16bitsBg("bg/playingfield", 5);
+	NF_Copy16bitsBuffer(0, 5, 5);
 
-		NF_CreateTiledBg(1, 3, "TopBG");		// splash Background
-		NF_CreateTiledBg(0, 3, "BottomBG");		// game Background
 }
 
 void Pong::update(float deltaTime)
@@ -56,8 +51,10 @@ void Pong::update(float deltaTime)
 	{
 		//changeState(new SplashScreen(manager));
 	}
+	NF_Flip16bitsBackBuffer(0);
+	NF_Flip16bitsBackBuffer(1);
 	updateGame(); //call the function containing the vs ai, vs host or vs client code
-	controller.Update(/*0.05f*/deltaTime); //update controller
+	controller.Update(deltaTime); //update controller
 	NF_SpriteOamSet(0);
 	NF_SpriteOamSet(1);		// Update NFLib's Sprite OAM System
 	swiWaitForVBlank();		// Wait for the Vertical Blank

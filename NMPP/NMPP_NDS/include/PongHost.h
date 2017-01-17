@@ -1,5 +1,6 @@
 #pragma once
 #include "Pong.h"
+#include "SplashScreen.h"
 
 class PongHost : public Pong
 {

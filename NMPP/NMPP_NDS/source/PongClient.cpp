@@ -8,7 +8,7 @@ PongClient::PongClient(StateManager &manager) : Pong(manager)
 	controller.AIenabled = false;
 	if (!connect()) //if connecting, return to main menu
 	{
-		//change state
+		changeState(new SplashScreen(manager));
 	}
 }
 
@@ -36,6 +36,7 @@ void PongClient::updateGame()
 
 bool PongClient::connect()
 {
+	consoleDemoInit();
 	string command = ""; // buffer for commands from client
 	controller.AIenabled = false;
 	char const *IP = " ";
@@ -43,8 +44,11 @@ bool PongClient::connect()
 
 	consoleClear();
 	iprintf("\n\n\tEnter server IP:\n\n");
-	//while (IP == " ")
-	while (strcmp(" ", IP) != 0)
+	keyboardDemoInit();
+
+	keyboardShow();
+	while (IP == " ")
+	//while (strcmp(" ", IP) != 0)
 	{
 		scanf("%s", ipaddress);
 		IP = ipaddress;

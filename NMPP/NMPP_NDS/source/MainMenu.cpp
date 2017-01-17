@@ -5,8 +5,6 @@ MainMenu::MainMenu(StateManager & manager) : GameState(manager)
 {
 	NF_ResetSpriteBuffers();
 	create();
-	//NF_LoadTiledBg("splash/splashscreentop", "top_splash", 256, 256);	//field background
-	//NF_CreateTiledBg(0, 3, "top_splash");		// game Background
 }
 
 
@@ -14,11 +12,12 @@ MainMenu::~MainMenu()
 {
 	for (u8 i = 0; i < 12; i++)
 	{
-		//NF_UnloadSpriteGfx(i);
-		//NF_UnloadSpritePal(i);
-		//NF_FreeSpriteGfx(1, i);
+		NF_UnloadSpriteGfx(i);
+		NF_UnloadSpritePal(i);
+		NF_FreeSpriteGfx(1, i);
 		NF_DeleteSprite(1, i);
 	}
+	NF_ResetSpriteBuffers();
 }
 
 void MainMenu::changeState(GameState * nextState)
@@ -45,6 +44,17 @@ void MainMenu::update(float deltaTime)
 			break;
 		case 1:
 			changeState(new MPMenu(manager));
+			break;
+		case 2:
+			changeState(new PongClient(manager));
+			break;
+		}
+	}
+	else if (KEY_B & keysDown())
+	{
+		if (selected = 2)
+		{
+			changeState(new PongHost(manager));
 		}
 	}
 
