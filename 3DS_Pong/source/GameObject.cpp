@@ -90,13 +90,13 @@ int Pad::getLength()
 
 void Pad::setX(int x)
 {
-	paddle.mMax[0] = x + playingField.padHeight;
+	paddle.mMax[0] = x + playingField.padWidth;
 	paddle.mMin[0] = x;
 }
 
 void Pad::setY(int y)
 {
-	paddle.mMax[1] = y + playingField.padWidth;
+	paddle.mMax[1] = y + playingField.padHeight;
 	paddle.mMin[1] = y;
 }
 

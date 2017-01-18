@@ -105,3 +105,10 @@ int UdpSocket::getClientPort()
 {
 	return ntohs(client.sin_port);
 }
+
+void UdpSocket::setClientAdress(string ip, int port)
+{
+	client.sin_family = AF_INET;
+	client.sin_port = htons(port);
+	client.sin_addr.s_addr = inet_addr(ip.c_str());
+}

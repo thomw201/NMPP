@@ -52,7 +52,7 @@ void ClassicPong::update(float deltaTime)
 	sf2d_end_frame();
 
 	sf2d_start_frame(GFX_BOTTOM, GFX_LEFT);
-		scoreManager.drawScore(game.getScore1(), game.getScore2());
+		//scoreManager.drawScore(game.getScore1(), game.getScore2());
 	sf2d_end_frame();
 
 	sf2d_swapbuffers();

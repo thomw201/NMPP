@@ -15,7 +15,7 @@ class HostPong : public GameState {
 private:
 
 	GameController game;
-	ScoreManager scoreManager;
+	//ScoreManager scoreManager;
 	touchPosition touch;
 	circlePosition circle;
 	u32 held;

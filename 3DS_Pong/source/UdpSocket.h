@@ -51,6 +51,7 @@ public:
 	int getServerPort();
 	string getClientIp();
 	int getClientPort();
+	void setClientAdress(string ip, int port);
 	void socketDisconnect();
 
 	

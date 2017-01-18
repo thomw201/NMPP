@@ -26,7 +26,7 @@ void HostGame::update(float deltaTime)
 	{
 		socket.sendString("I received: " + message + " from you!");
 		if (message == "Start!") {
-			changeState(new ClassicPong(manager, socket));
+			changeState(new HostPong(manager, socket));
 		}
 	}
 	if (held & KEY_B)

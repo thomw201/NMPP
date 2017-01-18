@@ -8,6 +8,7 @@
 
 #include "GameState.h"
 #include "MultiPlayerMenu.h"
+#include "HostPong.h"
 #include "UdpSocket.h"
 #include "TextPrinter.h"
 
@@ -26,7 +27,6 @@ class HostGame : public GameState {
 private:
 	//std::vector<Button*> buttons;
 	//ButtonManager *buttonManager;
-	#define STACKSIZE (4 * 1024)
 	touchPosition touch;
 	u32 held, released, pressed;
 	string message;
@@ -35,8 +35,6 @@ private:
 	Thread receiveLoop;
 	UdpSocket &socket;
 	volatile bool received,running;
-	SwkbdState keyboardstate;
-	SwkbdButton button;
 	uiBitmapFont font;
 
 public:
