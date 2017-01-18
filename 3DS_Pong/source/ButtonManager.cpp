@@ -22,7 +22,7 @@ void ButtonManager::up()
 void ButtonManager::down()
 {
 	buttonPlace++;
-	if (buttonPlace >= buttons.size())
+	if (buttonPlace >= (int)buttons.size())
 		buttonPlace = 0;
 	unselectAl();
 	buttons.at(buttonPlace)->select();

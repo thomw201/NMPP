@@ -10,14 +10,15 @@
 #include "Button.h"
 #include "ClassicPong.h"
 #include "MultiPlayerMenu.h"
+#include "HostGame.h"
 
 //assets of the Main Menu
 #include "MainMenuAssets\SingleplayerButton.c"
 #include "MainMenuAssets\SingleplayerButtonSelected.c"
-#include "MainMenuAssets\MultiplayerButton.c"
-#include "MainMenuAssets\MultiplayerButtonSelected.c"
-#include "MainMenuAssets\OptionsButton.c"
-#include "MainMenuAssets\OptionsButtonSelected.c"
+#include "MainMenuAssets\JoinFriendButton.c"
+#include "MainMenuAssets\JoinFriendButtonSelected.c"
+#include "MainMenuAssets\HostGameButton.c"
+#include "MainMenuAssets\HostGameButtonSelected.c"
 
 
 /**
@@ -28,11 +29,14 @@ private:
 	sf2d_texture *topScreen;
 	std::vector<Button*> buttons;
 	ButtonManager *buttonManager;
+	UdpSocket &socket;
 	touchPosition touch;
 	u32 held, released, pressed;
 
+
 public:
-	MainMenu(StateManager &manager);
+	//MainMenu(StateManager &manager);
+	MainMenu(StateManager &manager,UdpSocket &socket);
 	~MainMenu();
 	void update(float deltaTime) override;
 

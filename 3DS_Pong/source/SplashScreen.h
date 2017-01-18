@@ -20,10 +20,11 @@ private:
 	sf2d_texture *topScreen;
 	sf2d_texture *botScreen;
 	u32 held;
+	UdpSocket &socket;
 
 public:
-	SplashScreen(StateManager &manager);
-	SplashScreen(StateManager &manager, bool chainLoad);
+	//SplashScreen(StateManager &manager);
+	SplashScreen(StateManager &manager, UdpSocket &socket);
 	~SplashScreen();
 	void update(float deltaTime) override;
 

@@ -75,18 +75,66 @@
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\citra_img.c" />
-    <ClCompile Include="source\dice_img.c" />
+    <ClCompile Include="source\Button.cpp" />
+    <ClCompile Include="source\ButtonManager.cpp" />
+    <ClCompile Include="source\ClassicPong.cpp" />
+    <ClCompile Include="source\Font.c" />
     <ClCompile Include="source\GameController.cpp" />
     <ClCompile Include="source\GameObject.cpp" />
+    <ClCompile Include="source\HostGame.cpp" />
+    <ClCompile Include="source\HostPong.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\MainMenu.cpp" />
+    <ClCompile Include="source\MainMenuAssets\BackButton.c" />
+    <ClCompile Include="source\MainMenuAssets\BackButtonSelected.c" />
+    <ClCompile Include="source\MainMenuAssets\HostGameButton.c" />
+    <ClCompile Include="source\MainMenuAssets\HostGameButtonSelected.c" />
+    <ClCompile Include="source\MainMenuAssets\JoinFriendButton.c" />
+    <ClCompile Include="source\MainMenuAssets\JoinFriendButtonSelected.c" />
+    <ClCompile Include="source\MainMenuAssets\MultiplayerButton.c" />
+    <ClCompile Include="source\MainMenuAssets\MultiplayerButtonSelected.c" />
+    <ClCompile Include="source\MainMenuAssets\OptionsButton.c" />
+    <ClCompile Include="source\MainMenuAssets\OptionsButtonSelected.c" />
+    <ClCompile Include="source\MainMenuAssets\PressStartScreen.c" />
+    <ClCompile Include="source\MainMenuAssets\SinglePlayerButton.c" />
+    <ClCompile Include="source\MainMenuAssets\SinglePlayerButtonSelected.c" />
+    <ClCompile Include="source\MainMenuAssets\SplashScreen.c" />
+    <ClCompile Include="source\MultiPlayerMenu.cpp" />
+    <ClCompile Include="source\ScoreAssets\Eight.c" />
+    <ClCompile Include="source\ScoreAssets\Five.c" />
+    <ClCompile Include="source\ScoreAssets\Four.c" />
+    <ClCompile Include="source\ScoreAssets\Nine.c" />
+    <ClCompile Include="source\ScoreAssets\One.c" />
+    <ClCompile Include="source\ScoreAssets\Seven.c" />
+    <ClCompile Include="source\ScoreAssets\Six.c" />
+    <ClCompile Include="source\ScoreAssets\Three.c" />
+    <ClCompile Include="source\ScoreAssets\Two.c" />
+    <ClCompile Include="source\ScoreAssets\Zero.c" />
+    <ClCompile Include="source\ScoreManager.cpp" />
+    <ClCompile Include="source\SplashScreen.cpp" />
+    <ClCompile Include="source\StateManager.cpp" />
+    <ClCompile Include="source\TextPrinter.cpp" />
+    <ClCompile Include="source\UdpSocket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Button.h" />
+    <ClInclude Include="source\ButtonManager.h" />
+    <ClInclude Include="source\ClassicPong.h" />
     <ClInclude Include="source\GameController.h" />
     <ClInclude Include="source\GameObject.h" />
+    <ClInclude Include="source\GameState.h" />
+    <ClInclude Include="source\HostGame.h" />
+    <ClInclude Include="source\HostPong.h" />
+    <ClInclude Include="source\MainMenu.h" />
+    <ClInclude Include="source\MultiPlayerMenu.h" />
+    <ClInclude Include="source\ScoreManager.h" />
+    <ClInclude Include="source\SplashScreen.h" />
+    <ClInclude Include="source\StateManager.h" />
+    <ClInclude Include="source\TextPrinter.h" />
+    <ClInclude Include="source\UdpSocket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

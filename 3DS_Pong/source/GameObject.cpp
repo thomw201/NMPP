@@ -88,6 +88,18 @@ int Pad::getLength()
 	return paddle.getMax().mData[1] - getY();
 }
 
+void Pad::setX(int x)
+{
+	paddle.mMax[0] = x + playingField.padHeight;
+	paddle.mMin[0] = x;
+}
+
+void Pad::setY(int y)
+{
+	paddle.mMax[1] = y + playingField.padWidth;
+	paddle.mMin[1] = y;
+}
+
 float Pad::getCenterY()
 {
 	return paddle.getMin()[1] + getLength()/2;
@@ -156,6 +168,16 @@ int Ball::getScore1()
 int Ball::getScore2()
 {
 	return score2;
+}
+
+void Ball::setX(int x)
+{
+	ball.mCenter[0] = x;
+}
+
+void Ball::setY(int y)
+{
+	ball.mCenter[1] = y;
 }
 
 void Ball::reverseDirection(float anglePercentage)

@@ -1,16 +1,17 @@
 #include "MainMenu.h"
 
-MainMenu::MainMenu(StateManager & manager) : GameState(manager)
+
+MainMenu::MainMenu(StateManager & manager, UdpSocket & socket) : GameState(manager), socket(socket)
 {
 	topScreen = sf2d_create_texture_mem_RGBA8(splashScreen_img.pixel_data, splashScreen_img.width, splashScreen_img.height, TEXFMT_RGBA8, SF2D_PLACE_RAM);
 
-	buttons.push_back(new Button(10, 10, singlePlayerButton_img.pixel_data, singlePlayerButtonSelected_img.pixel_data, singlePlayerButton_img.width, singlePlayerButton_img.height, 
-		[&manager]() { manager.changeState(new ClassicPong(manager)); }));
+	buttons.push_back(new Button(10, 10, singlePlayerButton_img.pixel_data, singlePlayerButtonSelected_img.pixel_data, singlePlayerButton_img.width, singlePlayerButton_img.height,
+		[&]() { manager.changeState(new ClassicPong(manager, socket)); }));
 
-	buttons.push_back(new Button(10, 90, multiplayerButton_img.pixel_data, multiplayerButtonSelected_img.pixel_data, singlePlayerButton_img.width, singlePlayerButton_img.height,
-		[&manager]() { manager.changeState(new MultiPlayerMenu(manager)); }));
-	buttons.push_back(new Button(10, 170, optionsButton_img.pixel_data, optionsButtonSelected_img.pixel_data, singlePlayerButton_img.width, singlePlayerButton_img.height,
-		[]() {} ));
+	buttons.push_back(new Button(10, 90, joinFriendButton_img.pixel_data, joinFriendButtonSelected_img.pixel_data, singlePlayerButton_img.width, singlePlayerButton_img.height,
+		[]() {}));
+	buttons.push_back(new Button(10, 170, hostButton_img.pixel_data, hostButtonSelected_img.pixel_data, singlePlayerButton_img.width, singlePlayerButton_img.height,
+		[&]() { manager.changeState(new HostGame(manager, socket)); }));
 
 	buttonManager = new ButtonManager(buttons);
 }
@@ -57,7 +58,7 @@ void MainMenu::update(float deltaTime)
 	}
 	if (pressed & KEY_B)
 	{
-		changeState(new SplashScreen(manager));
+		changeState(new SplashScreen(manager,socket));
 	}
 
 	sf2d_start_frame(GFX_TOP, GFX_LEFT);

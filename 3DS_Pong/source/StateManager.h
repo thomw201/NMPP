@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameState.h"
+#include "UdpSocket.h"
 
 
 
@@ -13,9 +14,10 @@ class GameState;
 class StateManager {
 private:
 	GameState *currentState;
+	UdpSocket &socket;
 
 public:
-	StateManager();
+	StateManager(UdpSocket &socket);
 	~StateManager();
 	void update(float deltaTime);
 	void changeState(GameState *nextState);

@@ -19,9 +19,11 @@ private:
 	touchPosition touch;
 	circlePosition circle;
 	u32 held;
+	UdpSocket &socket;
 
 public:
-	ClassicPong(StateManager &manager);
+	
+	ClassicPong(StateManager &manager, UdpSocket &socket);
 	~ClassicPong();
 	void update(float deltaTime) override;
 

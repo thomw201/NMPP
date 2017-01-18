@@ -26,18 +26,22 @@ float frametimer()
 
 #define CONFIG_3D_SLIDERSTATE (*(float *)0x1FF81080)
 
+
 int main()
 {
+	//start socket
+	UdpSocket socket = UdpSocket();
+	socket.activateSocket();
 	//Code for frameTimer
 	start = chrono::steady_clock::now();
 
 	//Code to Initiliaze 2d library
 	sf2d_init();
-	sf2d_set_clear_color(RGBA8(0x00, 0x00, 0x00, 0xFF));
+	//sf2d_set_clear_color(RGBA8(0x00, 0x00, 0x00, 0xFF));
 	sf2d_set_3D(1);
 
 	u32 held;
-	StateManager manager = StateManager();
+	StateManager manager = StateManager(socket);
 	
 	while (aptMainLoop()) {
 
@@ -52,6 +56,7 @@ int main()
 
 	}
 
+	socket.socketDisconnect();
 	sf2d_fini();
 
 	return 0;

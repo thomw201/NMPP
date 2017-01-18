@@ -1,9 +1,10 @@
 #include "StateManager.h"
 #include "SplashScreen.h"
 
-StateManager::StateManager()
+
+StateManager::StateManager(UdpSocket & socket) : socket(socket)
 {
-	currentState = new SplashScreen(*this);
+	currentState = new SplashScreen(*this,socket);
 }
 
 StateManager::~StateManager()

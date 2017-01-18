@@ -1,8 +1,10 @@
 #include "ClassicPong.h"
 
-ClassicPong::ClassicPong(StateManager &manager) : GameState(manager)
+
+ClassicPong::ClassicPong(StateManager & manager, UdpSocket & socket) : GameState(manager), socket(socket)
 {
 	game = GameController();
+	game.setMode(solo);
 }
 
 ClassicPong::~ClassicPong()
@@ -34,7 +36,7 @@ void ClassicPong::update(float deltaTime)
 	}
 	if (held & KEY_SELECT)
 	{
-		changeState(new SplashScreen(manager));
+		changeState(new SplashScreen(manager,socket));
 	}
 
 	sf2d_start_frame(GFX_TOP, GFX_LEFT);

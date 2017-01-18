@@ -95,9 +95,7 @@ int UdpSocket::getServerPort()
 {
 	return ntohs(server.sin_port);
 }
-/**
-*
-*/
+
 string UdpSocket::getClientIp()
 {
 	return inet_ntoa(client.sin_addr);

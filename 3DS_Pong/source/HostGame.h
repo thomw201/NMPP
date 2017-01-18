@@ -4,14 +4,16 @@
 #include <stdlib.h>  
 
 #include <string>
-#include <functional>
+#include <sstream>
 
 #include "GameState.h"
 #include "MultiPlayerMenu.h"
 #include "UdpSocket.h"
+#include "TextPrinter.h"
 
 
-//assets of the Main Menu
+//assets of the hostGame
+#include "Font.c"
 
 
 
@@ -28,12 +30,17 @@ private:
 	touchPosition touch;
 	u32 held, released, pressed;
 	string message;
+	string ip;
+	string port;
 	Thread receiveLoop;
-	UdpSocket *socket;
+	UdpSocket &socket;
 	volatile bool received,running;
+	SwkbdState keyboardstate;
+	SwkbdButton button;
+	uiBitmapFont font;
 
 public:
-	HostGame(StateManager &manager);
+	HostGame(StateManager &manager, UdpSocket &socket);
 	~HostGame();
 	void update(float deltaTime) override;
 	void getMessageLoop();

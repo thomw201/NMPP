@@ -1,6 +1,7 @@
 #pragma once
 #include <gmtl/gmtl.h>
 enum Direction {neutral, up, down};
+enum Mode {solo, host, client};
 
 static struct Field {
 	const int width = 400;
@@ -39,6 +40,8 @@ public:
 	 int getY();
 	 int getWidth();
 	 int getLength();
+	 void setX(int x);
+	 void setY(int y);
 	 float getCenterY();
 	 void setDirection(Direction dr);
 	 gmtl::AABoxf getBox();
@@ -60,6 +63,8 @@ public:
 	int getRadius();
 	int getScore1();
 	int getScore2();
+	void setX(int x);
+	void setY(int y);
 	void reverseDirection(float anglePercentage);
 	gmtl::Spheref getSphere();
 	void respawnBall();

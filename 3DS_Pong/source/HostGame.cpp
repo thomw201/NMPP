@@ -1,17 +1,18 @@
 #include "HostGame.h"
 
-HostGame::HostGame(StateManager & manager) : GameState(manager)
+HostGame::HostGame(StateManager & manager, UdpSocket & socket) : GameState(manager), socket(socket)
 {
-	socket = new UdpSocket();
-	socket->activateSocket();
+	font = readBitmapFont((u8*)font_img.pixel_data, 32, 7, 16, 512);
 	received = false;
 	running = true;
+	message = "No Message";
+	ip = socket.getServerIp() + ":";
+	port = "13337";
 }
 
 HostGame::~HostGame()
 {
-	socket->socketDisconnect();
-	delete socket;	
+	sf2d_free_texture(font.bitmap);
 }
 
 void HostGame::update(float deltaTime)
@@ -20,18 +21,39 @@ void HostGame::update(float deltaTime)
 	held = hidKeysHeld();
 	pressed = hidKeysDown();
 	released = hidKeysUp();
-	gspWaitForVBlank();
-	if (received)
+	//gspWaitForVBlank();
+	if (socket.getMessage(message) == 0)
 	{
-		printf("Received message from ip: %s:%d\n", socket->getClientIp().c_str(),socket->getClientPort());
-		printf("message reads: %s\n", message.c_str());
-		received = false;
-		socket->sendString("Thank you for your message, from: " + socket->getServerIp() + " ");
+		socket.sendString("I received: " + message + " from you!");
+		if (message == "Start!") {
+			changeState(new ClassicPong(manager, socket));
+		}
 	}
 	if (held & KEY_B)
 	{
-		changeState(new MultiPlayerMenu(manager));
+		changeState(new MainMenu(manager,socket));
 	}
+
+
+
+	sf2d_start_frame(GFX_TOP, GFX_LEFT);
+		renderBitmapText(ip, 0,0, font);
+		renderBitmapText(port, 0, 40, font);
+		renderBitmapText(message, 0, 80, font);
+	sf2d_end_frame();
+
+	sf2d_start_frame(GFX_TOP, GFX_RIGHT);
+		renderBitmapText(ip, 0, 0, font);
+		renderBitmapText(port, 0, 40, font);
+		renderBitmapText(message, 0, 80, font);
+	sf2d_end_frame();
+
+	sf2d_start_frame(GFX_BOTTOM, GFX_LEFT);
+		
+	sf2d_end_frame();
+
+	sf2d_swapbuffers();
+
 }
 
 void HostGame::changeState(GameState * nextState)
@@ -41,11 +63,5 @@ void HostGame::changeState(GameState * nextState)
 
 void HostGame::getMessageLoop()
 {
-	while (running) {
-		if (socket->getMessage(message) > -1)
-		{
-			received = true;
-		}
-	}
 
 }

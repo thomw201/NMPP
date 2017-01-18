@@ -13,15 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
+    <Filter Include="Source Files\MainMenuAssets">
+      <UniqueIdentifier>{0ecfa708-d0a1-4662-9d91-18995e167f47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ScoreAssets">
+      <UniqueIdentifier>{80b5ef1e-62e0-4c2f-b3d2-cba0905d4d92}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\citra_img.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\dice_img.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ButtonManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ClassicPong.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\GameController.cpp">
@@ -30,15 +39,156 @@
     <ClCompile Include="source\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\HostGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MultiPlayerMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SplashScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\StateManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\UdpSocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenuAssets\BackButton.c">
+      <Filter>Source Files\MainMenuAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenuAssets\BackButtonSelected.c">
+      <Filter>Source Files\MainMenuAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenuAssets\HostGameButton.c">
+      <Filter>Source Files\MainMenuAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenuAssets\HostGameButtonSelected.c">
+      <Filter>Source Files\MainMenuAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenuAssets\JoinFriendButton.c">
+      <Filter>Source Files\MainMenuAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenuAssets\JoinFriendButtonSelected.c">
+      <Filter>Source Files\MainMenuAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenuAssets\MultiplayerButton.c">
+      <Filter>Source Files\MainMenuAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenuAssets\MultiplayerButtonSelected.c">
+      <Filter>Source Files\MainMenuAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenuAssets\OptionsButton.c">
+      <Filter>Source Files\MainMenuAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenuAssets\OptionsButtonSelected.c">
+      <Filter>Source Files\MainMenuAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenuAssets\PressStartScreen.c">
+      <Filter>Source Files\MainMenuAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenuAssets\SinglePlayerButton.c">
+      <Filter>Source Files\MainMenuAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenuAssets\SinglePlayerButtonSelected.c">
+      <Filter>Source Files\MainMenuAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenuAssets\SplashScreen.c">
+      <Filter>Source Files\MainMenuAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Eight.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Five.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Four.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Nine.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\One.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Seven.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Six.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Three.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Two.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ScoreAssets\Zero.c">
+      <Filter>Source Files\ScoreAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Font.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TextPrinter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\HostPong.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Button.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ButtonManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ClassicPong.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
     <ClInclude Include="source\GameController.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="source\GameObject.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameState.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\HostGame.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MainMenu.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MultiPlayerMenu.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ScoreManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SplashScreen.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\StateManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\UdpSocket.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TextPrinter.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\HostPong.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

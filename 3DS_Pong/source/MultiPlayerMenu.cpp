@@ -2,19 +2,18 @@
 
 MultiPlayerMenu::MultiPlayerMenu(StateManager & manager) : GameState(manager)
 {
-	topScreen = sf2d_create_texture_mem_RGBA8(splashScreen_img.pixel_data, splashScreen_img.width, splashScreen_img.height, TEXFMT_RGBA8, SF2D_PLACE_RAM);
+	//topScreen = sf2d_create_texture_mem_RGBA8(splashScreen_img.pixel_data, splashScreen_img.width, splashScreen_img.height, TEXFMT_RGBA8, SF2D_PLACE_RAM);
 
-	buttons.push_back(new Button(10, 10, joinFriendButton_img.pixel_data, joinFriendButtonSelected_img.pixel_data, joinFriendButton_img.width, joinFriendButton_img.height, 
-		[]() {}));
+	//buttons.push_back(new Button(10, 10, joinFriendButton_img.pixel_data, joinFriendButtonSelected_img.pixel_data, joinFriendButton_img.width, joinFriendButton_img.height, 
+	//	[]() {}));
 
-	buttons.push_back(new Button(10, 90, hostButton_img.pixel_data, hostButtonSelected_img.pixel_data, hostButton_img.width, hostButton_img.height,
-		[]() {}));
-	buttons.push_back(new Button(10, 170, backButton_img.pixel_data, backButtonSelected_img.pixel_data, backButton_img.width, backButton_img.height,
-		[&manager]() { manager.changeState(new SplashScreen(manager)); }));
+	//buttons.push_back(new Button(10, 90, hostButton_img.pixel_data, hostButtonSelected_img.pixel_data, hostButton_img.width, hostButton_img.height,
+	//	[&manager]() {manager.changeState(new HostGame(manager)); }));
+	//buttons.push_back(new Button(10, 170, backButton_img.pixel_data, backButtonSelected_img.pixel_data, backButton_img.width, backButton_img.height,
+	//	[&manager]() { manager.changeState(new SplashScreen(manager)); }));
 
-	buttonManager = new ButtonManager(buttons);
+	//buttonManager = new ButtonManager(buttons);
 	
-	touchHold = false;
 }
 
 MultiPlayerMenu::~MultiPlayerMenu()
@@ -59,7 +58,7 @@ void MultiPlayerMenu::update(float deltaTime)
 	}
 	if (pressed & KEY_B)
 	{
-		changeState(new SplashScreen(manager));
+		//changeState(new SplashScreen(manager));
 	}
 
 	sf2d_start_frame(GFX_TOP, GFX_LEFT);
