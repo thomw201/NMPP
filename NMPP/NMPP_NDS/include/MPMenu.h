@@ -3,6 +3,7 @@
 #include "PongClient.h"
 #include "PongHost.h"
 #include "MainMenu.h"
+#include "sprites.h"
 
 class MPMenu : public GameState
 {

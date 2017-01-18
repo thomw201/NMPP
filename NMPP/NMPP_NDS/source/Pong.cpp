@@ -8,13 +8,11 @@ Pong::Pong(StateManager & manager) : GameState(manager)
 	initBackgrounds();
 	controller = ponglogic::GameController();
 	communication.isConnected = false;
-	//p1Paddle = paddle(0, 0, SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
-	//p2Paddle = paddle(1, 0, SCREEN_WIDTH - SCREEN_WIDTH*0.05, SCREEN_HEIGHT / 2);
-	p1Paddle.setID(13);
-	p2Paddle.setID(14);
-	bal.setID(15);
-	//bal = ball(2, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2); //init ball in the center of the screen
-
+	bal.setID(0); //set unique ids for each object so they take their own spot in ram
+	p1Paddle.setID(paddleSpriteID);
+	p2Paddle.setID(paddleSpriteID2);
+	p1Paddle.setSlot(1);
+	p2Paddle.setSlot(2); //both paddles need to be different objects
 	p1Paddle.setSize(controller.getPad1Width(), controller.getPad1Length());
 	p2Paddle.setSize(controller.getPad2Width(), controller.getPad2Length());
 	//bal.setSize(16, 16);

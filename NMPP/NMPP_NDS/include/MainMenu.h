@@ -1,5 +1,6 @@
 #pragma once
 #include "GameState.h"
+#include "sprites.h"
 #include "PongvsAI.h"
 #include "PongHost.h"
 #include "PongClient.h"

@@ -5,6 +5,7 @@
 #include <chrono>
 #include <string>
 #include "GameState.h"
+#include "sprites.h"
 #include <time.h>
 
 //the speed of the timer when using ClockDivider_1024
@@ -63,12 +64,14 @@ int main(int argc, char **argv) {
 	NF_InitSpriteSys(0);
 	NF_InitSpriteSys(1);		// Initialize Bottom Screen SpriteSystem
 
+
+
 	StateManager manager = StateManager();
 	
 
 	touchPosition Stylus;		// Prepare a variable for Stylus data
 
-	//initBackgrounds(); //initialize top and bottom screen backgrounds
+	loadSprites();
 
 	while (1) {
 		manager.update(0.05f);
