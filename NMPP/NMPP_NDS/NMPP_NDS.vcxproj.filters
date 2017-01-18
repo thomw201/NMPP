@@ -33,6 +33,30 @@
     <ClCompile Include="source\nf_wifi.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="source\StateManager.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SplashScreen.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\PongvsAI.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Pong.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\PongHost.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\PongClient.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MainMenu.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MPMenu.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\paddle.h">
@@ -51,6 +75,33 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\nf_wifi.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\StateManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameState.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SplashScreen.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PongvsAI.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Pong.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PongHost.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PongClient.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MainMenu.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MPMenu.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

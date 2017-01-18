@@ -1,4 +1,3 @@
-// Includes propietarios NDS
 #include <nds.h>
 #include "nf_wifi.h"
 #include <string>

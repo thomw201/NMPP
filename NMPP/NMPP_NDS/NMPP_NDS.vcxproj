@@ -56,8 +56,16 @@
     <ClCompile Include="source\GameController.cpp" />
     <ClCompile Include="source\GameObject.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\MainMenu.cpp" />
+    <ClCompile Include="source\MPMenu.cpp" />
     <ClCompile Include="source\nf_wifi.cpp" />
     <ClCompile Include="source\paddle.cpp" />
+    <ClCompile Include="source\Pong.cpp" />
+    <ClCompile Include="source\PongClient.cpp" />
+    <ClCompile Include="source\PongHost.cpp" />
+    <ClCompile Include="source\PongvsAI.cpp" />
+    <ClCompile Include="source\SplashScreen.cpp" />
+    <ClCompile Include="source\StateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
@@ -67,8 +75,17 @@
     <ClInclude Include="include\com.h" />
     <ClInclude Include="include\GameController.h" />
     <ClInclude Include="include\GameObject.h" />
+    <ClInclude Include="include\GameState.h" />
+    <ClInclude Include="include\MainMenu.h" />
+    <ClInclude Include="include\MPMenu.h" />
     <ClInclude Include="include\nf_wifi.h" />
     <ClInclude Include="include\paddle.h" />
+    <ClInclude Include="include\Pong.h" />
+    <ClInclude Include="include\PongClient.h" />
+    <ClInclude Include="include\PongHost.h" />
+    <ClInclude Include="include\PongvsAI.h" />
+    <ClInclude Include="include\SplashScreen.h" />
+    <ClInclude Include="include\StateManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
