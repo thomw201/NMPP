@@ -10,7 +10,7 @@
 
 //the speed of the timer when using ClockDivider_1024
 #define TIMER_SPEED (BUS_CLOCK/1024)
-
+unsigned int ticks = 0;
 
 typedef enum
 {
@@ -19,7 +19,13 @@ typedef enum
 	timerState_Running
 }TimerStates;
 
-
+float timer() {
+	timerStop(0);
+	float t = (float)ticks / TIMER_SPEED;
+	ticks = 0;
+	timerStart(0, ClockDivider_1024, 0, NULL);
+	return t;
+}
 
 void keyPressed(int c) {
 	if (c > 0) iprintf("%c", c);
@@ -69,12 +75,13 @@ int main(int argc, char **argv) {
 	StateManager manager = StateManager();
 	
 
-	touchPosition Stylus;		// Prepare a variable for Stylus data
+
 
 	loadSprites();
 
 	while (1) {
-		manager.update(0.05f);
+		ticks += timerElapsed(0);
+		manager.update(timer());
 	}
 
 	return 0;

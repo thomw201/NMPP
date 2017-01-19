@@ -1,5 +1,6 @@
 #include "MPMenu.h"
 
+touchPosition t;
 
 MPMenu::MPMenu(StateManager & manager) : GameState(manager)
 {
@@ -25,6 +26,8 @@ void MPMenu::changeState(GameState * nextState)
 
 void MPMenu::update(float deltaTime)
 {
+	// read the touchscreen coordinates
+	touchRead(&t);
 	if (KEY_UP & keysDown())
 	{
 		navigate(-1);
@@ -48,6 +51,24 @@ void MPMenu::update(float deltaTime)
 			break;
 		}
 	}
+	//else if (KEY_TOUCH & keysDown())
+	//{
+	//	if ((t.px > 30) & (t.px < 156))
+	//	{
+	//		if ((t.py > 30) & (t.py < 62))
+	//		{
+	//				changeState(new PongvsAI(manager));
+	//		}
+	//		else if (t.py > 62 & t.py < 94)
+	//		{
+	//				changeState(new MPMenu(manager));
+	//		}
+	//		else if (t.py > 94 & t.py < 126)
+	//		{
+	//			changeState(new MainMenu(manager));
+	//		}
+	//	}
+	//}
 	NF_SpriteOamSet(0);
 	NF_SpriteOamSet(1);		// Update NFLib's Sprite OAM System
 	swiWaitForVBlank();		// Wait for the Vertical Blank

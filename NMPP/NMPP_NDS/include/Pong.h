@@ -20,11 +20,12 @@ protected:
 	// Inherited via GameState
 	virtual void changeState(GameState * nextState) override;
 	virtual void updateGame() = 0;
-	ponglogic::GameController controller;
+	GameController controller;
 	com communication;
 	paddle p1Paddle;
 	paddle p2Paddle;
 	ball bal;
 	touchPosition Stylus;
+	bool isP1;
 };
 

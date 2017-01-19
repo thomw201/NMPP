@@ -25,7 +25,7 @@ extern void loadSprites()
 	NF_VramSpriteGfx(0, spritecount, spritecount, true);	// Load the Gfx into VRAM - transfer all Sprites
 	spritecount++;
 	//load ball sprite
-	NF_LoadSpriteGfx(ballSprite, ballSpriteID, 16, 16);	// load left side of the button sprites
+	NF_LoadSpriteGfx(ballSprite, ballSpriteID, 8, 8);	// load left side of the button sprites
 	NF_LoadSpritePal(ballSprite, spritecount);
 	NF_VramSpriteGfx(0, spritecount, spritecount, true);	// Load the Gfx into VRAM - transfer all Sprites
 	spritecount++;
@@ -54,7 +54,8 @@ extern void createMenuButton(int position, int leftspriteID) {
 }
 
 extern void createBall(int slot, int x, int y) {
-
+	NF_VramSpritePal(0, ballSpriteID, slot);		// Load the Palette into VRAM 
+	NF_CreateSprite(0, ballSpriteID, ballSpriteID, slot, x, y);
 }
 
 extern void createPaddle(int slot, int x, int y) {

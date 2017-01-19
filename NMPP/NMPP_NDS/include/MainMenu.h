@@ -18,5 +18,6 @@ private:
 	void create();
 	signed int selected;
 	void navigate(signed int direction);
+	touchPosition touch;
 };
 

@@ -25,6 +25,8 @@ void MainMenu::changeState(GameState * nextState)
 
 void MainMenu::update(float deltaTime)
 {
+	// read the touchscreen coordinates
+	touchRead(&touch);
 	if (KEY_UP & keysDown())
 	{
 		navigate(-1);
@@ -44,15 +46,21 @@ void MainMenu::update(float deltaTime)
 			changeState(new MPMenu(manager));
 			break;
 		case 2:
-			changeState(new PongClient(manager));
 			break;
 		}
 	}
-	else if (KEY_B & keysDown())
+	else if (KEY_TOUCH & keysDown())
 	{
-		if (selected = 2)
+		if ((touch.px > 30) & (touch.px < 156))
 		{
-			changeState(new PongHost(manager));
+			if ((touch.py > 30) & (touch.py < 62))
+			{
+				changeState(new PongvsAI(manager));
+			}
+			else if (touch.py > 62 & touch.py < 94)
+			{
+				changeState(new MPMenu(manager));
+			}
 		}
 	}
 

@@ -47,7 +47,7 @@ void paddle::setPosition(int _posX, int _posY) {
 	_posY = _posY - (getHeight() / 2);
 	posX = _posX;
 	posY = _posY;
-	NF_MoveSprite(screen, id, posX, posY);
+	NF_MoveSprite(0, id, posX, posY);
 }
 
 /* change the size of the sprite */
