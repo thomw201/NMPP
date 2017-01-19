@@ -41,7 +41,6 @@ public:
 	HostGame(StateManager &manager, UdpSocket &socket);
 	~HostGame();
 	void update(float deltaTime) override;
-	void getMessageLoop();
 
 private:
 	void changeState(GameState *nextState) override;

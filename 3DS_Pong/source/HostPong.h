@@ -29,4 +29,6 @@ public:
 
 private:
 	void changeState(GameState *nextState) override;
+	int translateCoordX(int coord);
+	int translateCoord(int coord);
 };

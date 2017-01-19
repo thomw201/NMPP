@@ -20,6 +20,7 @@ private:
 	circlePosition circle;
 	u32 held;
 	UdpSocket &socket;
+	uiBitmapFont font;
 
 public:
 	
@@ -29,4 +30,6 @@ public:
 
 private:
 	void changeState(GameState *nextState) override;
+	int translateCoordX(int coord);
+	int translateCoord(int coord);
 };

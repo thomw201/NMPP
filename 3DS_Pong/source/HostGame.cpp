@@ -62,8 +62,3 @@ void HostGame::changeState(GameState * nextState)
 {
 	manager.changeState(nextState);
 }
-
-void HostGame::getMessageLoop()
-{
-
-}
