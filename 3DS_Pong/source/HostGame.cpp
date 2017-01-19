@@ -5,9 +5,10 @@ HostGame::HostGame(StateManager & manager, UdpSocket & socket) : GameState(manag
 	font = readBitmapFont((u8*)font_img.pixel_data, 32, 7, 16, 512);
 	received = false;
 	running = true;
-	message = "No Message";
 	ip = socket.getServerIp() + ":";
 	port = "13337";
+	while (socket.getMessage(message) == 0) {}
+	message = "No Message";
 }
 
 HostGame::~HostGame()

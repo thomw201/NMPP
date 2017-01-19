@@ -4,13 +4,13 @@ JoinGame::JoinGame(StateManager & manager, UdpSocket & socket) : GameState(manag
 {
 	font = readBitmapFont((u8*)font_img.pixel_data, 32, 7, 16, 512);
 	ipset = false;
-	portset = false;
-	message = "No Message";
+	portset = false;	
 	ip = "";
 	port = "";
 	numbers = "0123456789.";
 	count = 0;
-
+	while (socket.getMessage(message) == 0) {}
+	message = "No Message";
 }
 
 JoinGame::~JoinGame()
@@ -20,7 +20,6 @@ JoinGame::~JoinGame()
 
 void JoinGame::update(float deltaTime)
 {
-
 	held = hidKeysHeld();
 	pressed = hidKeysDown();
 	released = hidKeysUp();
@@ -33,7 +32,7 @@ void JoinGame::update(float deltaTime)
 	{
 		socket.sendString("I received: " + message + " from you!");
 		if (message == "Go!") {
-			changeState(new ClassicPong(manager, socket));
+			changeState(new ClientPong(manager, socket));
 		}
 	}
 	if (pressed & KEY_LEFT)
@@ -55,6 +54,8 @@ void JoinGame::update(float deltaTime)
 	if (pressed & KEY_X)
 	{
 		socket.setClientAdress(ip, atoi(port.c_str()));
+		socket.sendString("Start!");
+		message = "waiting";
 	}
 	if (pressed & KEY_R)
 	{
@@ -73,10 +74,20 @@ void JoinGame::update(float deltaTime)
 	}
 	if (pressed & KEY_B)
 	{
-		if (ip.size() > 0)
+		if (!ipset)
 		{
-			ip = ip.substr(0, ip.size() - 1);
-		}	
+			if (ip.size() > 0)
+			{
+				ip = ip.substr(0, ip.size() - 1);
+			}
+		}
+		else
+		{
+			if (port.size() > 0)
+			{
+				port = port.substr(0, port.size() - 1);
+			}
+		}
 	}
 
 	sf2d_start_frame(GFX_TOP, GFX_LEFT);
@@ -110,7 +121,3 @@ void JoinGame::changeState(GameState * nextState)
 	manager.changeState(nextState);
 }
 
-void JoinGame::getMessageLoop()
-{
-
-}

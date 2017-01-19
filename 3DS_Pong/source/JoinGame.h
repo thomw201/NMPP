@@ -8,7 +8,7 @@
 
 #include "GameState.h"
 #include "MultiPlayerMenu.h"
-#include "HostPong.h"
+#include "ClientPong.h"
 #include "UdpSocket.h"
 #include "TextPrinter.h"
 
@@ -19,8 +19,6 @@
 */
 class JoinGame : public GameState {
 private:
-	//std::vector<Button*> buttons;
-	//ButtonManager *buttonManager;
 	touchPosition touch;
 	u32 held, released, pressed;
 	string message;
@@ -36,7 +34,6 @@ public:
 	JoinGame(StateManager &manager, UdpSocket &socket);
 	~JoinGame();
 	void update(float deltaTime) override;
-	void getMessageLoop();
 
 private:
 	void changeState(GameState *nextState) override;

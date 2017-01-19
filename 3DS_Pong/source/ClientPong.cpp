@@ -17,12 +17,12 @@ void ClientPong::update(float deltaTime)
 	game.Update(deltaTime);
 	hidCircleRead(&circle);
 	held = hidKeysHeld();
-	socket.sendString(game.getGameState());
+	socket.sendString(game.getp2State());
 	
 	string message;
 	if (socket.getMessage(message) == 0)
 	{
-		game.syncPaddleState(message);
+		game.syncGameState(message);
 	}
 
 	if (held & KEY_TOUCH) {
@@ -31,15 +31,15 @@ void ClientPong::update(float deltaTime)
 
 	if (held & KEY_UP)
 	{
-		game.movePaddle1(up);
+		game.movePaddle2(up);
 	}
 	else if (held & KEY_DOWN)
 	{
-		game.movePaddle1(down);
+		game.movePaddle2(down);
 	}
 	else
 	{
-		game.movePaddle1(neutral);
+		game.movePaddle2(neutral);
 	}
 	if (held & KEY_SELECT)
 	{
