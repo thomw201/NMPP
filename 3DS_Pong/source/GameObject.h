@@ -1,25 +1,35 @@
 #pragma once
 #include <gmtl/gmtl.h>
 enum Direction {neutral, up, down};
+enum Mode {solo, host, client};
+
+//static struct Field {
+//	const int width = 400;
+//	const int height = 240;
+//	const int ballRadius = 5;
+//	const int ballSpeed = 90;
+//	const float maxBallAngle = 50;
+//	const int padSpeed = 120;
+//	const int padHeight = 40;
+//	const int padWidth = 10;
+//	const int pad1X = 5;
+//	const int pad2X = 385;
+//	const int padY = 100;
+//} playingField;
 
 static struct Field {
-	const int width = 400;
-	const int height = 240;
-	const int ballRadius = 5;
-	const int ballSpeed = 90;
+	const int width = 256;
+	const int height = 192;
+	const int ballRadius = 4;
+	const int ballSpeed = 150;
 	const float maxBallAngle = 50;
-	const int padSpeed = 120;
-	const int padHeight = 40;
-	const int padWidth = 10;
+	const int padSpeed = 150;
+	const int padHeight = 32;
+	const int padWidth = 8;
 	const int pad1X = 5;
-	const int pad2X = 385;
-	const int padY = 100;
+	const int pad2X = 243;
+	const int padY = 80;
 } playingField;
-
-static struct Score {
-	int player1Score = 0;
-	int player2Score = 0;
-} score;
 
 class GameObject {
 protected:
@@ -44,6 +54,8 @@ public:
 	 int getY();
 	 int getWidth();
 	 int getLength();
+	 void setX(int x);
+	 void setY(int y);
 	 float getCenterY();
 	 void setDirection(Direction dr);
 	 gmtl::AABoxf getBox();
@@ -52,6 +64,7 @@ public:
 
 class Ball : public GameObject {	
 private:
+	int score1, score2;
 	float radius = 10;
 	gmtl::Spheref ball;
 	gmtl::Matrix44f ballTranslation;
@@ -62,6 +75,12 @@ public:
 	int getX();
 	int getY();
 	int getRadius();
+	int getScore1();
+	int getScore2();
+	void setX(int x);
+	void setY(int y);
+	void setScore1(int score);
+	void setScore2(int score);
 	void reverseDirection(float anglePercentage);
 	gmtl::Spheref getSphere();
 	void respawnBall();

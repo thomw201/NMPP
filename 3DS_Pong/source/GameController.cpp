@@ -17,11 +17,16 @@ void GameController::moveAutoMove(Pad &paddle)
 /**
 * This will handle the game logic of PONG!!
 */
-GameController::GameController() {
+GameController::GameController() 
+{ 
+	mode = solo;
 	player1 = Pad(true);
 	player2 = Pad(false);
 	ball = Ball();
 }
+
+
+
 
 /**
 * This function updates Pong game.
@@ -29,7 +34,10 @@ GameController::GameController() {
 */
 void GameController::Update(float deltaTime)
 {
-	moveAutoMove(player2);
+	if (mode == solo)
+	{
+		moveAutoMove(player2);
+	}
 	player1.Update(deltaTime);
 	player2.Update(deltaTime);
 	ball.Update(deltaTime);	
@@ -60,6 +68,72 @@ void GameController::movePaddle1(Direction direction)
 void GameController::movePaddle2(Direction direction)
 {
 	player2.setDirection(direction);
+}
+
+string GameController::getGameState()
+{
+	std::stringstream finaltext;
+	finaltext << "gamep1:" << getPad1X()<<","<<getPad1Y()<<","<<getBallX()<<","<<getBallY()<<"," << getScore1() << "," << getScore2();
+	return finaltext.str();
+}
+
+string GameController::getp2State()
+{
+	std::stringstream finaltext;
+	finaltext << "gamep2:" << getPad2X() << "," << getPad2Y();
+	return finaltext.str();
+}
+
+void GameController::syncGameState(string state)
+{
+	if (state.substr(0, 6) == "gamep1")
+	{
+		std::stringstream stream(state.substr(7, state.length() -7));
+		int i, count;
+		count = 0;
+		int coords[6];
+
+		while (stream >> i)
+		{
+			coords[count] = i;
+			count++;
+			if (stream.peek() == ',')
+				stream.ignore();
+		}
+		player1.setX(coords[0]);
+		player1.setY(coords[1]);
+		ball.setX(coords[2]);
+		ball.setY(coords[3]);
+		ball.setScore1(coords[4]);
+		ball.setScore2(coords[5]);
+	}
+	
+}
+
+void GameController::syncPaddleState(string state)
+{
+	if (state.substr(0, 6) == "gamep2")
+	{
+		std::stringstream stream(state.substr(7, state.length() - 7));
+		int i, count;
+		count = 0;
+		int coords[2];
+
+		while (stream >> i)
+		{
+			coords[count] = i;
+			count++;
+			if (stream.peek() == ',')
+				stream.ignore();
+		}
+		player2.setX(coords[0]);
+		player2.setY(coords[1]);
+	}
+}
+
+void GameController::setMode(Mode mode)
+{
+	this->mode = mode;
 }
 
 int GameController::getBallX()
@@ -111,6 +185,17 @@ int GameController::getPad2Length()
 {
 	return player2.getLength();
 }
+
+int GameController::getScore1()
+{
+	return ball.getScore1();
+}
+
+int GameController::getScore2()
+{
+	return ball.getScore2();
+}
+
 
 
 
