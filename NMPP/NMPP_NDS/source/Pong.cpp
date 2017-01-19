@@ -55,7 +55,7 @@ void Pong::update(float deltaTime)
 		}
 		else if (KEY_SELECT & keysDown())
 		{
-			changeState(new SplashScreen(manager));
+
 		}
 		else
 			controller.movePaddle1(neutral);
