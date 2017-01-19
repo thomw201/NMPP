@@ -1,3 +1,6 @@
+#include "nf_lib.h"
+#include "GameObject.h"
+#include "sprites.h"
 #pragma once
 class ball
 {

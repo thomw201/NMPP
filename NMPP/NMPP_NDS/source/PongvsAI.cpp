@@ -3,7 +3,8 @@
 
 PongvsAI::PongvsAI(StateManager &manager) : Pong(manager)
 {
-	controller.AIenabled = true;
+	controller.setMode(solo);
+	isP1 = true;
 }
 
 
@@ -14,18 +15,6 @@ PongvsAI::~PongvsAI()
 
 void PongvsAI::updateGame()
 {
-	if (KEY_DOWN & keysCurrent()) {
-		controller.movePaddle1(ponglogic::down);
-	}
-	else if (KEY_UP & keysCurrent()) {
-		controller.movePaddle1(ponglogic::up);
-	}
-	else if (KEY_SELECT & keysDown())
-	{
-		changeState(new SplashScreen(manager));
-	}
-	else
-		controller.movePaddle1(ponglogic::neutral);
 
 	bal.setPosition(controller.getBallX(), controller.getBallY());
 	p1Paddle.setPosition(controller.getPad1X() + (controller.getPad1Width() / 2), controller.getPad1Y() + (controller.getPad1Length() / 2));

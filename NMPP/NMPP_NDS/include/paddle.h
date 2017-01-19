@@ -1,3 +1,5 @@
+#include "nf_lib.h"
+#include "sprites.h"
 #pragma once
 class paddle
 {
@@ -11,12 +13,13 @@ public:
 	void setX(int _posX);
 	void setY(int _posY);
 	void setID(int _id);
+	void setSlot(int _slot);
 	int getWidth();
 	int getHeight();
 	int getX();
 	int getY();
 private:
-	int id, screen, posX, posY, width, height;
+	int id, screen, posX, posY, width, height, slot;
 
 };
 

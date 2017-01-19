@@ -1,5 +1,6 @@
 #pragma once
 #include "GameState.h"
+#include "sprites.h"
 #include "PongvsAI.h"
 #include "PongHost.h"
 #include "PongClient.h"
@@ -17,5 +18,6 @@ private:
 	void create();
 	signed int selected;
 	void navigate(signed int direction);
+	touchPosition touch;
 };
 

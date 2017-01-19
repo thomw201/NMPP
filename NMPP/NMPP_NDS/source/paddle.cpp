@@ -1,5 +1,5 @@
 #include "paddle.h"
-#include "nf_lib.h"
+
 
 
 paddle::paddle(int _id, int _screen, int _posX, int _posY)
@@ -21,9 +21,9 @@ paddle::paddle()
 
 paddle::~paddle()
 {
-	NF_DeleteSprite(screen, id);
-	NF_FreeSpriteGfx(screen, id);
-	NF_UnloadSpritePal(id);
+	//NF_DeleteSprite(screen, id);
+	//NF_FreeSpriteGfx(screen, id);
+	//NF_UnloadSpritePal(id);
 }
 
 int paddle::getY() {
@@ -47,7 +47,7 @@ void paddle::setPosition(int _posX, int _posY) {
 	_posY = _posY - (getHeight() / 2);
 	posX = _posX;
 	posY = _posY;
-	NF_MoveSprite(screen, id, posX, posY);
+	NF_MoveSprite(0, id, posX, posY);
 }
 
 /* change the size of the sprite */
@@ -76,13 +76,20 @@ void paddle::setID(int _id)
 	id = _id;
 }
 
+void paddle::setSlot(int _slot)
+{
+	slot = _slot;
+}
+
 /* creates the paddle on the posX, posY position */
 void paddle::create() {
-	NF_LoadSpriteGfx("game/sprites/paddleImg", id, width, height);	// load paddle sprite
-	NF_LoadSpritePal("game/sprites/paddleImg", id);
+	NF_VramSpritePal(0, id, slot);		// Load the Palette into VRAM 
+	NF_CreateSprite(0, id, id , slot, posX, posY);
+	//NF_LoadSpriteGfx("game/sprites/paddleImg", id, width, height);	// load paddle sprite
+	//NF_LoadSpritePal("game/sprites/paddleImg", id);
 
-	NF_VramSpriteGfx(screen, id, id, false);	// Load the Gfx into VRAM - transfer all Sprites
-	NF_VramSpritePal(screen, id, id);		// Load the Palette into VRAM
+	//NF_VramSpriteGfx(screen, id, id, false);	// Load the Gfx into VRAM - transfer all Sprites
+	//NF_VramSpritePal(screen, id, id);		// Load the Palette into VRAM
 
-	NF_CreateSprite(screen, id, id, id, posX, posY);		//create paddle 5% from the border and in the middle of the screen (vertically)
+	//NF_CreateSprite(screen, id, id, id, posX, posY);		//create paddle 5% from the border and in the middle of the screen (vertically)
 }

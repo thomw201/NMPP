@@ -65,6 +65,7 @@
     <ClCompile Include="source\PongHost.cpp" />
     <ClCompile Include="source\PongvsAI.cpp" />
     <ClCompile Include="source\SplashScreen.cpp" />
+    <ClCompile Include="source\sprites.cpp" />
     <ClCompile Include="source\StateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +86,7 @@
     <ClInclude Include="include\PongHost.h" />
     <ClInclude Include="include\PongvsAI.h" />
     <ClInclude Include="include\SplashScreen.h" />
+    <ClInclude Include="include\sprites.h" />
     <ClInclude Include="include\StateManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
