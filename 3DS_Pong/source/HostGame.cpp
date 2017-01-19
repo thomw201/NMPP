@@ -26,6 +26,7 @@ void HostGame::update(float deltaTime)
 	{
 		socket.sendString("I received: " + message + " from you!");
 		if (message == "Start!") {
+			socket.sendString("Go!");
 			changeState(new HostPong(manager, socket));
 		}
 	}

@@ -9,7 +9,7 @@ MainMenu::MainMenu(StateManager & manager, UdpSocket & socket) : GameState(manag
 		[&]() { manager.changeState(new ClassicPong(manager, socket)); }));
 
 	buttons.push_back(new Button(10, 90, joinFriendButton_img.pixel_data, joinFriendButtonSelected_img.pixel_data, singlePlayerButton_img.width, singlePlayerButton_img.height,
-		[]() {}));
+		[&]() { manager.changeState(new JoinGame(manager, socket)); }));
 	buttons.push_back(new Button(10, 170, hostButton_img.pixel_data, hostButtonSelected_img.pixel_data, singlePlayerButton_img.width, singlePlayerButton_img.height,
 		[&]() { manager.changeState(new HostGame(manager, socket)); }));
 

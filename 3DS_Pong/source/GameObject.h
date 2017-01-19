@@ -3,18 +3,32 @@
 enum Direction {neutral, up, down};
 enum Mode {solo, host, client};
 
+//static struct Field {
+//	const int width = 400;
+//	const int height = 240;
+//	const int ballRadius = 5;
+//	const int ballSpeed = 90;
+//	const float maxBallAngle = 50;
+//	const int padSpeed = 120;
+//	const int padHeight = 40;
+//	const int padWidth = 10;
+//	const int pad1X = 5;
+//	const int pad2X = 385;
+//	const int padY = 100;
+//} playingField;
+
 static struct Field {
-	const int width = 400;
-	const int height = 240;
-	const int ballRadius = 5;
-	const int ballSpeed = 90;
+	const int width = 256;
+	const int height = 192;
+	const int ballRadius = 4;
+	const int ballSpeed = 150;
 	const float maxBallAngle = 50;
-	const int padSpeed = 120;
-	const int padHeight = 40;
-	const int padWidth = 10;
+	const int padSpeed = 150;
+	const int padHeight = 32;
+	const int padWidth = 8;
 	const int pad1X = 5;
-	const int pad2X = 385;
-	const int padY = 100;
+	const int pad2X = 243;
+	const int padY = 80;
 } playingField;
 
 class GameObject {

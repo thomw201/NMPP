@@ -1,18 +1,18 @@
-#include "HostPong.h"
+#include "ClientPong.h"
 
 
-HostPong::HostPong(StateManager & manager, UdpSocket & socket) : GameState(manager), socket(socket)
+ClientPong::ClientPong(StateManager & manager, UdpSocket & socket) : GameState(manager), socket(socket)
 {
 	game = GameController();
-	game.setMode(host);
+	game.setMode(client);
 }
 
-HostPong::~HostPong()
+ClientPong::~ClientPong()
 {	
 	
 }
 
-void HostPong::update(float deltaTime)
+void ClientPong::update(float deltaTime)
 {
 	game.Update(deltaTime);
 	hidCircleRead(&circle);
@@ -66,7 +66,7 @@ void HostPong::update(float deltaTime)
 
 }
 
-void HostPong::changeState(GameState *nextState)
+void ClientPong::changeState(GameState *nextState)
 {
 	manager.changeState(nextState);
 }

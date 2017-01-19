@@ -11,6 +11,7 @@
 #include "ClassicPong.h"
 #include "MultiPlayerMenu.h"
 #include "HostGame.h"
+#include "JoinGame.h"
 
 //assets of the Main Menu
 #include "MainMenuAssets\SingleplayerButton.c"

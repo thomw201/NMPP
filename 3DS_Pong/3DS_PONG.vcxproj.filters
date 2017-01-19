@@ -19,6 +19,9 @@
     <Filter Include="Source Files\ScoreAssets">
       <UniqueIdentifier>{80b5ef1e-62e0-4c2f-b3d2-cba0905d4d92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\NumPadAssets">
+      <UniqueIdentifier>{9982db65-65fe-4abf-a642-80b3d5bbfb7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -141,6 +144,48 @@
     <ClCompile Include="source\HostPong.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\JoinGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\NumPadAssets\BackSpaceButton.c">
+      <Filter>Source Files\NumPadAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\NumPadAssets\DotButton.c">
+      <Filter>Source Files\NumPadAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\NumPadAssets\EightButton.c">
+      <Filter>Source Files\NumPadAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\NumPadAssets\FiveButton.c">
+      <Filter>Source Files\NumPadAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\NumPadAssets\NineButton.c">
+      <Filter>Source Files\NumPadAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\NumPadAssets\OneButton.c">
+      <Filter>Source Files\NumPadAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\NumPadAssets\SevenButton.c">
+      <Filter>Source Files\NumPadAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\NumPadAssets\SixButton.c">
+      <Filter>Source Files\NumPadAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\NumPadAssets\ThreeButton.c">
+      <Filter>Source Files\NumPadAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\NumPadAssets\TwoButton.c">
+      <Filter>Source Files\NumPadAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\NumPadAssets\ZeroButton.c">
+      <Filter>Source Files\NumPadAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\NumPadAssets\FourButton.c">
+      <Filter>Source Files\NumPadAssets</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ClientPong.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
@@ -189,6 +234,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="source\HostPong.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\JoinGame.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ClientPong.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
