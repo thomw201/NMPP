@@ -79,6 +79,8 @@ public:
 	int getScore2();
 	void setX(int x);
 	void setY(int y);
+	void setScore1(int score);
+	void setScore2(int score);
 	void reverseDirection(float anglePercentage);
 	gmtl::Spheref getSphere();
 	void respawnBall();

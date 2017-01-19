@@ -35,6 +35,10 @@ void JoinGame::update(float deltaTime)
 			changeState(new ClientPong(manager, socket));
 		}
 	}
+	if (held & KEY_SELECT)
+	{
+		changeState(new MainMenu(manager, socket));
+	}
 	if (pressed & KEY_LEFT)
 	{
 		count--;

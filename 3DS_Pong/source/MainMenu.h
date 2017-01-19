@@ -27,7 +27,7 @@
 */
 class MainMenu : public GameState {
 private:
-	sf2d_texture *topScreen;
+	//sf2d_texture *topScreen;
 	std::vector<Button*> buttons;
 	ButtonManager *buttonManager;
 	UdpSocket &socket;

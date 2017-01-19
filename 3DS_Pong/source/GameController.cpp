@@ -73,7 +73,7 @@ void GameController::movePaddle2(Direction direction)
 string GameController::getGameState()
 {
 	std::stringstream finaltext;
-	finaltext << "gamep1:" << getPad1X()<<","<<getPad1Y()<<","<<getBallX()<<","<<getBallY();
+	finaltext << "gamep1:" << getPad1X()<<","<<getPad1Y()<<","<<getBallX()<<","<<getBallY()<<"," << getScore1() << "," << getScore2();
 	return finaltext.str();
 }
 
@@ -91,7 +91,7 @@ void GameController::syncGameState(string state)
 		std::stringstream stream(state.substr(7, state.length() -7));
 		int i, count;
 		count = 0;
-		int coords[4];
+		int coords[6];
 
 		while (stream >> i)
 		{
@@ -104,6 +104,8 @@ void GameController::syncGameState(string state)
 		player1.setY(coords[1]);
 		ball.setX(coords[2]);
 		ball.setY(coords[3]);
+		ball.setScore1(coords[4]);
+		ball.setScore2(coords[5]);
 	}
 	
 }
@@ -193,6 +195,7 @@ int GameController::getScore2()
 {
 	return ball.getScore2();
 }
+
 
 
 

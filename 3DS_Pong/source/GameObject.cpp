@@ -180,6 +180,16 @@ void Ball::setY(int y)
 	ball.mCenter[1] = y;
 }
 
+void Ball::setScore1(int score)
+{
+	score1 = score;
+}
+
+void Ball::setScore2(int score)
+{
+	score2 = score;
+}
+
 void Ball::reverseDirection(float anglePercentage)
 {   
 	//Ball angle goes from 100 to -100
