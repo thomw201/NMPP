@@ -6,6 +6,8 @@
 #include "GameController.h"
 #include "SplashScreen.h"
 #include "ScoreManager.h"
+#include "TextPrinter.h"
+
 
 
 /**
@@ -20,6 +22,8 @@ private:
 	circlePosition circle;
 	u32 held;
 	UdpSocket &socket;
+	uiBitmapFont font;
+	stringstream converter;
 
 public:
 	

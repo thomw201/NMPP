@@ -10,7 +10,7 @@ ClassicPong::ClassicPong(StateManager & manager, UdpSocket & socket) : GameState
 
 ClassicPong::~ClassicPong()
 {	
-	
+	sf2d_free_texture(font.bitmap);
 }
 
 void ClassicPong::update(float deltaTime)
@@ -48,6 +48,13 @@ void ClassicPong::update(float deltaTime)
 		{
 			sf2d_draw_rectangle(198, i * 12, 4, 8, RGBA8(0xFF, 0xFF, 0xFF, 0xFF));
 		}
+		//for (size_t i = 0; i < 12; i++)
+		//{
+		//	sf2d_draw_rectangle(0, i * 40, 20, 20, RGBA8(0xFF, 0xFF, 0xFF, 0xFF));
+		//	sf2d_draw_rectangle(20, i * 40 + 20, 20, 20, RGBA8(0xFF, 0xFF, 0xFF, 0xFF));
+		//	sf2d_draw_rectangle(360, i * 40, 20, 20, RGBA8(0xFF, 0xFF, 0xFF, 0xFF));
+		//	sf2d_draw_rectangle(380, i * 40 + 20, 20, 20, RGBA8(0xFF, 0xFF, 0xFF, 0xFF));
+		//}
 	sf2d_end_frame();
 
 	sf2d_start_frame(GFX_TOP, GFX_RIGHT);
@@ -58,10 +65,21 @@ void ClassicPong::update(float deltaTime)
 		{
 			sf2d_draw_rectangle(198, i * 12, 4, 8, RGBA8(0xFF, 0xFF, 0xFF, 0xFF));
 		}
+		//for (size_t i = 0; i < 12; i++)
+		//{
+		//	sf2d_draw_rectangle(0, i * 40, 20, 20, RGBA8(0xFF, 0xFF, 0xFF, 0xFF));
+		//	sf2d_draw_rectangle(20, i * 40+20, 20, 20, RGBA8(0xFF, 0xFF, 0xFF, 0xFF));
+		//	sf2d_draw_rectangle(360, i * 40, 20, 20, RGBA8(0xFF, 0xFF, 0xFF, 0xFF));
+		//	sf2d_draw_rectangle(380, i * 40 + 20, 20, 20, RGBA8(0xFF, 0xFF, 0xFF, 0xFF));
+		//}
 	sf2d_end_frame();
-
+	
 	sf2d_start_frame(GFX_BOTTOM, GFX_LEFT);
-		//scoreManager.drawScore(game.getScore1(), game.getScore2());
+		renderBitmapText("Score:", 80, 30, font);
+		converter.str(string()); converter << game.getScore1();
+		renderBitmapText(converter.str(), 80, 90, font);
+		converter.str(string()); converter << game.getScore2();
+		renderBitmapText(converter.str(), 200, 90, font);
 	sf2d_end_frame();
 
 	sf2d_swapbuffers();

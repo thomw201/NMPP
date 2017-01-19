@@ -5,11 +5,12 @@ ClientPong::ClientPong(StateManager & manager, UdpSocket & socket) : GameState(m
 {
 	game = GameController();
 	game.setMode(client);
+	font = readBitmapFont((u8*)font_img.pixel_data, 32, 7, 16, 512);
 }
 
 ClientPong::~ClientPong()
 {	
-	
+	sf2d_free_texture(font.bitmap);
 }
 
 void ClientPong::update(float deltaTime)
@@ -67,7 +68,11 @@ void ClientPong::update(float deltaTime)
 	sf2d_end_frame();
 
 	sf2d_start_frame(GFX_BOTTOM, GFX_LEFT);
-
+		renderBitmapText("Score:", 80, 30, font);
+		converter.str(string()); converter << game.getScore1();
+		renderBitmapText(converter.str(), 80, 90, font);
+		converter.str(string()); converter << game.getScore2();
+		renderBitmapText(converter.str(), 200, 90, font);
 	sf2d_end_frame();
 
 	sf2d_swapbuffers();

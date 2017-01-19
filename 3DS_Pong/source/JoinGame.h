@@ -15,7 +15,7 @@
 
 
 /**
-*@The HostScreen of the game of the game!
+*@The JoinScreen of the game of the game!
 */
 class JoinGame : public GameState {
 private:
